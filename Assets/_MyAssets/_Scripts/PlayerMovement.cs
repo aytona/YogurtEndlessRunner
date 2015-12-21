@@ -75,6 +75,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Target"))             // Check if player has arrived at target.
             arrivedAtTarget = true;
+
+        if (other.CompareTag("Hand"))               // If the hand has grabbed the player.
+            other.gameObject.GetComponentInParent<HandMovement>().SetGrabbed();
     }
 
     #endregion Monobehaviour
@@ -149,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves player between 2 points.
+    /// Moves player from one point to another.
     /// </summary>
     private void MoveToPosition()
     {
