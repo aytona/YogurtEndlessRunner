@@ -26,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     private int targetIndex;
 
     /// <summary>
+    /// Has the character arrived at the target position?
+    /// </summary>
+    private bool arrivedAtTarget = false;
+
+    /// <summary>
     /// Holds the current position and the next position, used to interpolate movement between positions.
     /// </summary>
     private Vector3 currentPos, nextPos;
@@ -62,8 +67,14 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground"))  // Check if player is grounded before player can jump again.
             isGrounded = true;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Target"))             // Check if player has arrived at target.
+            arrivedAtTarget = true;
     }
 
     #endregion Monobehaviour
@@ -75,9 +86,15 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void MoveUp()
     {
-        if(isGrounded)
-            if(targetIndex < (targets.Length - 1))
+        if (isGrounded && arrivedAtTarget)
+        {
+            if (targetIndex < (targets.Length - 1))
+            {
                 targetIndex++;
+                arrivedAtTarget = false;
+            }
+            //Debug.Log("Move Up");
+        }
     }
 
     /// <summary>
@@ -85,9 +102,27 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void MoveDown()
     {
-        if (isGrounded)
+        if (isGrounded && arrivedAtTarget)
+        {
             if (targetIndex > 0)
+            {
                 targetIndex--;
+                arrivedAtTarget = false;
+            }
+            //Debug.Log("Move Down");
+        }
+    }
+
+    /// <summary>
+    /// Makes the player jump.
+    /// </summary>
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
     }
 
     #endregion Public Methods
@@ -125,18 +160,6 @@ public class PlayerMovement : MonoBehaviour
 
             // Interpolates the player's position between current position and destination.
             transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
-        }
-    }
-
-    /// <summary>
-    /// Makes the player jump.
-    /// </summary>
-    private void Jump()
-    {
-        if (isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
         }
     }
 
