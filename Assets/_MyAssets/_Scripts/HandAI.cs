@@ -9,6 +9,11 @@ public class HandAI : MonoBehaviour {
     private HandMovement _movement;
 
     /// <summary>
+    /// Refenrence to the PlayerMovement script.
+    /// </summary>
+    private PlayerMovement _player;
+
+    /// <summary>
     /// Will the AI run?
     /// </summary>
     private bool canLoop = true;
@@ -49,6 +54,12 @@ public class HandAI : MonoBehaviour {
     /// </summary>
     public float waitToLeaveTime = 1.0f;
 
+    [Tooltip("Percentage chance that the hand will choose to follow the player's position instead of going to a random plane. 0.0 - 1.0.")]
+    /// <summary>
+    /// Percent that the hand will follow the player's position.
+    /// </summary>
+    public float followPercent = 0.4f;
+
     /// <summary>
     /// Used to pass random time to coroutines.
     /// </summary>
@@ -61,6 +72,7 @@ public class HandAI : MonoBehaviour {
 
 	void Start () {
         _movement = GetComponent<HandMovement>();   // Set the reference.
+        _player = FindObjectOfType<PlayerMovement>();
         _movement.SetMove(true);                    // Sets the hand to move.
         StartCoroutine(StateLoop());                // Starts the "AI" loop.
 	}
@@ -98,6 +110,7 @@ public class HandAI : MonoBehaviour {
             {
                 // Hand has grabbed the yougurt
                 Debug.Log("TIME FOR FROZEN YOGURT!!");
+                _player.AttachToHand(this.transform);
             }
             else
             {
@@ -119,8 +132,17 @@ public class HandAI : MonoBehaviour {
         do
         {
             float randomNum = Random.Range(0.0f, 1.0f);     // Get a random time before moving along.
-            int randomIndex = Random.Range(0, 3);           // Get a random plane to go to.
-            _movement.SetNextPosition(randomIndex);         // Set the hand's next position.
+            float randomChance = Random.Range(0.0f, 1.0f);  // Get a random chance to use player's location.
+
+            if (randomChance <= followPercent)              // Decides if the hand will follow the player or use a random position.
+            {
+                _movement.SetNextPosition(_player.GetPlayerPlane());    // Player position.
+            }
+            else
+            {
+                int randomIndex = Random.Range(0, 3);       // Get a random plane to go to.
+                _movement.SetNextPosition(randomIndex);     // Set the hand's next position.
+            }
 
             yield return new WaitForSeconds(randomNum);
         } while (keepSearching);
