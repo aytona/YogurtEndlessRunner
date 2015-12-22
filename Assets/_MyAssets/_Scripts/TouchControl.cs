@@ -10,6 +10,7 @@ public class TouchControl : MonoBehaviour
 
     #region Variables
 
+    [Tooltip("Percentage of the height of the screen that needs to be swiped for a swipe to count.")]
     /// <summary>
     /// Percentage of the height of the screen that needs to be swiped for a swipe to count.
     /// </summary>
