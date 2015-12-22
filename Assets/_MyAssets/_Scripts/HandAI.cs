@@ -70,11 +70,19 @@ public class HandAI : MonoBehaviour {
     /// </summary>
     private bool keepSearching = false;
 
+    /// <summary>
+    /// Used to store the coroutines to be able to stop it later.
+    /// </summary>
+    private Coroutine aiLoop, searchLoop;
+
 	void Start () {
         _movement = GetComponent<HandMovement>();   // Set the reference.
         _player = FindObjectOfType<PlayerMovement>();
         _movement.SetMove(true);                    // Sets the hand to move.
-        StartCoroutine(StateLoop());                // Starts the "AI" loop.
+        if (!_player.GetGameOver())
+        {
+            StartHandAI();   // Starts the "AI" loop.
+        }
 	}
 
     /// <summary>
@@ -94,7 +102,7 @@ public class HandAI : MonoBehaviour {
             // Search
             searchTime = Random.Range(minSearchTime, maxSearchTime);
             keepSearching = true;
-            StartCoroutine(Searching());
+            searchLoop = StartCoroutine(Searching());
             yield return new WaitForSeconds(searchTime);
             keepSearching = false;
 
@@ -111,6 +119,7 @@ public class HandAI : MonoBehaviour {
                 // Hand has grabbed the yougurt
                 Debug.Log("TIME FOR FROZEN YOGURT!!");
                 _player.AttachToHand(this.transform);
+                FindObjectOfType<GameController>().RestartButton.SetActive(true); // For demo
             }
             else
             {
@@ -146,6 +155,23 @@ public class HandAI : MonoBehaviour {
 
             yield return new WaitForSeconds(randomNum);
         } while (keepSearching);
+    }
+
+    /// <summary>
+    /// Start hand AI.
+    /// </summary>
+    public void StartHandAI()
+    {
+        aiLoop = StartCoroutine(StateLoop());   // Starts the "AI" loop.
+    }
+
+    /// <summary>
+    /// Stop all Hand AI coroutines.
+    /// </summary>
+    public void StopHandCoroutines()
+    {
+        StopCoroutine(aiLoop);
+        StopCoroutine(searchLoop);
     }
 
 }
