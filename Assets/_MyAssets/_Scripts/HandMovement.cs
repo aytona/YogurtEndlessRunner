@@ -22,7 +22,7 @@ public class HandMovement : MonoBehaviour
     /// <summary>
     /// What target to move to next.
     /// </summary>
-    public int targetIndex;
+    private int targetIndex;
 
     /// <summary>
     /// Holds the current position and the next position, used to interpolate movement between positions.
@@ -54,17 +54,17 @@ public class HandMovement : MonoBehaviour
     /// <summary>
     /// Can the hand move around and search for the character.
     /// </summary>
-    public bool canMove = false;
+    private bool canMove = false;
 
     /// <summary>
     /// Can the hand move into grabbing position.
     /// </summary>
-    public bool canMoveToGrab = false;
+    private bool canMoveToGrab = false;
 
     /// <summary>
     /// Can the hand attempt to grab the character.
     /// </summary>
-    public bool canGrab = false;
+    private bool canGrab = false;
 
     [Tooltip("The Z position that the hand will hide at when not in use.")]
     /// <summary>
@@ -75,7 +75,7 @@ public class HandMovement : MonoBehaviour
     /// <summary>
     /// Hide the hand from the player's view?
     /// </summary>
-    public bool hideHand = false;
+    private bool hideHand = false;
 
     /// <summary>
     /// Has the character been grabbed?

@@ -51,6 +51,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private Rigidbody rb;
 
+    /// <summary>
+    /// Is the game over?
+    /// </summary>
+    private bool gameOver = false;
+
     #endregion Variables
 
     #region Monobehaviour
@@ -61,8 +66,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
 	void Update () {
-        CheckInput();       // For testing
-        MoveToPosition();
+        if (!gameOver)
+        {
+            CheckInput();       // For testing
+            MoveToPosition();
+        }
 	}
 
     void OnCollisionEnter(Collision other)
@@ -77,7 +85,10 @@ public class PlayerMovement : MonoBehaviour
             arrivedAtTarget = true;
 
         if (other.CompareTag("Hand"))               // If the hand has grabbed the player.
+        {
+            gameOver = true;
             other.gameObject.GetComponentInParent<HandMovement>().SetGrabbed();
+        }
     }
 
     #endregion Monobehaviour
@@ -126,6 +137,28 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+    }
+
+    /// <summary>
+    /// Attach character to the Transform passed into the method, preferably the hand's Transform.
+    /// </summary>
+    /// <param name="p">The transform of whatever you want the character's parent  to be.</param>
+    public void AttachToHand(Transform p)
+    {
+        if (gameOver)
+        {
+            transform.parent = p;
+            rb.isKinematic = true;
+        }
+    }
+
+    /// <summary>
+    /// Get the index of the plane the player is currently on.
+    /// </summary>
+    /// <returns>Returns an int that is the index of the plane the player is currently on.</returns>
+    public int GetPlayerPlane()
+    {
+        return targetIndex;
     }
 
     #endregion Public Methods
