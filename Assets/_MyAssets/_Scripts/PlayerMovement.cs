@@ -58,11 +58,14 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion Variables
 
+    private GameController _gc;
+
     #region Monobehaviour
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        _gc = FindObjectOfType<GameController>();
     }
 
 	void Update () {
@@ -88,6 +91,18 @@ public class PlayerMovement : MonoBehaviour
         {
             gameOver = true;
             other.gameObject.GetComponentInParent<HandMovement>().SetGrabbed();
+            _gc.ShowMessage("YOU LOSE!");
+        }
+        if (other.CompareTag("Collectable"))
+        {
+            Debug.Log("CANDY!");
+            _gc.AddScore();
+            _gc.ShowMessage("Candy!");
+        }
+        if (other.CompareTag("Obstacle"))
+        {
+            Debug.Log("OBSTACLE!");
+            _gc.ShowMessage("You hit an obstacle!");
         }
     }
 
