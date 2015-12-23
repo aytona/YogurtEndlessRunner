@@ -97,7 +97,7 @@ public class TouchControl : MonoBehaviour
 
             if (touch.tapCount == 2)
             {
-                _touchInput = TouchInput.doubleTouch;
+                _touchInput = TouchInput.doubleTouch;               // Double Touch
             }
         }
 

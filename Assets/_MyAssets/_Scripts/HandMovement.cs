@@ -89,6 +89,7 @@ public class HandMovement : MonoBehaviour
     void Start () {
         neutralXPos = transform.position.x;     // Save the x position of the hand for later use.
         neutralYPos = transform.position.y;     // Save the y position of the hand for later use.
+        targetIndex = -1;
 	}
 
 	void Update () {
