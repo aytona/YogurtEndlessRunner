@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Is the game over?
     /// </summary>
-    private bool gameOver = false;
+    private bool gameOver = true;       // Start as true to wait for start of game.
 
     #endregion Variables
 
@@ -100,14 +100,17 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void MoveUp()
     {
-        if (isGrounded && arrivedAtTarget)
+        if (!gameOver)
         {
-            if (targetIndex < (targets.Length - 1))
+            if (isGrounded && arrivedAtTarget)
             {
-                targetIndex++;
-                arrivedAtTarget = false;
+                if (targetIndex < (targets.Length - 1))
+                {
+                    targetIndex++;
+                    arrivedAtTarget = false;
+                }
+                //Debug.Log("Move Up");
             }
-            //Debug.Log("Move Up");
         }
     }
 
@@ -116,14 +119,17 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void MoveDown()
     {
-        if (isGrounded && arrivedAtTarget)
+        if (!gameOver)
         {
-            if (targetIndex > 0)
+            if (isGrounded && arrivedAtTarget)
             {
-                targetIndex--;
-                arrivedAtTarget = false;
+                if (targetIndex > 0)
+                {
+                    targetIndex--;
+                    arrivedAtTarget = false;
+                }
+                //Debug.Log("Move Down");
             }
-            //Debug.Log("Move Down");
         }
     }
 
@@ -132,10 +138,13 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Jump()
     {
-        if (isGrounded)
+        if (!gameOver)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            if (isGrounded)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                isGrounded = false;
+            }
         }
     }
 
@@ -159,6 +168,24 @@ public class PlayerMovement : MonoBehaviour
     public int GetPlayerPlane()
     {
         return targetIndex;
+    }
+
+    /// <summary>
+    /// Set the game to be over.
+    /// </summary>
+    /// <param name="b">True = Game Over; False = Game Not Over.</param>
+    public void SetGameOver(bool b)
+    {
+        gameOver = b;
+    }
+
+    /// <summary>
+    /// See if the game over is true or not.
+    /// </summary>
+    /// <returns>Is game over?</returns>
+    public bool GetGameOver()
+    {
+        return gameOver;
     }
 
     #endregion Public Methods
