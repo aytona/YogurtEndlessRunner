@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour {
 	void Start () {
         _player = FindObjectOfType<PlayerMovement>();
         _hand = FindObjectOfType<HandAI>();
+        score.text = "Score: " + playerScore;
         if(allowDemo)
             StartButton.SetActive(true);
 	}
@@ -52,5 +54,25 @@ public class GameController : MonoBehaviour {
     public void RestartLevel()
     {
         Application.LoadLevel(0);
+    }
+
+    public Text score, message;
+    public int playerScore = 0;
+    public void AddScore()
+    {
+        playerScore++;
+        score.text = "Score: " + playerScore;
+    }
+
+    public void ShowMessage(string m)
+    {
+        message.text = m;
+        StartCoroutine(EraseMessage());
+    }
+
+    IEnumerator EraseMessage()
+    {
+        yield return new WaitForSeconds(2);
+        message.text = "";
     }
 }
