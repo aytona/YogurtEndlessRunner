@@ -2,21 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-// Note: For future use, and reference
 public class ObjectPooling : MonoBehaviour {
 
-    public static ObjectPooling current;
-
-    #region Variables
-
+    private static ObjectPooling current;
     public GameObject pooledObject;
+
     private int pooledAmount;
     private bool willGrow = true;
     private List<GameObject> pooledObjects;
-
-    #endregion Variables
-
-    #region Monobehaviour
 
     void Awake()
     {
@@ -33,10 +26,6 @@ public class ObjectPooling : MonoBehaviour {
             pooledObjects.Add(obj);
         }
     }
-
-    #endregion Monobehaviour
-
-    #region Public Methods
 
     public GameObject GetPooledObject()
     {
@@ -55,6 +44,4 @@ public class ObjectPooling : MonoBehaviour {
 
         return null;
     }
-
-    #endregion Public Methods
 }
