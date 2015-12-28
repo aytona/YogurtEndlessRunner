@@ -8,9 +8,6 @@ public class ObjectBehaviour : MonoBehaviour {
     [Tooltip("Length of object lifespan")]
     public float lifeSpan;
 
-    [Tooltip("Speed of object")]
-    public float speed;
-
     #endregion Variables
 
     #region Monobehaviour
@@ -27,7 +24,7 @@ public class ObjectBehaviour : MonoBehaviour {
 
     void Update()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * speed);
+        transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
     }
 
     void OnTriggerEnter(Collider other)

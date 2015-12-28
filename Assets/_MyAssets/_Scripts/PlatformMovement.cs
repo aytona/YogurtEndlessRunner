@@ -5,9 +5,6 @@ public class PlatformMovement : MonoBehaviour {
 
     #region Variables
 
-    [Tooltip("Speed of the platform")]
-    public float speed;
-
     [Tooltip("Width of the platform")]
     public float widthOfPlatform;
 
@@ -22,7 +19,7 @@ public class PlatformMovement : MonoBehaviour {
     {
         // Moves the platform to the left
         if (transform.position.x >= lengthBeforeDespawn)
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
         // Relocate the platform to the front
         else
             transform.Translate(widthOfPlatform, 0, 0);
