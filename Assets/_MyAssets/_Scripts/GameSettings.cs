@@ -38,8 +38,8 @@ public class GameSettings : MonoBehaviour {
         else
         {
             // Needs tweeking
-            gameSpeed++;
-            playerWeight++;
+            gameSpeed += 0.01f;
+            playerWeight += 0.01f;
         }
     }
 
