@@ -5,4 +5,5 @@ using System.Collections;
 public class GameManager : Singleton<GameManager> {
 
     public GameSettings gameSettings;
+
 }
