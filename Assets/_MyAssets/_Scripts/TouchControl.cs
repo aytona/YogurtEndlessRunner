@@ -41,6 +41,22 @@ public class TouchControl : MonoBehaviour
     /// </summary>
     private bool directionChosen;
 
+    [Tooltip("Delay to detect a double touch.")]
+    /// <summary>
+    /// Delay to detect a double touch
+    /// </summary>
+    public float doubleTouchDelay = 0.3f;
+
+    /// <summary>
+    /// Can a double touch be checked.
+    /// </summary>
+    public bool checkDoubleTouch = true;
+
+    /// <summary>
+    /// Saves the last touch to get it's position.
+    /// </summary>
+    public Touch lastTouch;
+
     /// <summary>
     /// Which direction the is the swipe in.
     /// </summary>
@@ -95,9 +111,16 @@ public class TouchControl : MonoBehaviour
                     break;
             }
 
-            if (touch.tapCount == 2)
+            if (touch.tapCount == 1)
             {
-                _touchInput = TouchInput.doubleTouch;               // Double Touch
+                checkDoubleTouch = true;
+                StartCoroutine(DoubleTouchWait(touch));          // Call to check if it is a single touch
+            }
+
+            if (checkDoubleTouch && touch.tapCount == 2)
+            {
+                _touchInput = TouchInput.doubleTouch;       // Double Touch
+                Debug.Log("Double Touch");
             }
         }
 
@@ -133,6 +156,19 @@ public class TouchControl : MonoBehaviour
     }
 
     /// <summary>
+    /// Waits a few for a short time before declaring a touch, waiting to see if there is a double touch.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator DoubleTouchWait(Touch t)
+    {
+        yield return new WaitForSeconds(doubleTouchDelay);
+        checkDoubleTouch = false;
+        _touchInput = TouchInput.touch;
+        lastTouch = t;
+        Debug.Log("Single Touch");
+    }
+
+    /// <summary>
     /// Calls movement methods on the Player Movement script depending on touch input.
     /// </summary>
     private void MovePlayer()
@@ -147,6 +183,10 @@ public class TouchControl : MonoBehaviour
                 break;
             case TouchInput.doubleTouch:
                 _player.Jump();
+                break;
+            case TouchInput.touch:
+                // Call a raycast to check for the lane
+                _player.MovePlayerToPlane(lastTouch);
                 break;
         }
         _touchInput = TouchInput.none;    // Reset the touch.
