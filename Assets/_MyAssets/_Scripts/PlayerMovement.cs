@@ -56,6 +56,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private bool gameOver = true;       // Start as true to wait for start of game.
 
+    /// <summary>
+    /// Container of the player object.
+    /// </summary>
+    public Transform parentObject;
+
     #endregion Variables
 
     private GameController _gc;
@@ -233,11 +238,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            currentPos = this.transform.position;       // Set current position to the player's current postion
+            //currentPos = this.transform.position;       // Set current position to the player's current postion
+            currentPos = parentObject.position;
             nextPos = targets[targetIndex].position;    // Sets the next position to one of the targets, indicated by the target index.
 
             // Interpolates the player's position between current position and destination.
-            transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
+            //transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
+            parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
         }
     }
 
