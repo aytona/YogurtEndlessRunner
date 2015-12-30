@@ -18,6 +18,9 @@ public class GameSettings : MonoBehaviour {
     [Tooltip("Check to see if the game starts")]
     public bool gameStart = false;
 
+    [Tooltip("The amount that the speed increases per tick")]
+    public float speedIncreaser = 0.01f;
+
     private float gameSpeedDefault;
     private float playerWeightDefault;
     
@@ -45,8 +48,8 @@ public class GameSettings : MonoBehaviour {
         else if (gameStart)
         {
             // Needs tweeking
-            gameSpeed += 0.01f;
-            playerWeight += 0.01f;
+            gameSpeed += speedIncreaser;
+            playerWeight += speedIncreaser;
         }
     }
 
