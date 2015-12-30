@@ -187,7 +187,10 @@ public class HandMovement : MonoBehaviour
                 currentPos = this.transform.position;           // Set current position to the hand's current postion
                 nextPos = currentPos;
                 //nextPos.z = targets[targetIndex].position.z;    // Sets the next position to one of the targets, indicated by the target index.
-                nextPos.y = targets[targetIndex].position.y;
+                //nextPos.y = targets[targetIndex].position.y;
+                nextPos = targets[targetIndex].position;
+                nextPos.y += 1;
+                nextPos.z -= 1;
 
                 // Interpolates the hand's position between current position and destination.
                 LerpPositions(currentPos, nextPos);
