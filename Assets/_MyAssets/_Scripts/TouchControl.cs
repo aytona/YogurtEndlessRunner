@@ -80,7 +80,7 @@ public class TouchControl : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        DetectSwipe();
+        DetectTouchInput();
         MovePlayer();
 	}
 
@@ -91,7 +91,7 @@ public class TouchControl : MonoBehaviour
     /// <summary>
     /// Detects touch and swipe and converts it to game input.
     /// </summary>
-    private void DetectSwipe()
+    private void DetectTouchInput()
     {
         if (Input.touchCount > 0)                           // If there is a touch on the screen...
         {
@@ -175,12 +175,12 @@ public class TouchControl : MonoBehaviour
     {
         switch (_touchInput)
         {
-            case TouchInput.swipeUp:
+            /*case TouchInput.swipeUp:
                 _player.MoveUp();
                 break;
             case TouchInput.swipeDown:
                 _player.MoveDown();
-                break;
+                break;*/
             case TouchInput.doubleTouch:
                 _player.Jump();
                 break;
