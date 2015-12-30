@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour {
         score.text = "Score: " + playerScore;
         if(allowDemo)
             StartButton.SetActive(true);
+        GameManager.Instance.gameSettings.gameRestart = true;
 	}
 
 	void Update () {
@@ -46,6 +47,7 @@ public class GameController : MonoBehaviour {
         _player.SetGameOver(false);
         _hand.StartHandAI();
         StartButton.SetActive(false);
+        GameManager.Instance.gameSettings.gameStart = true;
     }
 
     /// <summary>
@@ -53,6 +55,7 @@ public class GameController : MonoBehaviour {
     /// </summary>
     public void RestartLevel()
     {
+        // Note: Obselete as of Unity 5.3
         Application.LoadLevel(0);
     }
 
