@@ -56,6 +56,16 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private bool gameOver = true;       // Start as true to wait for start of game.
 
+    /// <summary>
+    /// Container of the player object.
+    /// </summary>
+    public Transform parentObject;
+
+    /// <summary>
+    /// Layer mask for the racasting to detect what plane the player wants to move to.
+    /// </summary>
+    private int layerMask = 1 << 8;
+
     #endregion Variables
 
     private GameController _gc;
@@ -73,6 +83,31 @@ public class PlayerMovement : MonoBehaviour
         {
             CheckInput();       // For testing
             MoveToPosition();
+
+            // The following is for testing with the mouse
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 100, layerMask))
+                {
+                    switch (hit.collider.name)
+                    {
+                        case "FarPlane":
+                            targetIndex = 2;
+                            break;
+                        case "MiddlePlane":
+                            targetIndex = 1;
+                            break;
+                        case "NearPlane":
+                            targetIndex = 0;
+                            break;
+                        default:
+                            Debug.Log("No Plane");
+                            break;
+                    }
+                }
+            }
         }
 	}
 
@@ -144,6 +179,34 @@ public class PlayerMovement : MonoBehaviour
                     arrivedAtTarget = false;
                 }
                 //Debug.Log("Move Down");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Check to see if you hit a plane and then change the index to the plane that was hit.
+    /// </summary>
+    /// <param name="_t"></param>
+    public void MovePlayerToPlane(Touch _t)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(_t.position);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100, layerMask))
+        {
+            switch (hit.ToString())
+            {
+                case "FarPlane":
+                    targetIndex = 2;
+                    break;
+                case "MiddlePlane":
+                    targetIndex = 1;
+                    break;
+                case "NearPlane":
+                    targetIndex = 0;
+                    break;
+                default:
+                    //Debug.Log("No Plane");
+                    break;
             }
         }
     }
@@ -233,11 +296,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            currentPos = this.transform.position;       // Set current position to the player's current postion
+            //currentPos = this.transform.position;       // Set current position to the player's current postion
+            currentPos = parentObject.position;
             nextPos = targets[targetIndex].position;    // Sets the next position to one of the targets, indicated by the target index.
 
             // Interpolates the player's position between current position and destination.
-            transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
+            //transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
+            parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
         }
     }
 

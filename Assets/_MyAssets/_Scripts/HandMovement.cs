@@ -35,11 +35,11 @@ public class HandMovement : MonoBehaviour
     /// </summary>
     public float xTweak = 0.55f;
 
-    [Tooltip("Tweak the Y position of the hand's grab.")]
+    [Tooltip("Tweak the Z position of the hand's grab.")]
     /// <summary>
-    /// Tweaks the Y position of the hand when grabbing.
+    /// Tweaks the Z position of the hand when grabbing.
     /// </summary>
-    public float yTweak = 1.0f;
+    public float zTweak = 1.0f;
 
     /// <summary>
     /// The x position of the hand when not attacking.
@@ -47,9 +47,9 @@ public class HandMovement : MonoBehaviour
     private float neutralXPos;
 
     /// <summary>
-    /// The y position of the hand when not attacking.
+    /// The z position of the hand when not attacking.
     /// </summary>
-    private float neutralYPos;
+    private float neutralZPos;
 
     /// <summary>
     /// Can the hand move around and search for the character.
@@ -66,11 +66,11 @@ public class HandMovement : MonoBehaviour
     /// </summary>
     private bool canGrab = false;
 
-    [Tooltip("The Z position that the hand will hide at when not in use.")]
+    [Tooltip("The X position that the hand will hide at when not in use.")]
     /// <summary>
-    /// Z position that the hand will hide at when not in use.
+    /// X position that the hand will hide at when not in use.
     /// </summary>
-    public float hidePositionZ;
+    public float hidePositionX;
 
     /// <summary>
     /// Hide the hand from the player's view?
@@ -88,7 +88,7 @@ public class HandMovement : MonoBehaviour
 
     void Start () {
         neutralXPos = transform.position.x;     // Save the x position of the hand for later use.
-        neutralYPos = transform.position.y;     // Save the y position of the hand for later use.
+        neutralZPos = transform.position.z;     // Save the z position of the hand for later use.
         targetIndex = -1;
 	}
 
@@ -176,7 +176,7 @@ public class HandMovement : MonoBehaviour
     #region Private Methods
 
     /// <summary>
-    /// Moves hand from one plane to another.  Manipulates the Z position of the hand.
+    /// Moves hand from one plane to another.  Manipulates the Y position of the hand.
     /// </summary>
     private void MoveToPlane()
     {
@@ -186,7 +186,11 @@ public class HandMovement : MonoBehaviour
             {
                 currentPos = this.transform.position;           // Set current position to the hand's current postion
                 nextPos = currentPos;
-                nextPos.z = targets[targetIndex].position.z;    // Sets the next position to one of the targets, indicated by the target index.
+                //nextPos.z = targets[targetIndex].position.z;    // Sets the next position to one of the targets, indicated by the target index.
+                //nextPos.y = targets[targetIndex].position.y;
+                nextPos = targets[targetIndex].position;
+                nextPos.y += 1;
+                nextPos.z -= 1;
 
                 // Interpolates the hand's position between current position and destination.
                 LerpPositions(currentPos, nextPos);
@@ -195,15 +199,15 @@ public class HandMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves hand from one plane to another.  Manipulates the Z position of the hand.
+    /// Moves hand from one plane to another.  Manipulates the X and Y position of the hand.
     /// </summary>
-    private void MoveToPlane(float zHide)
+    private void MoveToPlane(float xHide)
     {
         if (canMove)    // If hand is set to move...
         {
             currentPos = this.transform.position;           // Set current position to the hand's current postion
             nextPos = currentPos;
-            nextPos.z = zHide;    // Sets the next position to one of the targets, indicated by the target index.
+            nextPos.x = xHide;    // Sets the next position to one of the targets, indicated by the target index.
 
             // Interpolates the hand's position between current position and destination.
             LerpPositions(currentPos, nextPos);
@@ -236,7 +240,7 @@ public class HandMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Hand attemps a grab.  Manipulates the Y position of the hand.
+    /// Hand attemps a grab.  Manipulates the Z position of the hand.
     /// </summary>
     private void AttemptGrab()
     {
@@ -244,7 +248,7 @@ public class HandMovement : MonoBehaviour
         {
             currentPos = this.transform.position;               // Set current position to the hand's current postion.
             nextPos = currentPos;
-            nextPos.y = targets[targetIndex].position.y + yTweak;    // Sets the next position to where the plaer migth be.
+            nextPos.z = targets[targetIndex].position.z + zTweak;    // Sets the next position to where the plaer migth be.
 
             // Interpolates the hand's position between current position and destination.
             LerpPositions(currentPos, nextPos);
@@ -253,7 +257,7 @@ public class HandMovement : MonoBehaviour
         {
             currentPos = this.transform.position;               // Set current position to the hand's current postion.
             nextPos = currentPos;
-            nextPos.y = neutralYPos;                            // Set the neutral y position of the hand back to default.
+            nextPos.z = neutralZPos;                            // Set the neutral y position of the hand back to default.
 
             // Interpolates the hand's position between current position and destination.
             LerpPositions(currentPos, nextPos);
@@ -270,7 +274,7 @@ public class HandMovement : MonoBehaviour
             canGrab = false;            // Can't grab
             canMoveToGrab = false;      // 
             targetIndex = -1;           // Target gets out of range
-            MoveToPlane(hidePositionZ); // Move to hiding position
+            MoveToPlane(hidePositionX); // Move to hiding position
         }
     }
 
