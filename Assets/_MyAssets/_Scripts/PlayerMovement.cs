@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         {
             CheckInput();       // For testing
             MoveToPosition();
-
+            /*
             // The following is for testing with the mouse
             if (Input.GetMouseButtonDown(0))
             {
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
                             break;
                     }
                 }
-            }
+            }*/
         }
 	}
 
@@ -189,24 +189,27 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="_t"></param>
     public void MovePlayerToPlane(Touch _t)
     {
-        Ray ray = Camera.main.ScreenPointToRay(_t.position);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100, layerMask))
+        if (isGrounded && arrivedAtTarget)
         {
-            switch (hit.ToString())
+            Ray ray = Camera.main.ScreenPointToRay(_t.position);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100, layerMask))
             {
-                case "FarPlane":
-                    targetIndex = 2;
-                    break;
-                case "MiddlePlane":
-                    targetIndex = 1;
-                    break;
-                case "NearPlane":
-                    targetIndex = 0;
-                    break;
-                default:
-                    //Debug.Log("No Plane");
-                    break;
+                switch (hit.collider.name)
+                {
+                    case "FarPlane":
+                        targetIndex = 2;
+                        break;
+                    case "MiddlePlane":
+                        targetIndex = 1;
+                        break;
+                    case "NearPlane":
+                        targetIndex = 0;
+                        break;
+                    default:
+                        //Debug.Log("No Plane");
+                        break;
+                }
             }
         }
     }
