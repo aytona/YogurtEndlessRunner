@@ -50,7 +50,13 @@ public class TouchControl : MonoBehaviour
     /// <summary>
     /// Can a double touch be checked.
     /// </summary>
-    public bool checkDoubleTouch = true;
+    private bool checkDoubleTouch = true;
+
+    private float lastTime;
+
+    private float touchCount = 0f;
+
+    private bool startTouch = false;
 
     /// <summary>
     /// Saves the last touch to get it's position.
@@ -102,6 +108,7 @@ public class TouchControl : MonoBehaviour
                 case TouchPhase.Began:                      // Records initial touch
                     startPos = touch.position;
                     directionChosen = false;
+                    startTouch = true;
                     break;
                 case TouchPhase.Moved:                      // Determine swipe direction
                     direction = touch.position - startPos;
@@ -111,15 +118,36 @@ public class TouchControl : MonoBehaviour
                     break;
             }
 
-            if (touch.tapCount == 1)
+            //if (touch.tapCount == 1)
+            if(startTouch)
             {
-                checkDoubleTouch = true;
-                StartCoroutine(DoubleTouchWait(touch));          // Call to check if it is a single touch
+                if (!checkDoubleTouch)
+                {
+                    touchCount = 0;
+                    checkDoubleTouch = true;
+                    lastTime = Time.time;
+                }
+                else if(checkDoubleTouch && touchCount < doubleTouchDelay)
+                {
+                    touchCount += Time.time - lastTime;
+                    lastTime = Time.time;
+                }
+                else if(checkDoubleTouch && touchCount >= doubleTouchDelay)
+                {
+                    checkDoubleTouch = false;
+                    _touchInput = TouchInput.touch;
+                    lastTouch = touch;
+                    startTouch = false;
+                    Debug.Log("Single Touch");
+                }
             }
 
             if (checkDoubleTouch && touch.tapCount == 2)
             {
                 _touchInput = TouchInput.doubleTouch;       // Double Touch
+                checkDoubleTouch = false;
+                startTouch = false;
+                touchCount = 0;
                 Debug.Log("Double Touch");
             }
         }
@@ -153,19 +181,6 @@ public class TouchControl : MonoBehaviour
             // Reset the touch
             directionChosen = false;
         }
-    }
-
-    /// <summary>
-    /// Waits a few for a short time before declaring a touch, waiting to see if there is a double touch.
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator DoubleTouchWait(Touch t)
-    {
-        yield return new WaitForSeconds(doubleTouchDelay);
-        checkDoubleTouch = false;
-        _touchInput = TouchInput.touch;
-        lastTouch = t;
-        Debug.Log("Single Touch");
     }
 
     /// <summary>
