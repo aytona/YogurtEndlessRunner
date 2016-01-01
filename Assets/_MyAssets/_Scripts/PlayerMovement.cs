@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Is the player on the ground, can he jump?
     /// </summary>
+    //[SerializeField]
     private bool isGrounded = false;
 
     /// <summary>
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private bool gameOver = true;       // Start as true to wait for start of game.
 
+    [Tooltip("The parent object of the player.  The object that will move between planes. DO NOT MESS WITH UNLESS YOU KNOW WHAT IT DOES!")]
     /// <summary>
     /// Container of the player object.
     /// </summary>
@@ -65,6 +67,17 @@ public class PlayerMovement : MonoBehaviour
     /// Layer mask for the racasting to detect what plane the player wants to move to.
     /// </summary>
     private int layerMask = 1 << 8;
+
+    [Tooltip("Gravity the character will have when falling down. Manipulate the Y value (negative is down). High gravity for fast fall, low gravity for slow fall.")]
+    /// <summary>
+    /// Gravity of character when falling down.
+    /// </summary>
+    public Vector3 fallingGravity;
+
+    /// <summary>
+    /// Regular Gravity.
+    /// </summary>
+    private Vector3 regularGravity;
 
     #endregion Variables
 
@@ -76,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         _gc = FindObjectOfType<GameController>();
+        regularGravity = Physics.gravity;
     }
 
 	void Update () {
@@ -83,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
         {
             CheckInput();       // For testing
             MoveToPosition();
+            ResetGravity();
             /*
             // The following is for testing with the mouse
             if (Input.GetMouseButtonDown(0))
@@ -124,9 +139,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("Hand"))               // If the hand has grabbed the player.
         {
-            gameOver = true;
-            other.gameObject.GetComponentInParent<HandMovement>().SetGrabbed();
-            _gc.ShowMessage("YOU LOSE!");
+            HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
+            if (targetIndex == hand.GetHandLaneIndex())
+            {
+                gameOver = true;
+                hand.SetGrabbed();
+                _gc.ShowMessage("YOU LOSE!");
+            }
+            /*else
+            {
+                Debug.Log("Not in same lane. Hand: " + hand.GetHandLaneIndex() + " Player: " + targetIndex);
+            }*/
         }
         if (other.CompareTag("Collectable"))
         {
@@ -138,6 +161,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("OBSTACLE!");
             _gc.ShowMessage("You hit an obstacle!");
+        }
+        if (other.CompareTag("JumpHeight"))
+        {
+            //Debug.Log("JumpHeight");
+            ChangeGravity();
         }
     }
 
@@ -307,6 +335,24 @@ public class PlayerMovement : MonoBehaviour
             //transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
             parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
         }
+    }
+
+    /// <summary>
+    /// Change gravity to fast falling gravity.
+    /// </summary>
+    private void ChangeGravity()
+    {
+        //rb.mass = fallingMass;
+        Physics.gravity = fallingGravity;
+    }
+
+    /// <summary>
+    /// Change gravity back to default gravity.
+    /// </summary>
+    private void ResetGravity()
+    {
+        if (isGrounded)
+            Physics.gravity = regularGravity;
     }
 
     #endregion Private Methods
