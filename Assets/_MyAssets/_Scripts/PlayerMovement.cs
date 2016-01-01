@@ -35,15 +35,22 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private Vector3 currentPos, nextPos;
 
-    [Tooltip("Force at which the player will jump, affects height.")]
+    [Tooltip("Maximum force at which the player will jump, affects height.")]
     /// <summary>
-    /// Force of the character's jump.
+    /// Maximum force of the character's jump.
     /// </summary>
-    public float jumpForce = 1.0f;
+    public float maxJumpForce = 1.0f;
+
+    [Tooltip("Minimum force at which the player will jump, affects height.")]
+    /// <summary>
+    /// Minimum force of the character's jump.
+    /// </summary>
+    public float minJumpForce = 1.0f;
 
     /// <summary>
     /// Is the player on the ground, can he jump?
     /// </summary>
+    //[SerializeField]
     private bool isGrounded = false;
 
     /// <summary>
@@ -56,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private bool gameOver = true;       // Start as true to wait for start of game.
 
+    [Tooltip("The parent object of the player.  The object that will move between planes. DO NOT MESS WITH UNLESS YOU KNOW WHAT IT DOES!")]
     /// <summary>
     /// Container of the player object.
     /// </summary>
@@ -65,6 +73,23 @@ public class PlayerMovement : MonoBehaviour
     /// Layer mask for the racasting to detect what plane the player wants to move to.
     /// </summary>
     private int layerMask = 1 << 8;
+
+    [Tooltip("Maximum gravity the character will have when falling down. Manipulate the Y value (negative is down).")]
+    /// <summary>
+    /// Maximum gravity of character when falling down.
+    /// </summary>
+    public Vector3 MaxGravity;
+
+    [Tooltip("Minimum gravity the character will have when falling down. Manipulate the Y value (negative is down).")]
+    /// <summary>
+    /// Minimum gravity of character when falling down.
+    /// </summary>
+    public Vector3 MinGravity;
+
+    /// <summary>
+    /// Regular Gravity.
+    /// </summary>
+    private Vector3 regularGravity;
 
     #endregion Variables
 
@@ -76,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         _gc = FindObjectOfType<GameController>();
+        regularGravity = Physics.gravity;
     }
 
 	void Update () {
@@ -83,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
         {
             CheckInput();       // For testing
             MoveToPosition();
+            ResetGravity();
             /*
             // The following is for testing with the mouse
             if (Input.GetMouseButtonDown(0))
@@ -124,9 +151,21 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("Hand"))               // If the hand has grabbed the player.
         {
-            gameOver = true;
-            other.gameObject.GetComponentInParent<HandMovement>().SetGrabbed();
-            _gc.ShowMessage("YOU LOSE!");
+            //Debug.Log("Hit Hand");
+            HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
+            if (targetIndex == hand.GetHandLaneIndex())
+            {
+                if (!hand.GetComponent<HandAI>().SucceededGrab())
+                {
+                    gameOver = true;
+                    hand.SetGrabbed();
+                    _gc.ShowMessage("YOU LOSE!");
+                }
+            }
+            /*else
+            {
+                Debug.Log("Not in same lane. Hand: " + hand.GetHandLaneIndex() + " Player: " + targetIndex);
+            }*/
         }
         if (other.CompareTag("Collectable"))
         {
@@ -138,6 +177,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("OBSTACLE!");
             _gc.ShowMessage("You hit an obstacle!");
+        }
+        if (other.CompareTag("JumpHeight"))
+        {
+            //Debug.Log("JumpHeight");
+            ChangeGravity();
         }
     }
 
@@ -223,6 +267,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrounded)
             {
+                float jumpForce = maxJumpForce * (GameManager.Instance.gameSettings.playerWeight * 0.15f);
+                if (jumpForce <= minJumpForce)
+                    jumpForce = minJumpForce;
+                else if (jumpForce > maxJumpForce)
+                    jumpForce = maxJumpForce;
+                Debug.Log(jumpForce);
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
             }
@@ -307,6 +357,33 @@ public class PlayerMovement : MonoBehaviour
             //transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
             parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
         }
+    }
+
+    /// <summary>
+    /// Change gravity to fast falling gravity.
+    /// </summary>
+    private void ChangeGravity()
+    {
+        //rb.mass = fallingMass;
+        Physics.gravity = regularGravity * GameManager.Instance.gameSettings.playerWeight;
+        if (Physics.gravity.y < MaxGravity.y)
+        {
+            Physics.gravity = MaxGravity;
+        }
+        else if (Physics.gravity.y >= MinGravity.y)
+        {
+            Physics.gravity = MinGravity;
+        }
+    }
+
+    /// <summary>
+    /// Change gravity back to default gravity.
+    /// </summary>
+    private void ResetGravity()
+    {
+        Debug.Log(Physics.gravity);
+        if (isGrounded)
+            Physics.gravity = regularGravity;
     }
 
     #endregion Private Methods
