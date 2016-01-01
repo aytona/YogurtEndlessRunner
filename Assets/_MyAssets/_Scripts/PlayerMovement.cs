@@ -80,6 +80,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public Vector3 MaxGravity;
 
+    [Tooltip("Minimum gravity the character will have when falling down. Manipulate the Y value (negative is down).")]
+    /// <summary>
+    /// Minimum gravity of character when falling down.
+    /// </summary>
+    public Vector3 MinGravity;
+
     /// <summary>
     /// Regular Gravity.
     /// </summary>
@@ -145,10 +151,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("Hand"))               // If the hand has grabbed the player.
         {
+            //Debug.Log("Hit Hand");
             HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
             if (targetIndex == hand.GetHandLaneIndex())
             {
-                if (hand.GetComponent<HandAI>().SucceededGrab())
+                if (!hand.GetComponent<HandAI>().SucceededGrab())
                 {
                     gameOver = true;
                     hand.SetGrabbed();
@@ -265,6 +272,7 @@ public class PlayerMovement : MonoBehaviour
                     jumpForce = minJumpForce;
                 else if (jumpForce > maxJumpForce)
                     jumpForce = maxJumpForce;
+                Debug.Log(jumpForce);
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
             }
@@ -362,6 +370,10 @@ public class PlayerMovement : MonoBehaviour
         {
             Physics.gravity = MaxGravity;
         }
+        else if (Physics.gravity.y >= MinGravity.y)
+        {
+            Physics.gravity = MinGravity;
+        }
     }
 
     /// <summary>
@@ -369,6 +381,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ResetGravity()
     {
+        Debug.Log(Physics.gravity);
         if (isGrounded)
             Physics.gravity = regularGravity;
     }

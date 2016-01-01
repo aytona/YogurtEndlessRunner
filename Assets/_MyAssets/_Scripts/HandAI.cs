@@ -73,7 +73,7 @@ public class HandAI : MonoBehaviour {
     /// <summary>
     /// Has the hand failed to grab the player.
     /// </summary>
-    private bool succeededGrab = false;
+    private bool failedGrab = false;
 
     /// <summary>
     /// Used to store the coroutines to be able to stop it later.
@@ -99,13 +99,13 @@ public class HandAI : MonoBehaviour {
         do
         {
             // Hide
-            succeededGrab = false;
             hideTime = Random.Range(minHideTime, maxHideTime);
             _movement.SetHide(true);
             yield return new WaitForSeconds(hideTime);
             _movement.SetHide(false);
 
             // Search
+            failedGrab = false;
             searchTime = Random.Range(minSearchTime, maxSearchTime);
             keepSearching = true;
             searchLoop = StartCoroutine(Searching());
@@ -124,14 +124,14 @@ public class HandAI : MonoBehaviour {
             {
                 // Hand has grabbed the yougurt
                 Debug.Log("TIME FOR FROZEN YOGURT!!");
-                succeededGrab = true;
+                failedGrab = false;
                 _player.AttachToHand(this.transform);
                 FindObjectOfType<GameController>().RestartButton.SetActive(true); // For demo
             }
             else
             {
                 // Reset Position - Hand has not grabbed yogurt
-                succeededGrab = false;
+                failedGrab = true;
                 _movement.SetGrabPosition(false);
                 _movement.SetGrab(false);
                 yield return new WaitForSeconds(2);
@@ -188,7 +188,8 @@ public class HandAI : MonoBehaviour {
     /// <returns></returns>
     public bool SucceededGrab()
     {
-        return succeededGrab;
+        //Debug.Log("Checked for grab success. Status: " + failedGrab);
+        return failedGrab;
     }
 
 }
