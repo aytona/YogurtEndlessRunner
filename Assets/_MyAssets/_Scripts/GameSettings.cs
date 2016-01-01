@@ -12,33 +12,35 @@ public class GameSettings : MonoBehaviour {
     [Tooltip("The weight of the player")]
     public float playerWeight = 2f;
 
-    [Tooltip("Check to see if the game restarts")]
-    public bool gameRestart = false;
-
-    [Tooltip("Check to see if the game starts")]
-    public bool gameStart = false;
+    [Tooltip("The delay between each speed increase in seconds")]
+    public float coroutineDelay = 10f;
 
     [Tooltip("The amount that the speed increases per tick")]
-    public float speedIncreaser = 0.01f;
+    public float speedIncreaser = 0.05f;
+
+    [HideInInspector]
+    public bool gameRestart = false;
+
+    [HideInInspector]
+    public bool gameStart = false;
 
     private float gameSpeedDefault;
     private float playerWeightDefault;
-    
+    private float maxSpeed = 1f;
+    private bool afterDelay = true;
 
     #endregion Variables
 
-    #region Monobehvaiour
+    #region Monobehaviour
 
     void Awake()
     {
-        // Set the defaults of each variables
         gameSpeedDefault = gameSpeed;
         playerWeightDefault = playerWeight;
     }
 
     void Update()
     {
-        // When the game restarts, set variables back to the defaults
         if (gameRestart)
         {
             gameSpeed = gameSpeedDefault;
@@ -47,11 +49,29 @@ public class GameSettings : MonoBehaviour {
         }
         else if (gameStart)
         {
-            // Needs tweeking
-            gameSpeed += speedIncreaser;
-            playerWeight += speedIncreaser;
+            if (afterDelay)
+            {
+                StartCoroutine(SpeedDelay(coroutineDelay));
+            }
+            else if (!afterDelay && gameSpeed < maxSpeed)
+            {
+                gameSpeed += speedIncreaser;
+                playerWeight += speedIncreaser;
+            }
         }
     }
 
-    #endregion
+    #endregion Monobehaviour
+
+    #region Private Methods
+
+    private IEnumerator SpeedDelay(float delay)
+    {
+        afterDelay = false;
+        yield return new WaitForSeconds(delay);
+        maxSpeed++;
+        afterDelay = true;
+    }
+
+    #endregion Private Methods
 }
