@@ -382,7 +382,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ResetGravity()
     {
-        Debug.Log(Physics.gravity);
+        //Debug.Log(Physics.gravity);
         if (isGrounded)
             Physics.gravity = regularGravity;
     }
