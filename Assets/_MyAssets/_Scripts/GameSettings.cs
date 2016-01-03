@@ -4,30 +4,43 @@ using System.Collections;
 [System.Serializable]
 public class GameSettings : MonoBehaviour {
 
+    #region Enums
+
+    public enum gameState
+    {
+        Reset,
+        StandBy,
+        Playing
+    }
+
+    #endregion Enums
+
     #region Variables
 
     [Tooltip("The speed of the objects")]
-    public float gameSpeed = 2f;
+    public float gameSpeed = 5f;
 
     [Tooltip("The weight of the player")]
-    public float playerWeight = 2f;
+    public float playerWeight = 5f;
 
     [Tooltip("The delay between each speed increase in seconds")]
     public float coroutineDelay = 10f;
 
-    [Tooltip("The amount that the speed increases per tick")]
-    public float speedIncreaser = 0.05f;
+    [Tooltip("Next level speed multiplier")]
+    public float speedMultiplier = 2f;
+
+    [Tooltip("The speed cap")]
+    public float speedCap = 50f;
 
     [HideInInspector]
-    public bool gameRestart = false;
+    public gameState currentState;
 
-    [HideInInspector]
-    public bool gameStart = false;
-
-    private float gameSpeedDefault;
-    private float playerWeightDefault;
-    private float maxSpeed = 1f;
+    private float gameSpeedDefault = 5f;
+    private float playerWeightDefault = 5f;
+    private float speedIncreaser = 0.05f;
+    private float maxSpeed = 0f;
     private bool afterDelay = true;
+
 
     #endregion Variables
 
@@ -37,17 +50,19 @@ public class GameSettings : MonoBehaviour {
     {
         gameSpeedDefault = gameSpeed;
         playerWeightDefault = playerWeight;
+        currentState = gameState.StandBy;
     }
 
     void Update()
     {
-        if (gameRestart)
+        if (currentState == gameState.Reset)
         {
-            gameSpeed = gameSpeedDefault;
-            playerWeight = playerWeightDefault;
-            gameRestart = false;
+            gameSpeedDefault = gameSpeed;
+            playerWeightDefault = playerWeight;
+            currentState = gameState.StandBy;
         }
-        else if (gameStart)
+
+        if (currentState == gameState.Playing)
         {
             if (afterDelay)
             {
@@ -61,6 +76,14 @@ public class GameSettings : MonoBehaviour {
         }
     }
 
+    // TODO levels
+    void OnGUI()
+    {
+        
+        
+        
+    }
+
     #endregion Monobehaviour
 
     #region Private Methods
@@ -69,7 +92,8 @@ public class GameSettings : MonoBehaviour {
     {
         afterDelay = false;
         yield return new WaitForSeconds(delay);
-        maxSpeed++;
+        if (maxSpeed < speedCap)
+            maxSpeed += speedMultiplier;
         afterDelay = true;
     }
 
