@@ -4,17 +4,6 @@ using System.Collections;
 [System.Serializable]
 public class GameSettings : MonoBehaviour {
 
-    #region Enums
-
-    public enum gameState
-    {
-        Reset,
-        StandBy,
-        Playing
-    }
-
-    #endregion Enums
-
     #region Variables
 
     [Tooltip("The speed of the objects")]
@@ -33,14 +22,16 @@ public class GameSettings : MonoBehaviour {
     public float speedCap = 50f;
 
     [HideInInspector]
-    public gameState currentState;
+    public bool gameRestart = false;
+
+    [HideInInspector]
+    public bool gameStart = false;
 
     private float gameSpeedDefault = 5f;
     private float playerWeightDefault = 5f;
     private float speedIncreaser = 0.05f;
-    private float maxSpeed = 0f;
+    private float maxSpeed;
     private bool afterDelay = true;
-    private bool reset = false;
 
     #endregion Variables
 
@@ -48,17 +39,25 @@ public class GameSettings : MonoBehaviour {
 
     void Awake()
     {
-        AssignDefaults();
+        gameSpeedDefault = gameSpeed;
+        playerWeightDefault = playerWeight;
+        maxSpeed = gameSpeedDefault;
     }
 
+    // Probably can make this into a switch statement instead of in update
+    // Theoritically, it'll be more efficient if that function gets called on key moments
+    // Instead of every tick for Update
     void Update()
     {
-        if (reset)
+        if (gameRestart)
         {
-            AssignDefaults();
+            gameSpeed = gameSpeedDefault;
+            playerWeight = playerWeightDefault;
+            maxSpeed = gameSpeedDefault;
+            gameRestart = false;
         }
 
-        if (currentState == gameState.Playing)
+        else if (gameStart)
         {
             if (afterDelay)
             {
@@ -82,14 +81,9 @@ public class GameSettings : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         if (maxSpeed < speedCap)
             maxSpeed += speedMultiplier;
+        else
+            maxSpeed = speedCap;
         afterDelay = true;
-    }
-
-    private void AssignDefaults()
-    {
-        gameSpeedDefault = gameSpeed;
-        playerWeightDefault = playerWeight;
-        currentState = gameState.StandBy;
     }
 
     #endregion Private Methods

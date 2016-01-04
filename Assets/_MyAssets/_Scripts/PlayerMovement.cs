@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
                     gameOver = true;
                     hand.SetGrabbed();
                     _gc.ShowMessage("YOU LOSE!");
-                    GameManager.Instance.gameSettings.currentState = GameSettings.gameState.StandBy;
+                    GameManager.Instance.gameSettings.gameStart = false;
                 }
             }
             /*else
