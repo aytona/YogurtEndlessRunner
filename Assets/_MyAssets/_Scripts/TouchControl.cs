@@ -138,7 +138,7 @@ public class TouchControl : MonoBehaviour
                     _touchInput = TouchInput.touch;
                     lastTouch = touch;
                     startTouch = false;
-                    Debug.Log("Single Touch");
+                    //Debug.Log("Single Touch");
                 }
             }
 
@@ -148,7 +148,7 @@ public class TouchControl : MonoBehaviour
                 checkDoubleTouch = false;
                 startTouch = false;
                 touchCount = 0;
-                Debug.Log("Double Touch");
+                //Debug.Log("Double Touch");
             }
         }
 

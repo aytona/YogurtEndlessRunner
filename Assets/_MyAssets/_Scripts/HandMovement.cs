@@ -171,6 +171,11 @@ public class HandMovement : MonoBehaviour
         return grabbedCharacter;
     }
 
+    public int GetHandLaneIndex()
+    {
+        return targetIndex;
+    }
+
     #endregion Public Methods
 
     #region Private Methods

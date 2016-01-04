@@ -55,7 +55,8 @@ public class GameController : MonoBehaviour {
     /// </summary>
     public void RestartLevel()
     {
-        // Note: Obselete as of Unity 5.3
+        GameManager.Instance.gameSettings.gameRestart = true;
+        GameManager.Instance.gameSettings.gameStart = false;
         Application.LoadLevel(0);
     }
 
