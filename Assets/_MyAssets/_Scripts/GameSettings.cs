@@ -40,7 +40,7 @@ public class GameSettings : MonoBehaviour {
     private float speedIncreaser = 0.05f;
     private float maxSpeed = 0f;
     private bool afterDelay = true;
-
+    private bool reset = false;
 
     #endregion Variables
 
@@ -48,18 +48,14 @@ public class GameSettings : MonoBehaviour {
 
     void Awake()
     {
-        gameSpeedDefault = gameSpeed;
-        playerWeightDefault = playerWeight;
-        currentState = gameState.StandBy;
+        AssignDefaults();
     }
 
     void Update()
     {
-        if (currentState == gameState.Reset)
+        if (reset)
         {
-            gameSpeedDefault = gameSpeed;
-            playerWeightDefault = playerWeight;
-            currentState = gameState.StandBy;
+            AssignDefaults();
         }
 
         if (currentState == gameState.Playing)
@@ -76,14 +72,6 @@ public class GameSettings : MonoBehaviour {
         }
     }
 
-    // TODO levels
-    void OnGUI()
-    {
-        
-        
-        
-    }
-
     #endregion Monobehaviour
 
     #region Private Methods
@@ -95,6 +83,13 @@ public class GameSettings : MonoBehaviour {
         if (maxSpeed < speedCap)
             maxSpeed += speedMultiplier;
         afterDelay = true;
+    }
+
+    private void AssignDefaults()
+    {
+        gameSpeedDefault = gameSpeed;
+        playerWeightDefault = playerWeight;
+        currentState = gameState.StandBy;
     }
 
     #endregion Private Methods
