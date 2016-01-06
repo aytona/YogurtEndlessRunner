@@ -25,6 +25,8 @@ public class ObjectBehaviour : MonoBehaviour {
     void Update()
     {
         transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
+        if (transform.position.x <= GameManager.Instance.lengthBeforeDespawn)
+            Destroy();
     }
 
     void OnTriggerEnter(Collider other)
