@@ -273,7 +273,8 @@ public class PlayerMovement : MonoBehaviour
                     jumpForce = minJumpForce;
                 else if (jumpForce > maxJumpForce)
                     jumpForce = maxJumpForce;
-                Debug.Log(jumpForce);
+                //Debug.Log(jumpForce);
+                //Debug.Log(GameManager.Instance.gameSettings.playerWeight);
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
             }
@@ -382,7 +383,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ResetGravity()
     {
-        Debug.Log(Physics.gravity);
+        //Debug.Log(Physics.gravity);
         if (isGrounded)
             Physics.gravity = regularGravity;
     }
