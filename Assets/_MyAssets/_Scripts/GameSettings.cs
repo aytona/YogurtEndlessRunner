@@ -27,11 +27,15 @@ public class GameSettings : MonoBehaviour {
     [HideInInspector]
     public bool gameStart = false;
 
+    [HideInInspector]
+    public int level;
+
     private float gameSpeedDefault = 5f;
     private float playerWeightDefault = 5f;
     private float speedIncreaser = 0.05f;
     private float maxSpeed;
     private bool afterDelay = true;
+    private GameController _gc;
 
     #endregion Variables
 
@@ -42,6 +46,7 @@ public class GameSettings : MonoBehaviour {
         gameSpeedDefault = gameSpeed;
         playerWeightDefault = playerWeight;
         maxSpeed = gameSpeedDefault;
+        _gc = FindObjectOfType<GameController>();
     }
 
     // Probably can make this into a switch statement instead of in update
@@ -55,6 +60,7 @@ public class GameSettings : MonoBehaviour {
             playerWeight = playerWeightDefault;
             maxSpeed = gameSpeedDefault;
             gameRestart = false;
+            _gc = FindObjectOfType<GameController>();
         }
 
         else if (gameStart)
@@ -71,6 +77,10 @@ public class GameSettings : MonoBehaviour {
         }
     }
 
+    void OnGUI()
+    {
+        GUI.Label(new Rect(Vector2.zero, Vector2.one), "test");
+    }
     #endregion Monobehaviour
 
     #region Private Methods
@@ -79,6 +89,7 @@ public class GameSettings : MonoBehaviour {
     {
         afterDelay = false;
         yield return new WaitForSeconds(delay);
+        _gc.AddLevel();
         if (maxSpeed < speedCap)
             maxSpeed += speedMultiplier;
         else
