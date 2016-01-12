@@ -8,9 +8,6 @@ public class PlatformMovement : MonoBehaviour {
     [Tooltip("Width of the platform")]
     public float widthOfPlatform;
 
-    [Tooltip("Position of where the platform starts to despawn")]
-    public float lengthBeforeDespawn;
-
     #endregion Variables
 
     #region Monobehaviour
@@ -18,7 +15,7 @@ public class PlatformMovement : MonoBehaviour {
     void FixedUpdate()
     {
         // Moves the platform to the left
-        if (transform.position.x >= lengthBeforeDespawn)
+        if (transform.position.x >= GameManager.Instance.lengthBeforeDespawn)
             transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
         // Relocate the platform to the front
         else

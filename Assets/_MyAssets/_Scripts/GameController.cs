@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour {
         _hand.StartHandAI();
         StartButton.SetActive(false);
         GameManager.Instance.gameSettings.gameStart = true;
+        AddLevel();
     }
 
     /// <summary>
@@ -60,12 +61,19 @@ public class GameController : MonoBehaviour {
         Application.LoadLevel(0);
     }
 
-    public Text score, message;
+    public Text score, message, level;
     public int playerScore = 0;
+    public int currentLevel = 0;
     public void AddScore()
     {
         playerScore++;
         score.text = "Score: " + playerScore;
+    }
+
+    public void AddLevel()
+    {
+        currentLevel++;
+        level.text = "Level: " + currentLevel;
     }
 
     public void ShowMessage(string m)

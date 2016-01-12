@@ -27,11 +27,6 @@ public class ItemGenerator : MonoBehaviour {
     [Tooltip("Spawn Repeat Rate")]
     public float repeatRate;
 
-    // Probably should just save level number in player prefs and get it from there
-    [Tooltip("Current level")]
-    [SerializeField]
-    private int level = 0;
-
     // List of GameObjects to pool
     private List<GameObject> items;
     private List<GameObject> obstacles;
@@ -39,7 +34,7 @@ public class ItemGenerator : MonoBehaviour {
     // List of everything to spawn
     private List<GameObject> spawns;
 
-    private bool willGrow = true;
+    // private bool willGrow = true;
 
     #endregion Variables
 
