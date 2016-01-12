@@ -86,10 +86,17 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public Vector3 MinGravity;
 
+    [Tooltip("Regular gravity, y = -9.81.")]
     /// <summary>
     /// Regular Gravity.
     /// </summary>
-    private Vector3 regularGravity;
+    public Vector3 regularGravity;
+
+    [Tooltip("Time the character will stay in the air when it jumps. (in seconds)")]
+    /// <summary>
+    /// Time the character will stay in the air when it jumps.
+    /// </summary>
+    public float timeInTheAir;
 
     #endregion Variables
 
@@ -101,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         _gc = FindObjectOfType<GameController>();
-        regularGravity = Physics.gravity;
+        //regularGravity = Physics.gravity;
     }
 
 	void Update () {
@@ -136,6 +143,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }*/
         }
+        if (gameOver)
+        {
+            Physics.gravity = regularGravity;
+        }
 	}
 
     void OnCollisionEnter(Collision other)
@@ -160,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
                     gameOver = true;
                     hand.SetGrabbed();
                     _gc.ShowMessage("YOU LOSE!");
+                    AttachToHand(other.transform);      // This is if the player is grabbed by the hand.
                     GameManager.Instance.gameSettings.gameStart = false;
                 }
             }
@@ -183,6 +195,8 @@ public class PlayerMovement : MonoBehaviour
         {
             //Debug.Log("JumpHeight");
             ChangeGravity();
+            //rb.isKinematic = true;
+           // StartCoroutine(TurnOfKinematic());
         }
     }
 
@@ -386,6 +400,12 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(Physics.gravity);
         if (isGrounded)
             Physics.gravity = regularGravity;
+    }
+
+    private IEnumerator TurnOfKinematic()
+    {
+        yield return new WaitForSeconds(timeInTheAir);
+        rb.isKinematic = false;
     }
 
     #endregion Private Methods
