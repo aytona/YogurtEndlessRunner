@@ -101,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion Variables
 
     private GameController _gc;
+    private SkinnedMeshRenderer _rend;
 
     #region Monobehaviour
 
@@ -108,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         _gc = FindObjectOfType<GameController>();
+        _rend = GetComponentInChildren<SkinnedMeshRenderer>();
         //regularGravity = Physics.gravity;
     }
 
@@ -190,6 +192,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("OBSTACLE!");
             _gc.ShowMessage("You hit an obstacle!");
+            GetHit();
         }
         if (other.CompareTag("JumpHeight"))
         {
@@ -335,6 +338,17 @@ public class PlayerMovement : MonoBehaviour
         return gameOver;
     }
 
+    /// <summary>
+    /// Function call whenever the player gets hit by an obstacle or anything that will hurt the player
+    /// If there will ever be a life system in the game, add a float param that takes in the amount of damage
+    /// the player will receive. But for now, its empty
+    /// </summary>
+    public void GetHit()
+    {
+        // Flashing
+        StartCoroutine(Flashing());
+    }
+
     #endregion Public Methods
 
     #region Private Methods
@@ -406,6 +420,21 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(timeInTheAir);
         rb.isKinematic = false;
+    }
+
+    private IEnumerator Flashing()
+    {
+        int flashes = 10;
+        while(true)
+        {
+            _rend.enabled = false;
+            yield return new WaitForEndOfFrame();
+            _rend.enabled = true;
+            flashes--;
+            if (flashes <= 0)
+                break;
+        }
+
     }
 
     #endregion Private Methods
