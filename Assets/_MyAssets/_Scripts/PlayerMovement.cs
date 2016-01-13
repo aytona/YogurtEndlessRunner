@@ -98,6 +98,23 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public float timeInTheAir;
 
+    [Tooltip("The duration of how long the player will blink")]
+    /// <summary>
+    /// The duration of how long the blinking effect will last
+    /// </summary>
+    public float blinkDuration = 1f;
+
+    [Tooltip("The delay between each blink")]
+    /// <summary>
+    /// The duration between each blink
+    /// </summary>
+    public float blinkTime = 0.01f;
+
+    /// <summary>
+    /// Check to see if the player is already in blinking effect
+    /// </summary>
+    private bool inBlink = false;
+
     #endregion Variables
 
     private GameController _gc;
@@ -345,8 +362,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void GetHit()
     {
-        // Flashing
-        StartCoroutine(Flashing());
+        if (!inBlink)
+            StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
     }
 
     #endregion Public Methods
@@ -422,19 +439,17 @@ public class PlayerMovement : MonoBehaviour
         rb.isKinematic = false;
     }
 
-    private IEnumerator Flashing()
+    private IEnumerator BlinkEffect(float duration, float delay)
     {
-        int flashes = 10;
-        while(true)
+        inBlink = true;
+        while(duration > 0)
         {
-            _rend.enabled = false;
-            yield return new WaitForEndOfFrame();
-            _rend.enabled = true;
-            flashes--;
-            if (flashes <= 0)
-                break;
+            duration -= Time.deltaTime;
+            _rend.enabled = !_rend.enabled;
+            yield return new WaitForSeconds(delay);
         }
-
+        _rend.enabled = true;
+        inBlink = false;
     }
 
     #endregion Private Methods
