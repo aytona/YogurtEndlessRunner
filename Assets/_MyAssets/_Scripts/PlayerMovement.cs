@@ -98,9 +98,27 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public float timeInTheAir;
 
+    [Tooltip("The duration of how long the player will blink")]
+    /// <summary>
+    /// The duration of how long the blinking effect will last
+    /// </summary>
+    public float blinkDuration = 1f;
+
+    [Tooltip("The delay between each blink")]
+    /// <summary>
+    /// The duration between each blink
+    /// </summary>
+    public float blinkTime = 0.01f;
+
+    /// <summary>
+    /// Check to see if the player is already in blinking effect
+    /// </summary>
+    private bool inBlink = false;
+
     #endregion Variables
 
     private GameController _gc;
+    private SkinnedMeshRenderer _rend;
 
     #region Monobehaviour
 
@@ -108,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         _gc = FindObjectOfType<GameController>();
+        _rend = GetComponentInChildren<SkinnedMeshRenderer>();
         //regularGravity = Physics.gravity;
     }
 
@@ -190,6 +209,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("OBSTACLE!");
             _gc.ShowMessage("You hit an obstacle!");
+            GetHit();
         }
         if (other.CompareTag("JumpHeight"))
         {
@@ -335,6 +355,17 @@ public class PlayerMovement : MonoBehaviour
         return gameOver;
     }
 
+    /// <summary>
+    /// Function call whenever the player gets hit by an obstacle or anything that will hurt the player
+    /// If there will ever be a life system in the game, add a float param that takes in the amount of damage
+    /// the player will receive. But for now, its empty
+    /// </summary>
+    public void GetHit()
+    {
+        if (!inBlink)
+            StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
+    }
+
     #endregion Public Methods
 
     #region Private Methods
@@ -406,6 +437,19 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(timeInTheAir);
         rb.isKinematic = false;
+    }
+
+    private IEnumerator BlinkEffect(float duration, float delay)
+    {
+        inBlink = true;
+        while(duration > 0)
+        {
+            duration -= Time.deltaTime;
+            _rend.enabled = !_rend.enabled;
+            yield return new WaitForSeconds(delay);
+        }
+        _rend.enabled = true;
+        inBlink = false;
     }
 
     #endregion Private Methods
