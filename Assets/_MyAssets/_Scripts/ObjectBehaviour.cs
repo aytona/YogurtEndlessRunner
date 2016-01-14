@@ -26,7 +26,7 @@ public class ObjectBehaviour : MonoBehaviour {
     {
         transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
         if (transform.position.x <= GameManager.Instance.lengthBeforeDespawn || !GameManager.Instance.gameSettings.gameStart)
-            Destroy();
+            DestroyParent();
     }
 
     void OnTriggerEnter(Collider other)
@@ -42,6 +42,11 @@ public class ObjectBehaviour : MonoBehaviour {
     private void Destroy()
     {
         gameObject.SetActive(false);
+    }
+
+    private void DestroyParent()
+    {
+        transform.parent.gameObject.SetActive(false);
     }
 
     #endregion Private Methods

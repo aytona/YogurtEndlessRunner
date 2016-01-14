@@ -16,7 +16,7 @@ public class ItemGenerator : MonoBehaviour {
 
     [Tooltip("Array of targets, where the items and obstacles generate at")]
     [SerializeField]
-    private Transform[] targets;
+    private Transform targets;
 
     [Tooltip("Item Ratio")]
     public int itemRatio;
@@ -88,14 +88,14 @@ public class ItemGenerator : MonoBehaviour {
     {
         for (int i = 0; i < spawns.Count; i++)
         {
-            int randTarget = Random.Range(0, targets.Length);
+            // randTarget = Random.Range(0, targets.Length);
 
             // Note: Whenever an object deactivates, it will reactive the same one
             // Current work around is making the number of objects and obstacles small
             if (!spawns[i].activeInHierarchy)
             {
-                spawns[i].transform.position = targets[randTarget].transform.position;
-                spawns[i].transform.rotation = targets[randTarget].transform.rotation;
+                spawns[i].transform.position = targets.transform.position;
+                spawns[i].transform.rotation = targets.transform.rotation;
                 spawns[i].SetActive(true);
                 break;
             }
