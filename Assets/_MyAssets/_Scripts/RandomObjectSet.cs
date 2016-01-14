@@ -25,6 +25,10 @@ public class RandomObjectSet : MonoBehaviour {
     void OnDisable()
     {
         randNum = Random.Range(0f, 100f);
+        for (int i = 0; i < setObjects.Length; i++)
+        {
+            setObjects[i].SetActive(true);
+        }
     }
 
     void OnEnable()
