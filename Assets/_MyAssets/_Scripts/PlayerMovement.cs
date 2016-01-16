@@ -140,6 +140,8 @@ public class PlayerMovement : MonoBehaviour
     private GameController _gc;
     private SkinnedMeshRenderer _rend;
 
+    private float savedJumpForce = 1.0f;
+
     #region Monobehaviour
 
     void Start()
@@ -236,8 +238,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //Debug.Log("JumpHeight");
             ChangeGravity();
-            //rb.isKinematic = true;
-           // StartCoroutine(TurnOfKinematic());
+            DownForce();
         }
     }
 
@@ -331,6 +332,7 @@ public class PlayerMovement : MonoBehaviour
                 //Debug.Log(jumpForce);
                 //Debug.Log(GameManager.Instance.gameSettings.playerWeight);
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                savedJumpForce = jumpForce;
                 isGrounded = false;
             }
         }
@@ -456,10 +458,9 @@ public class PlayerMovement : MonoBehaviour
             Physics.gravity = regularGravity;
     }
 
-    private IEnumerator TurnOfKinematic()
+    private void DownForce()
     {
-        yield return new WaitForSeconds(timeInTheAir);
-        rb.isKinematic = false;
+        rb.AddForce(-Vector3.up * (savedJumpForce/2), ForceMode.Impulse);
     }
 
     private IEnumerator BlinkEffect(float duration, float delay)
