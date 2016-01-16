@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour {
     public void StartGame()
     {
         _player.SetGameOver(false);
-        _hand.StartHandAI();
+        //_hand.StartHandAI();
         StartButton.SetActive(false);
         GameManager.Instance.gameSettings.gameStart = true;
         AddLevel();
