@@ -5,6 +5,16 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    #region Enums
+
+    public enum State
+    {
+        Normal,
+        Hit
+    }
+
+    #endregion Enums
+
     #region Variables
 
     [Tooltip("Array of targets, where the player can move to, don't mess with this.")]
@@ -115,6 +125,16 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private bool inBlink = false;
 
+    /// <summary>
+    /// Current state of the player
+    /// </summary>
+    public State _currentState;
+
+    /// <summary>
+    /// Length of time for recovery
+    /// </summary>
+    public float recoveryDelay;
+
     #endregion Variables
 
     private GameController _gc;
@@ -127,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         _gc = FindObjectOfType<GameController>();
         _rend = GetComponentInChildren<SkinnedMeshRenderer>();
+        _currentState = State.Normal;
         //regularGravity = Physics.gravity;
     }
 
@@ -364,6 +385,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!inBlink)
             StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
+        if (_currentState == State.Normal)
+            StartCoroutine(StateRecovery(recoveryDelay));
     }
 
     #endregion Public Methods
@@ -450,6 +473,13 @@ public class PlayerMovement : MonoBehaviour
         }
         _rend.enabled = true;
         inBlink = false;
+    }
+
+    private IEnumerator StateRecovery(float recoveryDelay)
+    {
+        _currentState = State.Hit;
+        yield return new WaitForSeconds(recoveryDelay);
+        _currentState = State.Normal;
     }
 
     #endregion Private Methods
