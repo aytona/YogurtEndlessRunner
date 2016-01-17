@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HandAI : MonoBehaviour {
+public class HandAI : MonoBehaviour
+{
+
+    #region Variables
 
     /// <summary>
     /// Reference to the HandMovement script attached to the hand.
@@ -13,6 +16,94 @@ public class HandAI : MonoBehaviour {
     /// </summary>
     private PlayerMovement _player;
 
+    /// <summary>
+    /// The current state of the player
+    /// </summary>
+    private PlayerMovement.State _playerState;
+
+    [Tooltip("Use an empty GameObject to set the position of the hand when hidden.")]
+    public Transform hidePosition;
+
+    [Tooltip("Use an empty GameObject to set the position of the hand when threatening the player.")]
+    public Transform threatPosition;
+
+    /// <summary>
+    /// Is the hand following the player?
+    /// </summary>
+    private bool followPlayer = false;
+
+    #endregion Variables
+
+    #region Monobehaviour
+
+    void Start()
+    {
+        _movement = GetComponent<HandMovement>();   // Set the reference.
+        _player = FindObjectOfType<PlayerMovement>();
+    }
+
+    void Update()
+    {
+        CheckPlayerState();
+        DecideAction();
+        FollowPlayer();
+    }
+
+    #endregion Monobehaviour
+
+    #region Private Methods
+    /// <summary>
+    /// Checks the player's state.
+    /// </summary>
+    private void CheckPlayerState()
+    {
+        _playerState = _player._currentState;
+    }
+
+    /// <summary>
+    /// Decides what action to take depending on the player's state.
+    /// </summary>
+    private void DecideAction()
+    {
+        switch (_playerState)
+        {
+            case PlayerMovement.State.Normal:
+                // Player has not been hit
+                // If the player's state is normal, then the hand will hide where the player cannot see it
+                _movement.SetFreeMove(true);
+                followPlayer = false;
+                _movement.SetNextPosition(hidePosition);
+                break;
+            case PlayerMovement.State.Hit:
+                // Player has been hit once
+                // If player hit once then gets hit again the hand will grab the player
+                _movement.SetFreeMove(false);
+                _movement.SetNextPosition(threatPosition);
+                followPlayer = true;
+                break;
+            case PlayerMovement.State.TwoHit:
+                // Player has been hit a second time
+                // If the player gets to this state then the hand will grab the player and the game will be over
+                _movement.SetFreeMove(true);
+                followPlayer = false;
+                _movement.SetNextPosition(_player.transform);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Sets the plane that the hand is in to be the same one as the player's
+    /// </summary>
+    private void FollowPlayer()
+    {
+        if(followPlayer)
+            _movement.SetNextPosition(_player.GetPlayerPlane());    // Follow Player position.
+    }
+
+    #endregion Private Methods
+
+    #region Old AI
+    /*
     /// <summary>
     /// Will the AI run?
     /// </summary>
@@ -191,5 +282,6 @@ public class HandAI : MonoBehaviour {
         //Debug.Log("Checked for grab success. Status: " + failedGrab);
         return failedGrab;
     }
-
+    */
+    #endregion Old AI
 }
