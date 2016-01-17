@@ -8,6 +8,9 @@ public class RandomObjectSet : MonoBehaviour {
     [Tooltip("The objects in the children")]
     public GameObject[] setObjects;
 
+    [Tooltip("Check if you want multiple copies in a row")]
+    public bool multi;
+
     /// <summary>
     /// Random number variable
     /// </summary>
@@ -19,12 +22,12 @@ public class RandomObjectSet : MonoBehaviour {
 
     void Awake()
     {
-        randNum = Random.Range(0f, 100f);
+        randNum = Random.Range(0f, 75f);
     }
 
     void OnDisable()
     {
-        randNum = Random.Range(0f, 100f);
+        randNum = Random.Range(0f, 75f);
         for (int i = 0; i < setObjects.Length; i++)
         {
             setObjects[i].SetActive(true);
@@ -34,13 +37,24 @@ public class RandomObjectSet : MonoBehaviour {
     void OnEnable()
     {
         int randPos = Random.Range(0, 2);
-        // Have only 2 items active
-        if (randNum > 66f)
+        if (multi)
         {
-            setObjects[randPos].SetActive(false);
+            // Have all 3 items active
+            if (randNum < 25f)
+            {
+                for (int i = 0; i < setObjects.Length; i++)
+                {
+                    setObjects[i].SetActive(true);
+                }
+            }
+            // Have only 2 items active
+            if (randNum > 50f)
+            {
+                setObjects[randPos].SetActive(false);
+            }
         }
         // Have only 1 item active
-        else if (randNum < 33f)
+        else if (!multi || (randNum >= 25f && randNum <= 50f))
         {
             for (int i = 0; i < setObjects.Length; i++)
             {
