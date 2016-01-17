@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Is the player on the ground, can he jump?
     /// </summary>
-    //[SerializeField]
+    [SerializeField]
     private bool isGrounded = false;
 
     /// <summary>
@@ -142,6 +142,10 @@ public class PlayerMovement : MonoBehaviour
 
     private float savedJumpForce = 1.0f;
 
+    private bool jump = false;
+
+    private bool fallDown = false;
+
     #region Monobehaviour
 
     void Start()
@@ -191,6 +195,21 @@ public class PlayerMovement : MonoBehaviour
         }
 	}
 
+    void FixedUpdate()
+    {
+        if (jump)
+        {
+            FixedUpdateJump();
+            jump = false;
+        }
+        if (fallDown)
+        {
+            ChangeGravity();
+            DownForce();
+            fallDown = false;
+        }
+    }
+
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Ground"))  // Check if player is grounded before player can jump again.
@@ -199,6 +218,9 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        //if(other.gameObject.CompareTag("Ground"))
+         //   isGrounded = true;
+
         if (other.CompareTag("Target"))             // Check if player has arrived at target.
             arrivedAtTarget = true;
 
@@ -224,21 +246,22 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.CompareTag("Collectable"))
         {
-            Debug.Log("CANDY!");
+            //Debug.Log("CANDY!");
             _gc.AddScore();
             _gc.ShowMessage("Candy!");
         }
         if (other.CompareTag("Obstacle"))
         {
-            Debug.Log("OBSTACLE!");
+            //Debug.Log("OBSTACLE!");
             _gc.ShowMessage("You hit an obstacle!");
             GetHit();
         }
         if (other.CompareTag("JumpHeight"))
         {
             //Debug.Log("JumpHeight");
-            ChangeGravity();
-            DownForce();
+            //ChangeGravity();
+            //DownForce();
+            fallDown = true;
         }
     }
 
@@ -320,22 +343,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Jump()
     {
-        if (!gameOver)
-        {
-            if (isGrounded)
-            {
-                float jumpForce = maxJumpForce * (GameManager.Instance.gameSettings.playerWeight * 0.15f);
-                if (jumpForce <= minJumpForce)
-                    jumpForce = minJumpForce;
-                else if (jumpForce > maxJumpForce)
-                    jumpForce = maxJumpForce;
-                //Debug.Log(jumpForce);
-                //Debug.Log(GameManager.Instance.gameSettings.playerWeight);
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                savedJumpForce = jumpForce;
-                isGrounded = false;
-            }
-        }
+        jump = true;
     }
 
     /// <summary>
@@ -428,6 +436,26 @@ public class PlayerMovement : MonoBehaviour
             // Interpolates the player's position between current position and destination.
             //transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
             parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
+        }
+    }
+
+    private void FixedUpdateJump()
+    {
+        if (!gameOver)
+        {
+            if (isGrounded)
+            {
+                float jumpForce = maxJumpForce * (GameManager.Instance.gameSettings.playerWeight * 0.15f);
+                if (jumpForce <= minJumpForce)
+                    jumpForce = minJumpForce;
+                else if (jumpForce > maxJumpForce)
+                    jumpForce = maxJumpForce;
+                //Debug.Log(jumpForce);
+                //Debug.Log(GameManager.Instance.gameSettings.playerWeight);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                savedJumpForce = jumpForce;
+                isGrounded = false;
+            }
         }
     }
 

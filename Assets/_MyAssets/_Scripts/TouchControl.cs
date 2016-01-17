@@ -102,7 +102,6 @@ public class TouchControl : MonoBehaviour
         if (Input.touchCount > 0)                           // If there is a touch on the screen...
         {
             Touch touch = Input.GetTouch(0);                // ...get the first detected touch currently on the screen
-
             switch (touch.phase)
             {
                 case TouchPhase.Began:                      // Records initial touch
@@ -113,11 +112,15 @@ public class TouchControl : MonoBehaviour
                 case TouchPhase.Moved:                      // Determine swipe direction
                     direction = touch.position - startPos;
                     break;
+                case TouchPhase.Stationary:
+                    direction = touch.position - startPos;
+                    break;
                 case TouchPhase.Ended:                      // Report that a direction has been chosen, end of the swipe
                     directionChosen = true;
                     break;
             }
 
+            /*
             //if (touch.tapCount == 1)
             if(startTouch)
             {
@@ -149,7 +152,7 @@ public class TouchControl : MonoBehaviour
                 startTouch = false;
                 touchCount = 0;
                 //Debug.Log("Double Touch");
-            }
+            }*/
         }
 
         // Once a swipe is completed
@@ -178,6 +181,10 @@ public class TouchControl : MonoBehaviour
                     _touchInput = TouchInput.swipeLeft;
                 }
             }
+            else
+            {
+                _touchInput = TouchInput.touch;
+            }
             // Reset the touch
             directionChosen = false;
         }
@@ -190,18 +197,22 @@ public class TouchControl : MonoBehaviour
     {
         switch (_touchInput)
         {
-            /*case TouchInput.swipeUp:
+            case TouchInput.swipeUp:
                 _player.MoveUp();
                 break;
             case TouchInput.swipeDown:
                 _player.MoveDown();
-                break;*/
-            case TouchInput.doubleTouch:
-                _player.Jump();
                 break;
+            //case TouchInput.doubleTouch:
+                //_player.Jump();
+                //break;
+            //case TouchInput.swipeLeft:
+            //case TouchInput.swipeRight:
             case TouchInput.touch:
+                //Debug.Log("Touch");
                 // Call a raycast to check for the lane
-                _player.MovePlayerToPlane(lastTouch);
+                //_player.MovePlayerToPlane(lastTouch);
+                _player.Jump();
                 break;
         }
         _touchInput = TouchInput.none;    // Reset the touch.
