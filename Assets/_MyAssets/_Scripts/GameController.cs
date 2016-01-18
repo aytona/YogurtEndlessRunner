@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour {
         _player.SetGameOver(false);
         //_hand.StartHandAI();
         StartButton.SetActive(false);
+        RestartButton.SetActive(true);
         GameManager.Instance.gameSettings.gameStart = true;
         AddLevel();
     }

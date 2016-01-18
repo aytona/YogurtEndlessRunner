@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public enum State
     {
         Normal,
-        Hit
+        Hit, 
+        TwoHit
     }
 
     #endregion Enums
@@ -153,11 +154,13 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         _gc = FindObjectOfType<GameController>();
         _rend = GetComponentInChildren<SkinnedMeshRenderer>();
-        _currentState = State.Normal;
+        StartCoroutine(StateRecovery(recoveryDelay/2)); // Start the game at 1 hit this resembles subway surfers
+        //_currentState = State.Normal;
         //regularGravity = Physics.gravity;
     }
 
 	void Update () {
+        Debug.Log(_currentState);
         if (!gameOver)
         {
             CheckInput();       // For testing
@@ -227,7 +230,11 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Hand"))               // If the hand has grabbed the player.
         {
             //Debug.Log("Hit Hand");
-            HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
+            gameOver = true;
+            _gc.ShowMessage("YOU LOSE!");
+            //AttachToHand(other.transform);      // This is if the player is grabbed by the hand.
+            GameManager.Instance.gameSettings.gameStart = false;
+            /*HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
             if (targetIndex == hand.GetHandLaneIndex())
             {
                 if (!hand.GetComponent<HandAI>().SucceededGrab())
@@ -239,7 +246,7 @@ public class PlayerMovement : MonoBehaviour
                     GameManager.Instance.gameSettings.gameStart = false;
                 }
             }
-            /*else
+            else
             {
                 Debug.Log("Not in same lane. Hand: " + hand.GetHandLaneIndex() + " Player: " + targetIndex);
             }*/
@@ -395,7 +402,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!inBlink)
             StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
-        if (_currentState == State.Normal)
+        if (_currentState == State.Hit)
+            _currentState = State.TwoHit;
+        else if (_currentState == State.Normal)
             StartCoroutine(StateRecovery(recoveryDelay));
     }
 
@@ -408,18 +417,21 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            MoveDown();
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            MoveUp();
-        if (Input.GetKeyDown(KeyCode.A))
-            targetIndex = 2;
-        if (Input.GetKeyDown(KeyCode.S))
-            targetIndex = 1;
-        if (Input.GetKeyDown(KeyCode.D))
-            targetIndex = 0;
-        if (Input.GetKeyDown(KeyCode.Space))
-            Jump();
+        if (_currentState != State.TwoHit)
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+                MoveDown();
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+                MoveUp();
+            if (Input.GetKeyDown(KeyCode.A))
+                targetIndex = 2;
+            if (Input.GetKeyDown(KeyCode.S))
+                targetIndex = 1;
+            if (Input.GetKeyDown(KeyCode.D))
+                targetIndex = 0;
+            if (Input.GetKeyDown(KeyCode.Space))
+                Jump();
+        }
     }
 
     /// <summary>
@@ -508,7 +520,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _currentState = State.Hit;
         yield return new WaitForSeconds(recoveryDelay);
-        _currentState = State.Normal;
+        if(_currentState != State.TwoHit)
+            _currentState = State.Normal;
     }
 
     #endregion Private Methods

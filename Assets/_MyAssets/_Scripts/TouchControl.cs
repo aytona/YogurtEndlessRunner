@@ -86,8 +86,11 @@ public class TouchControl : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        DetectTouchInput();
-        MovePlayer();
+        if (_player._currentState != PlayerMovement.State.TwoHit)
+        {
+            DetectTouchInput();
+            MovePlayer();
+        }
 	}
 
     #endregion Monobehaviour
