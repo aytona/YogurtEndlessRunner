@@ -17,10 +17,23 @@ public class GameController : MonoBehaviour {
     [Tooltip("Set to true to allow the demo.")]
     public bool allowDemo;
 
+    [Tooltip("Bool indicating if the game is paused or not")]
+    public bool paused;
+
     /// <summary>
-    /// Reference to the start and restart buttons.
+    /// Reference to the start, restart buttons.
     /// </summary>
     public GameObject StartButton, RestartButton;
+
+    /// <summary>
+    /// Reference to the pause icon.
+    /// </summary>
+    public Image PauseIcon;
+
+    /// <summary>
+    /// Reference to the pause textures.
+    /// </summary>
+    public Sprite pauseSprite, startSprite;
 
 	void Start () {
         _player = FindObjectOfType<PlayerMovement>();
@@ -29,6 +42,8 @@ public class GameController : MonoBehaviour {
         if(allowDemo)
             StartButton.SetActive(true);
         GameManager.Instance.gameSettings.gameRestart = true;
+
+        paused = false;     // Might want to initialize pause as true if we want the game to be paused at the start
 	}
 
 	void Update () {
@@ -36,6 +51,17 @@ public class GameController : MonoBehaviour {
         {
             StartButton.SetActive(true);
             allowDemo = false;
+        }
+        if (paused)
+        {
+            Time.timeScale = 0;
+            PauseIcon.sprite = startSprite;
+            
+        }
+        else if (!paused)
+        {
+            Time.timeScale = 1;
+            PauseIcon.sprite = pauseSprite;
         }
 	}
 
@@ -81,6 +107,11 @@ public class GameController : MonoBehaviour {
     {
         message.text = m;
         StartCoroutine(EraseMessage());
+    }
+
+    public void TogglePause()
+    {
+        paused = !paused;
     }
 
     IEnumerator EraseMessage()
