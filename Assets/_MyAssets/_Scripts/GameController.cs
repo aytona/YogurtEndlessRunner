@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour {
     public void AddScore()
     {
         playerScore++;
-        score.text = "Score: " + playerScore;
+        score.text = playerScore.ToString();
     }
 
     public void AddLevel()
