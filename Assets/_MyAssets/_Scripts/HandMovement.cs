@@ -34,17 +34,27 @@ public class HandMovement : MonoBehaviour
     /// </summary>
     private bool freeMove = false;
 
+    private bool gameOver = false;
+
+    public Transform yogurtGrabPos;
+
+    private Animator _animator;
+
     #endregion Variables
 
     #region Monobehaviour
 
     void Start () {
         targetIndex = -1;
+        _animator = GetComponentInChildren<Animator>();
 	}
 
 	void Update () {
-        MoveToPosition();
-        MoveToPlane();
+        if (!gameOver)
+        {
+            MoveToPosition();
+            MoveToPlane();
+        }
 	}
 
     #endregion Monobehaviour
@@ -90,6 +100,21 @@ public class HandMovement : MonoBehaviour
     public void SetNextPosition(Transform t)
     {
         nextPos = t.position;
+    }
+
+    public void SetGrabAnim()
+    {
+        _animator.SetTrigger("Grab");
+    }
+
+    public Transform GetGrabPosition()
+    {
+        return yogurtGrabPos;
+    }
+
+    public void SetGameOver(bool b)
+    {
+        gameOver = b;
     }
 
     #endregion Public Methods

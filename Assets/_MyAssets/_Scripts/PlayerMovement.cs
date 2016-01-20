@@ -147,6 +147,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool fallDown = false;
 
+    private Animator _animator;
+
     #region Monobehaviour
 
     void Start()
@@ -157,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(StateRecovery(recoveryDelay/2)); // Start the game at 1 hit this resembles subway surfers
         //_currentState = State.Normal;
         //regularGravity = Physics.gravity;
+        _animator = GetComponentInChildren<Animator>();
     }
 
 	void Update () {
@@ -234,7 +237,13 @@ public class PlayerMovement : MonoBehaviour
             _gc.ShowMessage("YOU LOSE!");
             //AttachToHand(other.transform);      // This is if the player is grabbed by the hand.
             GameManager.Instance.gameSettings.gameStart = false;
-            /*HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
+            HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
+            transform.parent.position = hand.GetGrabPosition().position;
+            hand.SetGrabAnim();
+            hand.SetGameOver(true);
+            _animator.SetTrigger("Caught");
+
+            /*
             if (targetIndex == hand.GetHandLaneIndex())
             {
                 if (!hand.GetComponent<HandAI>().SucceededGrab())
