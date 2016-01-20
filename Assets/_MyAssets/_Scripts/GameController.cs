@@ -17,25 +17,53 @@ public class GameController : MonoBehaviour {
     [Tooltip("Set to true to allow the demo.")]
     public bool allowDemo;
 
+    [Tooltip("Bool indicating if the game is paused or not")]
+    public bool paused;
+
     /// <summary>
-    /// Reference to the start and restart buttons.
+    /// Reference to the start, restart buttons.
     /// </summary>
-    public GameObject StartButton, RestartButton;
+    public GameObject StartButton, RestartMenu;
+
+    /// <summary>
+    /// Reference to the pause icon.
+    /// </summary>
+    public Image PauseIcon;
+
+    /// <summary>
+    /// Reference to the pause textures.
+    /// </summary>
+    public Sprite pauseSprite, startSprite;
 
 	void Start () {
         _player = FindObjectOfType<PlayerMovement>();
         _hand = FindObjectOfType<HandAI>();
         score.text = "Score: " + playerScore;
-        if(allowDemo)
+        //if (allowDemo)
             StartButton.SetActive(true);
         GameManager.Instance.gameSettings.gameRestart = true;
+        PauseIcon.GetComponentInChildren<Button>().interactable = false;
+        paused = false;     // Might want to initialize pause as true if we want the game to be paused at the start
 	}
 
 	void Update () {
-        if (allowDemo)
+        //if (allowDemo)
+        //{
+        //    StartButton.SetActive(true);
+        //    allowDemo = false;
+        //}
+        if (paused)
         {
-            StartButton.SetActive(true);
-            allowDemo = false;
+            Time.timeScale = 0;
+            PauseIcon.sprite = startSprite;
+            RestartMenu.SetActive(true);
+            
+        }
+        else if (!paused)
+        {
+            Time.timeScale = 1;
+            PauseIcon.sprite = pauseSprite;
+            RestartMenu.SetActive(false);
         }
 	}
 
@@ -47,8 +75,8 @@ public class GameController : MonoBehaviour {
         _player.SetGameOver(false);
         //_hand.StartHandAI();
         StartButton.SetActive(false);
-        RestartButton.SetActive(true);
         GameManager.Instance.gameSettings.gameStart = true;
+        PauseIcon.GetComponentInChildren<Button>().interactable = true;
         AddLevel();
     }
 
@@ -81,6 +109,11 @@ public class GameController : MonoBehaviour {
     {
         message.text = m;
         StartCoroutine(EraseMessage());
+    }
+
+    public void TogglePause()
+    {
+        paused = !paused;
     }
 
     IEnumerator EraseMessage()
