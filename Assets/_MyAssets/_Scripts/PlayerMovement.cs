@@ -149,6 +149,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator _animator;
 
+    private PlayerAudioController playerAudio;
+
     #region Monobehaviour
 
     void Start()
@@ -160,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
         //_currentState = State.Normal;
         //regularGravity = Physics.gravity;
         _animator = GetComponentInChildren<Animator>();
+        playerAudio = GetComponent<PlayerAudioController>();
     }
 
 	void Update () {
@@ -234,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //Debug.Log("Hit Hand");
             gameOver = true;
-            _gc.ShowMessage("YOU LOSE!");
+            //_gc.ShowMessage("YOU LOSE!");
             //AttachToHand(other.transform);      // This is if the player is grabbed by the hand.
             GameManager.Instance.gameSettings.gameStart = false;
             HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
@@ -242,6 +245,7 @@ public class PlayerMovement : MonoBehaviour
             hand.SetGrabAnim();
             hand.SetGameOver(true);
             _animator.SetTrigger("Caught");
+            playerAudio.PlaySound(3);
 
             /*
             if (targetIndex == hand.GetHandLaneIndex())
@@ -264,12 +268,14 @@ public class PlayerMovement : MonoBehaviour
         {
             //Debug.Log("CANDY!");
             _gc.AddScore();
-            _gc.ShowMessage("Candy!");
+            playerAudio.PlaySound(1);
+            //_gc.ShowMessage("Candy!");
         }
         if (other.CompareTag("Obstacle"))
         {
             //Debug.Log("OBSTACLE!");
-            _gc.ShowMessage("You hit an obstacle!");
+            //_gc.ShowMessage("You hit an obstacle!");
+            playerAudio.PlaySound(2);
             GetHit();
         }
         if (other.CompareTag("JumpHeight"))
@@ -476,6 +482,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 savedJumpForce = jumpForce;
                 isGrounded = false;
+                playerAudio.PlaySound(0);
             }
         }
     }

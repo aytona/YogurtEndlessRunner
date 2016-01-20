@@ -140,10 +140,38 @@ public class GameController : MonoBehaviour
     public Text score, message, level;
     public int playerScore = 0;
     public int currentLevel = 0;
+
     public void AddScore()
     {
-        playerScore++;
-        score.text = playerScore.ToString();
+        string scoreText;
+        playerScore+=125;
+
+        if (playerScore < 1000)
+        {
+            scoreText = "0000" + playerScore;
+        }
+        else if (playerScore < 10000)
+        {
+            scoreText = "000" + playerScore;
+        }
+        else if (playerScore < 100000)
+        {
+            scoreText = "00" + playerScore;
+        }
+        else if (playerScore < 1000000)
+        {
+            scoreText = "0" + playerScore;
+        }
+        else
+        {
+            if (playerScore > 99999999)
+            {
+                playerScore = 99999999;
+            }
+            scoreText = playerScore.ToString();
+        }
+
+        score.text = scoreText;
     }
 
     public void AddLevel()
