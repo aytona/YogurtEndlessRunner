@@ -2,7 +2,10 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
+
+    #region References
 
     /// <summary>
     /// Reference to the player movement script.
@@ -14,16 +17,22 @@ public class GameController : MonoBehaviour {
     /// </summary>
     private HandAI _hand;
 
+    #endregion References
+
     [Tooltip("Set to true to allow the demo.")]
     public bool allowDemo;
 
-    [Tooltip("Bool indicating if the game is paused or not")]
+    #region PauseScreenVariables
+
+    /// <summary>
+    /// Bool that is toggled to check if the game is paused or not
+    /// </summary>
     public bool paused;
 
     /// <summary>
-    /// Reference to the start, restart buttons.
+    /// Placeholder for the restart object that shows when the game is paused
     /// </summary>
-    public GameObject StartButton, RestartMenu;
+    public GameObject RestartMenu;
 
     /// <summary>
     /// Reference to the pause icon.
@@ -31,19 +40,50 @@ public class GameController : MonoBehaviour {
     public Image PauseIcon;
 
     /// <summary>
-    /// Reference to the pause textures.
+    /// All the sprites that are used in the pause Screen
     /// </summary>
     public Sprite pauseSprite, startSprite;
 
-	void Start () {
+    #endregion PauseScreenVariables
+
+    #region OpeningScreenVariables
+
+    /// <summary>
+    /// Opening Screen object, everything relating to the opening screen should be a child of this object
+    /// StartButton that contains the event listener
+    /// </summary>
+    public GameObject OpeningScreen, StartButton;
+
+    /// <summary>
+    /// Just a bool to check if the game has started
+    /// </summary>
+    private bool gameStarted = false;
+
+    /// <summary>
+    /// The original transform of the button
+    /// </summary>
+    private Transform buttonOrigin;
+
+    private Image startImage, placeHolder;
+    private RawImage openingImage;
+    #endregion OpeningScreenVariables
+
+    #region MonoBehaviour
+
+    void Start () {
         _player = FindObjectOfType<PlayerMovement>();
         _hand = FindObjectOfType<HandAI>();
         score.text = "Score: " + playerScore;
         //if (allowDemo)
-            StartButton.SetActive(true);
+            
+        StartButton.SetActive(true);
         GameManager.Instance.gameSettings.gameRestart = true;
         PauseIcon.GetComponentInChildren<Button>().interactable = false;
         paused = false;     // Might want to initialize pause as true if we want the game to be paused at the start
+        buttonOrigin = StartButton.transform;
+        startImage = StartButton.GetComponent<Image>();
+        openingImage = OpeningScreen.GetComponent<RawImage>();
+        placeHolder = OpeningScreen.GetComponentInChildren<Image>();
 	}
 
 	void Update () {
@@ -52,6 +92,11 @@ public class GameController : MonoBehaviour {
         //    StartButton.SetActive(true);
         //    allowDemo = false;
         //}
+        if (gameStarted)
+        {
+            StartCoroutine(SceneTransition());
+            StartButton.transform.Translate(Vector3.right * Time.deltaTime, Space.Self);
+        }
         if (paused)
         {
             Time.timeScale = 0;
@@ -67,6 +112,8 @@ public class GameController : MonoBehaviour {
         }
 	}
 
+    #endregion MonoBehaviour
+
     /// <summary>
     /// Start the game.
     /// </summary>
@@ -74,10 +121,10 @@ public class GameController : MonoBehaviour {
     {
         _player.SetGameOver(false);
         //_hand.StartHandAI();
-        StartButton.SetActive(false);
         GameManager.Instance.gameSettings.gameStart = true;
         PauseIcon.GetComponentInChildren<Button>().interactable = true;
         AddLevel();
+        gameStarted = true;
     }
 
     /// <summary>
@@ -114,6 +161,19 @@ public class GameController : MonoBehaviour {
     public void TogglePause()
     {
         paused = !paused;
+    }
+
+    IEnumerator SceneTransition()
+    {
+        
+        StartButton.GetComponentInChildren<Button>().interactable = false;
+        startImage.CrossFadeAlpha(0, 1, false);
+        openingImage.CrossFadeAlpha(0, 1, false);
+        placeHolder.CrossFadeAlpha(0, 1, false);
+        yield return new WaitForSeconds(2);
+        StartButton.transform.position = buttonOrigin.position;
+        OpeningScreen.SetActive(false);
+        gameStarted = false;
     }
 
     IEnumerator EraseMessage()
