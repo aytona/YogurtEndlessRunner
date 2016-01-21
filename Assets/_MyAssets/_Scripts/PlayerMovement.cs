@@ -166,7 +166,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 	void Update () {
-        Debug.Log(_currentState);
         if (!gameOver)
         {
             CheckInput();       // For testing
@@ -267,7 +266,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Collectable"))
         {
             //Debug.Log("CANDY!");
-            _gc.AddScore();
+            _gc.IncrementScore(125);
             playerAudio.PlaySound(1);
             //_gc.ShowMessage("Candy!");
         }
@@ -276,6 +275,7 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("OBSTACLE!");
             //_gc.ShowMessage("You hit an obstacle!");
             playerAudio.PlaySound(2);
+            _gc.IncrementScore(-500);
             GetHit();
         }
         if (other.CompareTag("JumpHeight"))
