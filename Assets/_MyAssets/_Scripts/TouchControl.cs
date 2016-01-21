@@ -41,28 +41,6 @@ public class TouchControl : MonoBehaviour
     /// </summary>
     private bool directionChosen;
 
-    [Tooltip("Delay to detect a double touch.")]
-    /// <summary>
-    /// Delay to detect a double touch
-    /// </summary>
-    public float doubleTouchDelay = 0.3f;
-
-    /// <summary>
-    /// Can a double touch be checked.
-    /// </summary>
-    private bool checkDoubleTouch = true;
-
-    private float lastTime;
-
-    private float touchCount = 0f;
-
-    private bool startTouch = false;
-
-    /// <summary>
-    /// Saves the last touch to get it's position.
-    /// </summary>
-    public Touch lastTouch;
-
     /// <summary>
     /// Which direction the is the swipe in.
     /// </summary>
@@ -110,7 +88,6 @@ public class TouchControl : MonoBehaviour
                 case TouchPhase.Began:                      // Records initial touch
                     startPos = touch.position;
                     directionChosen = false;
-                    startTouch = true;
                     break;
                 case TouchPhase.Moved:                      // Determine swipe direction
                     direction = touch.position - startPos;
@@ -122,40 +99,6 @@ public class TouchControl : MonoBehaviour
                     directionChosen = true;
                     break;
             }
-
-            /*
-            //if (touch.tapCount == 1)
-            if(startTouch)
-            {
-                if (!checkDoubleTouch)
-                {
-                    touchCount = 0;
-                    checkDoubleTouch = true;
-                    lastTime = Time.time;
-                }
-                else if(checkDoubleTouch && touchCount < doubleTouchDelay)
-                {
-                    touchCount += Time.time - lastTime;
-                    lastTime = Time.time;
-                }
-                else if(checkDoubleTouch && touchCount >= doubleTouchDelay)
-                {
-                    checkDoubleTouch = false;
-                    _touchInput = TouchInput.touch;
-                    lastTouch = touch;
-                    startTouch = false;
-                    //Debug.Log("Single Touch");
-                }
-            }
-
-            if (checkDoubleTouch && touch.tapCount == 2)
-            {
-                _touchInput = TouchInput.doubleTouch;       // Double Touch
-                checkDoubleTouch = false;
-                startTouch = false;
-                touchCount = 0;
-                //Debug.Log("Double Touch");
-            }*/
         }
 
         // Once a swipe is completed
@@ -163,17 +106,17 @@ public class TouchControl : MonoBehaviour
         {
             if (direction.magnitude >= minSwipeLength)              // If the swipe is longer than the minimum swipe allowed.
             {
-                if (direction.y > 0 && direction.y > direction.x)   // Swiped up
+                if (direction.y > 0)// && direction.y > direction.x)   // Swiped up
                 {
                     //Debug.Log("Swipe Up");
                     _touchInput = TouchInput.swipeUp;
                 }
-                if (direction.y < 0 && direction.y < direction.x)   // Swiped down
+                if (direction.y < 0)// && direction.y < direction.x)   // Swiped down
                 {
                     //Debug.Log("Swipe Down");
                     _touchInput = TouchInput.swipeDown;
                 }
-                if (direction.x > 0 && direction.x > direction.y)   // Swiped right
+                /*if (direction.x > 0 && direction.x > direction.y)   // Swiped right
                 {
                     //Debug.Log("Swipe Right");
                     _touchInput = TouchInput.swipeRight;
@@ -182,7 +125,7 @@ public class TouchControl : MonoBehaviour
                 {
                     //Debug.Log("Swipe Left");
                     _touchInput = TouchInput.swipeLeft;
-                }
+                }*/
             }
             else
             {
@@ -206,15 +149,8 @@ public class TouchControl : MonoBehaviour
             case TouchInput.swipeDown:
                 _player.MoveDown();
                 break;
-            //case TouchInput.doubleTouch:
-                //_player.Jump();
-                //break;
-            //case TouchInput.swipeLeft:
-            //case TouchInput.swipeRight:
             case TouchInput.touch:
                 //Debug.Log("Touch");
-                // Call a raycast to check for the lane
-                //_player.MovePlayerToPlane(lastTouch);
                 _player.Jump();
                 break;
         }
