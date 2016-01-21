@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour
     /// </summary>
     private HandAI _hand;
 
+    private ItemGenerator spawnPool;
+
     #endregion References
 
     [Tooltip("Set to true to allow the demo.")]
@@ -73,7 +75,7 @@ public class GameController : MonoBehaviour
     void Start () {
         _player = FindObjectOfType<PlayerMovement>();
         _hand = FindObjectOfType<HandAI>();
-        score.text = "Score: " + playerScore;
+        score.text = "0000000";
         //if (allowDemo)
             
         StartButton.SetActive(true);
@@ -120,6 +122,7 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         _player.SetGameOver(false);
+        spawnPool = FindObjectOfType<ItemGenerator>();
         //_hand.StartHandAI();
         GameManager.Instance.gameSettings.gameStart = true;
         PauseIcon.GetComponentInChildren<Button>().interactable = true;
@@ -141,12 +144,17 @@ public class GameController : MonoBehaviour
     public int playerScore = 0;
     public int currentLevel = 0;
 
-    public void AddScore()
+    public void IncrementScore(int inc)
     {
         string scoreText;
-        playerScore+=125;
+        playerScore+=inc;
 
-        if (playerScore < 1000)
+        if (playerScore < 0)
+        {
+            playerScore = 0;
+            scoreText = "000000" + playerScore;
+        }
+        else if (playerScore < 1000)
         {
             scoreText = "0000" + playerScore;
         }
@@ -178,6 +186,7 @@ public class GameController : MonoBehaviour
     {
         currentLevel++;
         level.text = "Level: " + currentLevel;
+        spawnPool.UpdateRepeatRate();
     }
 
     public void ShowMessage(string m)

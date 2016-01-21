@@ -27,6 +27,8 @@ public class ItemGenerator : MonoBehaviour {
     [Tooltip("Spawn Repeat Rate")]
     public float repeatRate;
 
+    public float maxRepeatRate;
+
     // List of GameObjects to pool
     private List<GameObject> items;
     private List<GameObject> obstacles;
@@ -35,6 +37,7 @@ public class ItemGenerator : MonoBehaviour {
     private List<GameObject> spawns;
 
     // private bool willGrow = true;
+    private GameController _gc;
 
     #endregion Variables
 
@@ -44,6 +47,7 @@ public class ItemGenerator : MonoBehaviour {
     {
         // TODO: Current level number should affect the itemRatio and obstacleRatio in someway.
         // EX: itemRatio *= level * 0.x; (Or any variation)
+        _gc = FindObjectOfType<GameController>();
 
         // Pool item objects
         items = new List<GameObject>();
@@ -77,7 +81,8 @@ public class ItemGenerator : MonoBehaviour {
             spawns[randIndex] = temp;
         }
         
-        InvokeRepeating("Spawn", 1f, repeatRate);
+        //InvokeRepeating("Spawn", 1f, repeatRate);
+        StartCoroutine(SpawnLoop());
     }
 
     #endregion Monobehaviour
@@ -102,5 +107,28 @@ public class ItemGenerator : MonoBehaviour {
         }
     }
 
+    private IEnumerator SpawnLoop()
+    {
+        Spawn();
+        yield return new WaitForSeconds(repeatRate);
+        StartCoroutine(SpawnLoop());
+    }
+
     #endregion Private Methods
+
+    #region Public Methods
+
+    public void UpdateRepeatRate()
+    {
+        if (_gc.currentLevel % 3 == 0)
+        {
+            repeatRate -= 0.3f;
+            if (repeatRate < maxRepeatRate)
+            {
+                repeatRate = maxRepeatRate;
+            }
+        }
+    }
+
+    #endregion Public Methods
 }
