@@ -67,7 +67,6 @@ public class TouchControl : MonoBehaviour
         if (_player._currentState != PlayerMovement.State.TwoHit)
         {
             DetectTouchInput();
-            MovePlayer();
         }
 	}
 
@@ -134,6 +133,7 @@ public class TouchControl : MonoBehaviour
             // Reset the touch
             directionChosen = false;
         }
+        MovePlayer();
     }
 
     /// <summary>
