@@ -150,6 +150,8 @@ public class GameController : MonoBehaviour
         string scoreText;
         playerScore+=inc;
 
+        /* Try scoreText = string.Format("{0:0000000}", playerScore); */
+        
         if (playerScore < 0)
         {
             playerScore = 0;

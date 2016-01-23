@@ -7,19 +7,19 @@ public class GameSettings : MonoBehaviour {
     #region Variables
 
     [Tooltip("The speed of the objects")]
-    public float gameSpeed = 5f;
+    public float gameSpeed;
 
     [Tooltip("The weight of the player")]
-    public float playerWeight = 5f;
+    public float playerWeight;
 
     [Tooltip("The delay between each speed increase in seconds")]
-    public float coroutineDelay = 10f;
+    public int coroutineDelay;
 
     [Tooltip("Next level speed multiplier")]
-    public float speedMultiplier = 2f;
+    public int speedMultiplier;
 
     [Tooltip("The speed cap")]
-    public float speedCap = 50f;
+    public int speedCap;
 
     [HideInInspector]
     public bool gameRestart = false;
@@ -30,8 +30,8 @@ public class GameSettings : MonoBehaviour {
     [HideInInspector]
     public int level;
 
-    private float gameSpeedDefault = 5f;
-    private float playerWeightDefault = 5f;
+    private float gameSpeedDefault;
+    private float playerWeightDefault;
     private float speedIncreaser = 0.05f;
     private float maxSpeed;
     private bool afterDelay = true;
@@ -85,7 +85,7 @@ public class GameSettings : MonoBehaviour {
 
     #region Private Methods
 
-    private IEnumerator SpeedDelay(float delay)
+    private IEnumerator SpeedDelay(int delay)
     {
         afterDelay = false;
         yield return new WaitForSeconds(delay);
