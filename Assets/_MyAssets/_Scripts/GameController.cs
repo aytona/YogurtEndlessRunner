@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
         if (gameStarted)
         {
             StartCoroutine(SceneTransition());
-            StartButton.transform.Translate(Vector3.right * Time.deltaTime, Space.Self);
+            StartButton.transform.Translate(-Vector3.right * Time.deltaTime, Space.Self);
         }
         if (paused)
         {
