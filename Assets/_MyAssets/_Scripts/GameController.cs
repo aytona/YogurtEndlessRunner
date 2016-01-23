@@ -104,13 +104,14 @@ public class GameController : MonoBehaviour
             Time.timeScale = 0;
             PauseIcon.sprite = startSprite;
             RestartMenu.SetActive(true);
-            
+            AudioListener.pause = true;
         }
         else if (!paused)
         {
             Time.timeScale = 1;
             PauseIcon.sprite = pauseSprite;
             RestartMenu.SetActive(false);
+            AudioListener.pause = false;
         }
 	}
 
