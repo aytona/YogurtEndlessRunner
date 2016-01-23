@@ -1,9 +1,16 @@
 fileFormatVersion: 2
 guid: 79d22126eaf05b541b07f9c9bf73c400
-timeCreated: 1453164541
+timeCreated: 1453576884
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: score_graphic_0
+    21300002: score_graphic_1
+    21300004: score_graphic_2
+    21300006: score_graphic_3
+    21300008: score_graphic_4
+    21300010: score_graphic_5
+    21300012: score_graphic_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -17,7 +24,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -42,14 +49,155 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: score_graphic_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 721
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 337.5, y: -14}
+        - {x: 343.5, y: 23}
+        - {x: 332.5, y: 31}
+        - {x: 311.5, y: 24}
+        - {x: 327.5, y: 34}
+        - {x: 360.5, y: 55}
+        - {x: 360.5, y: 81}
+        - {x: 68.5, y: 81}
+        - {x: 66.5, y: 64}
+        - {x: 74.5, y: 48}
+        - {x: 41.5, y: 72}
+        - {x: 32.5, y: 81}
+        - {x: -360.5, y: 81}
+        - {x: -360.5, y: 62}
+        - {x: -331.5, y: 43}
+        - {x: -239.5, y: 65}
+        - {x: -175.5, y: 23}
+        - {x: -144.5, y: 7}
+        - {x: -122.5, y: 10}
+        - {x: -103.5, y: -36}
+        - {x: -81.5, y: -54}
+        - {x: -3.5, y: -81}
+        - {x: 273.5, y: -81}
+        - {x: 283.5, y: -77}
+        - {x: 301.5, y: -60}
+        - {x: 305.5, y: -48}
+      - - {x: 351.5, y: -5}
+        - {x: 345.5, y: -14}
+        - {x: 345.5, y: -22}
+        - {x: 356.5, y: -22}
+        - {x: 360.5, y: -21}
+        - {x: 360.5, y: -5}
+      - - {x: -154.5, y: 2}
+        - {x: -153.5, y: -1}
+        - {x: -143.5, y: -1}
+        - {x: -141.5, y: 1}
+        - {x: -142.5, y: 4}
+        - {x: -152.5, y: 4}
+      - - {x: -136.5, y: 2}
+        - {x: -133.5, y: 3}
+        - {x: -133.5, y: 6}
+        - {x: -136.5, y: 7}
+        - {x: -138.5, y: 5}
+      - - {x: 356.5, y: 21}
+        - {x: 355.5, y: 18}
+        - {x: 355.5, y: 12}
+        - {x: 359.5, y: 9}
+        - {x: 360.5, y: 9}
+        - {x: 360.5, y: 21}
+    - name: score_graphic_1
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 110
+        width: 57
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: score_graphic_2
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 118
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: score_graphic_3
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 120
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: score_graphic_4
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 47
+        width: 51
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: 26.5}
+        - {x: -25.5, y: 18.5}
+        - {x: -25.5, y: -22.5}
+        - {x: -21.5, y: -26.5}
+        - {x: 14.5, y: -26.5}
+        - {x: 25.5, y: -18.5}
+        - {x: 25.5, y: 26.5}
+    - name: score_graphic_5
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 57
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6.5, y: 22}
+        - {x: -22.5, y: 15}
+        - {x: -22.5, y: -12}
+        - {x: -20.5, y: -22}
+        - {x: 22.5, y: -22}
+        - {x: 22.5, y: 10}
+        - {x: 12.5, y: 22}
+    - name: score_graphic_6
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 29
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
