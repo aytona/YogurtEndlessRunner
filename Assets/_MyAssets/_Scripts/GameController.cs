@@ -70,6 +70,16 @@ public class GameController : MonoBehaviour
     private RawImage openingImage;
     #endregion OpeningScreenVariables
 
+    #region EndScreenVariables
+
+    public GameObject endScreen, inGameScore, pauseButton;
+
+    public Text finalScore;
+
+    private bool gameOver = false;
+
+    #endregion EndScreenVariables
+
     #region MonoBehaviour
 
     void Start () {
@@ -113,6 +123,13 @@ public class GameController : MonoBehaviour
             RestartMenu.SetActive(false);
             AudioListener.pause = false;
         }
+        if (gameOver)
+        {
+            inGameScore.transform.Translate(Vector3.up * Time.deltaTime * 0.2f, Space.Self);
+            pauseButton.transform.Translate(Vector3.up * Time.deltaTime * 0.2f, Space.Self);
+            StartCoroutine(ShowEndScreen());
+        }
+       
 	}
 
     #endregion MonoBehaviour
@@ -220,5 +237,17 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         message.text = "";
+    }
+
+    public void SetGameOver(bool b)
+    {
+        gameOver = b;
+    }
+
+    IEnumerator ShowEndScreen()
+    {
+        yield return new WaitForSeconds(1.5f);
+        endScreen.SetActive(true);
+        finalScore.text = score.text;
     }
 }

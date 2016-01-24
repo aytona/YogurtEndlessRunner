@@ -117,6 +117,14 @@ public class HandMovement : MonoBehaviour
         gameOver = b;
     }
 
+    public void EndGameHide(Transform hidePosition)
+    {
+        freeMove = true;
+        speed /= 2;
+        nextPos = hidePosition.position;
+        StartCoroutine(EndMoveLoop());
+    }
+
     #endregion Public Methods
 
     #region Private Methods
@@ -164,6 +172,13 @@ public class HandMovement : MonoBehaviour
     private void LerpPositions(Vector3 pos1, Vector3 pos2)
     {
         transform.position = Vector3.Lerp(pos1, pos2, Time.deltaTime * speed);
+    }
+
+    private IEnumerator EndMoveLoop()
+    {
+        MoveToPosition();
+        yield return new WaitForEndOfFrame();
+        StartCoroutine(EndMoveLoop());
     }
 
     #endregion Private Methods

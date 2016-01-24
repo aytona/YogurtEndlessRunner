@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0efc57163ba664643883e58b829d1780
-timeCreated: 1453165490
+timeCreated: 1453661345
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -54,9 +54,9 @@ TextureImporter:
     - name: pause_icon_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 1
-        width: 43
+        width: 44
         height: 56
       alignment: 0
       pivot: {x: .5, y: .5}
