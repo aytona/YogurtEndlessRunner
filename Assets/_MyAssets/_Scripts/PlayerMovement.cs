@@ -279,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("OBSTACLE!");
             //_gc.ShowMessage("You hit an obstacle!");
             playerAudio.PlaySound(2);
-            _gc.IncrementScore(-300);
+            //_gc.IncrementScore(-300);
             GetHit();
         }
         if (other.CompareTag("JumpHeight"))
