@@ -11,7 +11,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Normal,
         Hit, 
-        TwoHit
+        TwoHit,
+        EndGame,
+        None
     }
 
     #endregion Enums
@@ -245,7 +247,9 @@ public class PlayerMovement : MonoBehaviour
             hand.SetGameOver(true);
             _animator.SetTrigger("Caught");
             playerAudio.PlaySound(3);
-
+            AttachToHand(hand.yogurtGrabPos);      
+            _currentState = State.EndGame;
+            _gc.SetGameOver(true);
             /*
             if (targetIndex == hand.GetHandLaneIndex())
             {
@@ -377,6 +381,7 @@ public class PlayerMovement : MonoBehaviour
         if (gameOver)
         {
             transform.parent = p;
+            transform.position = p.position;
             rb.isKinematic = true;
         }
     }

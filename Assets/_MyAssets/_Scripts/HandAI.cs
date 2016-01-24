@@ -88,6 +88,10 @@ public class HandAI : MonoBehaviour
                 followPlayer = false;
                 _movement.SetNextPosition(_player.transform);
                 break;
+            case PlayerMovement.State.EndGame:
+                _movement.EndGameHide(hidePosition);
+                _player._currentState = PlayerMovement.State.None;
+                break;
         }
     }
 
