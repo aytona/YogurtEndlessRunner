@@ -3,7 +3,7 @@ guid: f3a3d3636d763464484360e37cc4626e
 timeCreated: 1453502718
 licenseType: Free
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: Base
     100002: BezierCurve
@@ -237,6 +237,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -244,12 +245,448 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: 02picking_stay.001
+      takeName: 02picking_stay.001
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BezierCurve
+        weight: 1
+      - path: BG_01
+        weight: 1
+      - path: BG_02
+        weight: 1
+      - path: BG_03
+        weight: 1
+      - path: BG_03.001
+        weight: 1
+      - path: candy01
+        weight: 1
+      - path: floor
+        weight: 1
+      - path: Mesh_Rayman3_Rayman_3.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: yogurt_mesh
+        weight: 1
+      - path: yogurt_rig
+        weight: 1
+      - path: yogurt_rig/Base
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/Knee_IK_target.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/Knee_IK_target.L/Knee_IK_target.L_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/foot_IK.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/foot_IK.L/foot_IK.L_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/heel_control.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/heel_control.L/leg_IK.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/heel_control.L/leg_IK.L/leg_IK.L_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe_IK.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe_IK.L/toe_IK.L_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/Knee_IK_target.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/Knee_IK_target.R/Knee_IK_target.R_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/foot_IK.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/foot_IK.R/foot_IK.R_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/heel_control.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/heel_control.R/leg_IK.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/heel_control.R/leg_IK.R/leg_IK.R_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe_IK.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe_IK.R/toe_IK.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.L/elbow_L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.L/elbow_L/elbow_L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.R/elbow_R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.R/elbow_R/elbow_R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02/top03
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02/top03/top04
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02/top03/top04/top05
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02/top03/top04/top05/top05_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_index.01.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_index.01.L/finger_index.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_index.01.L/finger_index.02.L/finger_index.02.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_middle.01.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_middle.01.L/finger_middle.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_middle.01.L/finger_middle.02.L/finger_middle.02.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_ring.01.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_ring.01.L/finger_ring.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_ring.01.L/finger_ring.02.L/finger_ring.02.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/palm.02.L/palm.02.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/thumb.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_index.01.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_index.01.R/finger_index.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_index.01.R/finger_index.02.R/finger_index.02.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_middle.01.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_middle.01.R/finger_middle.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_middle.01.R/finger_middle.02.R/finger_middle.02.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_ring.01.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_ring.01.R/finger_ring.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_ring.01.R/finger_ring.02.R/finger_ring.02.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/palm.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/palm.02.R/palm.02.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/thumb.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/thumb.02.R/thumb.03.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L/shin.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L/shin.L/foot.L/toe.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L/shin.L/foot.L/toe.L/toe.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R/shin.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R/shin.R/foot.R/toe.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R/shin.R/foot.R/toe.R/toe.R_end
+        weight: 1
+      - path: ZBrushPolyMesh3D
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: yogurt_rig|walkcycle
+      takeName: yogurt_rig|walkcycle
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BezierCurve
+        weight: 1
+      - path: BG_01
+        weight: 1
+      - path: BG_02
+        weight: 1
+      - path: BG_03
+        weight: 1
+      - path: BG_03.001
+        weight: 1
+      - path: candy01
+        weight: 1
+      - path: floor
+        weight: 1
+      - path: Mesh_Rayman3_Rayman_3.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: yogurt_mesh
+        weight: 1
+      - path: yogurt_rig
+        weight: 1
+      - path: yogurt_rig/Base
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/Knee_IK_target.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/Knee_IK_target.L/Knee_IK_target.L_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/foot_IK.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/foot_IK.L/foot_IK.L_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/heel_control.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/heel_control.L/leg_IK.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe._control.L/heel_control.L/leg_IK.L/leg_IK.L_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe_IK.L
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.L/toe_IK.L/toe_IK.L_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/Knee_IK_target.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/Knee_IK_target.R/Knee_IK_target.R_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/foot_IK.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/foot_IK.R/foot_IK.R_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/heel_control.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/heel_control.R/leg_IK.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe._control.R/heel_control.R/leg_IK.R/leg_IK.R_end
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe_IK.R
+        weight: 1
+      - path: yogurt_rig/Base/foot_control.R/toe_IK.R/toe_IK.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.L/elbow_L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.L/elbow_L/elbow_L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.R/elbow_R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/hand_IK.R/elbow_R/elbow_R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02/top03
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02/top03/top04
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02/top03/top04/top05
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/top01/top02/top03/top04/top05/top05_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_index.01.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_index.01.L/finger_index.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_index.01.L/finger_index.02.L/finger_index.02.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_middle.01.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_middle.01.L/finger_middle.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_middle.01.L/finger_middle.02.L/finger_middle.02.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_ring.01.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_ring.01.L/finger_ring.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/finger_ring.01.L/finger_ring.02.L/finger_ring.02.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/palm.02.L/palm.02.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/thumb.02.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.L/forearm.L/hand.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_index.01.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_index.01.R/finger_index.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_index.01.R/finger_index.02.R/finger_index.02.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_middle.01.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_middle.01.R/finger_middle.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_middle.01.R/finger_middle.02.R/finger_middle.02.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_ring.01.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_ring.01.R/finger_ring.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/finger_ring.01.R/finger_ring.02.R/finger_ring.02.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/palm.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/palm.02.R/palm.02.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/thumb.02.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/thumb.02.R/thumb.03.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/spine/upper_arm.R/forearm.R/hand.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L/shin.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L/shin.L/foot.L/toe.L
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.L/shin.L/foot.L/toe.L/toe.L_end
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R/shin.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R/shin.R/foot.R/toe.R
+        weight: 1
+      - path: yogurt_rig/Base/hips.000/hips/thigh.R/shin.R/foot.R/toe.R/toe.R_end
+        weight: 1
+      - path: ZBrushPolyMesh3D
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -270,7 +707,6 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 0
   importAnimation: 1
@@ -278,12 +714,12 @@ ModelImporter:
   humanDescription:
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0

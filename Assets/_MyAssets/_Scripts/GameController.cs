@@ -104,13 +104,14 @@ public class GameController : MonoBehaviour
             Time.timeScale = 0;
             PauseIcon.sprite = startSprite;
             RestartMenu.SetActive(true);
-            
+            AudioListener.pause = true;
         }
         else if (!paused)
         {
             Time.timeScale = 1;
             PauseIcon.sprite = pauseSprite;
             RestartMenu.SetActive(false);
+            AudioListener.pause = false;
         }
 	}
 
@@ -149,6 +150,8 @@ public class GameController : MonoBehaviour
         string scoreText;
         playerScore+=inc;
 
+        /* Try scoreText = string.Format("{0:0000000}", playerScore); */
+        
         if (playerScore < 0)
         {
             playerScore = 0;
