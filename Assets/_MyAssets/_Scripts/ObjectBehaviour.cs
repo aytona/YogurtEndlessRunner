@@ -7,6 +7,8 @@ public class ObjectBehaviour : MonoBehaviour {
 
     private RandomObjectSet _randomObjectSet;
 
+    //private ItemGenerator _spawnPool;
+
     #endregion
 
     #region Monobehaviour
@@ -14,6 +16,7 @@ public class ObjectBehaviour : MonoBehaviour {
     void Start()
     {
         _randomObjectSet = GetComponent<RandomObjectSet>();
+        //_spawnPool = FindObjectOfType<ItemGenerator>();
     }
 
     void Update()
@@ -33,6 +36,7 @@ public class ObjectBehaviour : MonoBehaviour {
     {
         _randomObjectSet.ResetObjectSet();
         gameObject.SetActive(false);
+        //_spawnPool.spawns.Add(this.gameObject);
     }
 
     #endregion Private Methods

@@ -34,10 +34,14 @@ public class ItemGenerator : MonoBehaviour {
     private List<GameObject> obstacles;
 
     // List of everything to spawn
-    private List<GameObject> spawns;
+    public List<GameObject> spawns;
 
     // private bool willGrow = true;
     private GameController _gc;
+
+    private GameSettings _settings;
+
+    private bool canShuffle = false;
 
     #endregion Variables
 
@@ -48,6 +52,7 @@ public class ItemGenerator : MonoBehaviour {
         // TODO: Current level number should affect the itemRatio and obstacleRatio in someway.
         // EX: itemRatio *= level * 0.x; (Or any variation)
         _gc = FindObjectOfType<GameController>();
+        _settings = FindObjectOfType<GameSettings>();
         // Pool item objects
         items = new List<GameObject>();
         for (int i = 0; i < itemRatio; i++)
@@ -102,6 +107,9 @@ public class ItemGenerator : MonoBehaviour {
                 spawns[i].transform.position = targets.transform.position;
                 spawns[i].transform.rotation = targets.transform.rotation;
                 spawns[i].SetActive(true);
+                //GameObject temp = spawns[i];
+                //spawns.Remove(spawns[i]);
+
                 break;
             }
         }
@@ -110,8 +118,33 @@ public class ItemGenerator : MonoBehaviour {
     private IEnumerator SpawnLoop()
     {
         Spawn();
+        if (_gc.currentLevel %3 == 0)
+        {
+            if (canShuffle)
+            {
+                Shuffle();
+                canShuffle = false;
+            }
+        }
+        else
+        {
+            canShuffle = true;
+        }
         yield return new WaitForSeconds(repeatRate);
         StartCoroutine(SpawnLoop());
+    }
+
+    private void Shuffle(/*IList<GameObject> spawnPool*/)
+    {
+        int randomNum;
+        GameObject temp;
+        for (int i = spawns.Count - 1; i > 0; i--)
+        {
+            randomNum = Random.Range(0, i);
+            temp = spawns[randomNum];
+            spawns[randomNum] = spawns[i];
+            spawns[i] = temp;
+        }
     }
 
     #endregion Private Methods
