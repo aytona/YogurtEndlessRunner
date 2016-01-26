@@ -11,36 +11,28 @@ public class RandomObjectSet : MonoBehaviour {
     [Tooltip("Check if you want multiple copies in a row")]
     public bool multi;
 
-    /// <summary>
-    /// Random number variable
-    /// </summary>
-    private float randNum;
+    private int lastPosition;
 
     #endregion Variables
 
     #region MonoBehaviour
 
-    void Awake()
+    public void ResetObjectSet()
     {
-        randNum = Random.Range(0f, 75f);
-    }
-
-    void OnDisable()
-    {
-        randNum = Random.Range(0f, 75f);
         for (int i = 0; i < setObjects.Length; i++)
         {
             setObjects[i].SetActive(true);
         }
     }
 
-    void OnEnable()
+    public void SetRandomObject()
     {
-        int randPos = Random.Range(0, 2);
+        int randPos = Random.Range(0, 3);
+        int randNum = Random.Range(0, 100);
         if (multi)
         {
             // Have all 3 items active
-            if (randNum < 25f)
+            if (randNum < 25)
             {
                 for (int i = 0; i < setObjects.Length; i++)
                 {
@@ -48,21 +40,17 @@ public class RandomObjectSet : MonoBehaviour {
                 }
             }
             // Have only 2 items active
-            if (randNum > 50f)
+            if (randNum > 50)
             {
                 setObjects[randPos].SetActive(false);
             }
         }
         // Have only 1 item active
-        else if (!multi || (randNum >= 25f && randNum <= 50f))
+        else if (!multi || (randNum >= 25 && randNum <= 50))
         {
             for (int i = 0; i < setObjects.Length; i++)
-            {
-                if (i != randPos)
-                {
-                    setObjects[i].SetActive(false);
-                }
-            }
+                setObjects[i].SetActive(false);
+            setObjects[randPos].SetActive(true);
         }
     }
 

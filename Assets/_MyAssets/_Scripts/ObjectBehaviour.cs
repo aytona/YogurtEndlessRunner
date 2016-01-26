@@ -3,7 +3,18 @@ using System.Collections;
 
 public class ObjectBehaviour : MonoBehaviour {
 
+    #region
+
+    private RandomObjectSet _randomObjectSet;
+
+    #endregion
+
     #region Monobehaviour
+
+    void Start()
+    {
+        _randomObjectSet = GetComponent<RandomObjectSet>();
+    }
 
     void Update()
     {
@@ -20,6 +31,7 @@ public class ObjectBehaviour : MonoBehaviour {
 
     private void DestroyObjectSet()
     {
+        _randomObjectSet.ResetObjectSet();
         gameObject.SetActive(false);
     }
 
