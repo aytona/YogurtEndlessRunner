@@ -13,13 +13,13 @@ public class GameSettings : MonoBehaviour {
     public float playerWeight;
 
     [Tooltip("The delay between each speed increase in seconds")]
-    public int coroutineDelay;
+    public float coroutineDelay;
 
     [Tooltip("Next level speed multiplier")]
-    public int speedMultiplier;
+    public float speedMultiplier;
 
     [Tooltip("The speed cap")]
-    public int speedCap;
+    public float speedCap;
 
     [HideInInspector]
     public bool gameRestart = false;
@@ -85,7 +85,7 @@ public class GameSettings : MonoBehaviour {
 
     #region Private Methods
 
-    private IEnumerator SpeedDelay(int delay)
+    private IEnumerator SpeedDelay(float delay)
     {
         afterDelay = false;
         yield return new WaitForSeconds(delay);
