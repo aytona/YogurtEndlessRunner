@@ -48,7 +48,6 @@ public class ItemGenerator : MonoBehaviour {
         // TODO: Current level number should affect the itemRatio and obstacleRatio in someway.
         // EX: itemRatio *= level * 0.x; (Or any variation)
         _gc = FindObjectOfType<GameController>();
-
         // Pool item objects
         items = new List<GameObject>();
         for (int i = 0; i < itemRatio; i++)
@@ -99,6 +98,7 @@ public class ItemGenerator : MonoBehaviour {
             // Current work around is making the number of objects and obstacles small
             if (!spawns[i].activeInHierarchy)
             {
+                spawns[i].GetComponent<RandomObjectSet>().SetRandomObject();
                 spawns[i].transform.position = targets.transform.position;
                 spawns[i].transform.rotation = targets.transform.rotation;
                 spawns[i].SetActive(true);
