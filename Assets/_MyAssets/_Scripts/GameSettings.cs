@@ -27,7 +27,7 @@ public class GameSettings : MonoBehaviour {
     [HideInInspector]
     public bool gameStart = false;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int level;
 
     private float gameSpeedDefault;

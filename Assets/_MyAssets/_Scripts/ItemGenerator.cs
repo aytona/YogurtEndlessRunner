@@ -41,6 +41,8 @@ public class ItemGenerator : MonoBehaviour {
 
     private GameSettings _settings;
 
+    private bool canShuffle = false;
+
     #endregion Variables
 
     #region Monobehaviour
@@ -116,9 +118,17 @@ public class ItemGenerator : MonoBehaviour {
     private IEnumerator SpawnLoop()
     {
         Spawn();
-        if (_settings.level % 3 == 0)
+        if (_gc.currentLevel %3 == 0)
         {
-            Shuffle();
+            if (canShuffle)
+            {
+                Shuffle();
+                canShuffle = false;
+            }
+        }
+        else
+        {
+            canShuffle = true;
         }
         yield return new WaitForSeconds(repeatRate);
         StartCoroutine(SpawnLoop());
@@ -128,7 +138,7 @@ public class ItemGenerator : MonoBehaviour {
     {
         int randomNum;
         GameObject temp;
-        for (int i = spawns.Count - 1; i < 0; i--)
+        for (int i = spawns.Count - 1; i > 0; i--)
         {
             randomNum = Random.Range(0, i);
             temp = spawns[randomNum];
