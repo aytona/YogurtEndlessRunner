@@ -3,44 +3,35 @@ using System.Collections;
 
 public class ObjectBehaviour : MonoBehaviour {
 
-    #region Variables
+    #region
 
-    [Tooltip("Length of object lifespan")]
-    public float lifeSpan;
+    private RandomObjectSet _randomObjectSet;
 
-    #endregion Variables
+    #endregion
 
     #region Monobehaviour
 
-    void OnEnable()
+    void Start()
     {
-        Invoke("Destroy", lifeSpan);
-    }
-
-    void OnDisable()
-    {
-        CancelInvoke();
+        _randomObjectSet = GetComponent<RandomObjectSet>();
     }
 
     void Update()
     {
         transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
         if (transform.position.x <= GameManager.Instance.lengthBeforeDespawn || !GameManager.Instance.gameSettings.gameStart)
-            Destroy();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-            Destroy();
+        {
+            DestroyObjectSet();
+        }
     }
 
     #endregion Monobehaviour
 
     #region Private Methods
 
-    private void Destroy()
+    private void DestroyObjectSet()
     {
+        _randomObjectSet.ResetObjectSet();
         gameObject.SetActive(false);
     }
 

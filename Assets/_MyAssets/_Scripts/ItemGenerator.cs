@@ -16,7 +16,7 @@ public class ItemGenerator : MonoBehaviour {
 
     [Tooltip("Array of targets, where the items and obstacles generate at")]
     [SerializeField]
-    private Transform[] targets;
+    private Transform targets;
 
     [Tooltip("Item Ratio")]
     public int itemRatio;
@@ -27,6 +27,8 @@ public class ItemGenerator : MonoBehaviour {
     [Tooltip("Spawn Repeat Rate")]
     public float repeatRate;
 
+    public float maxRepeatRate;
+
     // List of GameObjects to pool
     private List<GameObject> items;
     private List<GameObject> obstacles;
@@ -35,6 +37,7 @@ public class ItemGenerator : MonoBehaviour {
     private List<GameObject> spawns;
 
     // private bool willGrow = true;
+    private GameController _gc;
 
     #endregion Variables
 
@@ -44,7 +47,7 @@ public class ItemGenerator : MonoBehaviour {
     {
         // TODO: Current level number should affect the itemRatio and obstacleRatio in someway.
         // EX: itemRatio *= level * 0.x; (Or any variation)
-
+        _gc = FindObjectOfType<GameController>();
         // Pool item objects
         items = new List<GameObject>();
         for (int i = 0; i < itemRatio; i++)
@@ -77,7 +80,8 @@ public class ItemGenerator : MonoBehaviour {
             spawns[randIndex] = temp;
         }
         
-        InvokeRepeating("Spawn", 1f, repeatRate);
+        //InvokeRepeating("Spawn", 1f, repeatRate);
+        StartCoroutine(SpawnLoop());
     }
 
     #endregion Monobehaviour
@@ -88,19 +92,43 @@ public class ItemGenerator : MonoBehaviour {
     {
         for (int i = 0; i < spawns.Count; i++)
         {
-            int randTarget = Random.Range(0, targets.Length);
+            // randTarget = Random.Range(0, targets.Length);
 
             // Note: Whenever an object deactivates, it will reactive the same one
             // Current work around is making the number of objects and obstacles small
             if (!spawns[i].activeInHierarchy)
             {
-                spawns[i].transform.position = targets[randTarget].transform.position;
-                spawns[i].transform.rotation = targets[randTarget].transform.rotation;
+                spawns[i].GetComponent<RandomObjectSet>().SetRandomObject();
+                spawns[i].transform.position = targets.transform.position;
+                spawns[i].transform.rotation = targets.transform.rotation;
                 spawns[i].SetActive(true);
                 break;
             }
         }
     }
 
+    private IEnumerator SpawnLoop()
+    {
+        Spawn();
+        yield return new WaitForSeconds(repeatRate);
+        StartCoroutine(SpawnLoop());
+    }
+
     #endregion Private Methods
+
+    #region Public Methods
+
+    public void UpdateRepeatRate()
+    {
+        if (_gc.currentLevel % 3 == 0)
+        {
+            repeatRate -= 0.3f;
+            if (repeatRate < maxRepeatRate)
+            {
+                repeatRate = maxRepeatRate;
+            }
+        }
+    }
+
+    #endregion Public Methods
 }

@@ -5,6 +5,19 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    #region Enums
+
+    public enum State
+    {
+        Normal,
+        Hit, 
+        TwoHit,
+        EndGame,
+        None
+    }
+
+    #endregion Enums
+
     #region Variables
 
     [Tooltip("Array of targets, where the player can move to, don't mess with this.")]
@@ -50,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Is the player on the ground, can he jump?
     /// </summary>
-    //[SerializeField]
+    [SerializeField]
     private bool isGrounded = false;
 
     /// <summary>
@@ -86,14 +99,59 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public Vector3 MinGravity;
 
+    [Tooltip("Regular gravity, y = -9.81.")]
     /// <summary>
     /// Regular Gravity.
     /// </summary>
-    private Vector3 regularGravity;
+    public Vector3 regularGravity;
+
+    [Tooltip("Time the character will stay in the air when it jumps. (in seconds)")]
+    /// <summary>
+    /// Time the character will stay in the air when it jumps.
+    /// </summary>
+    public float timeInTheAir;
+
+    [Tooltip("The duration of how long the player will blink")]
+    /// <summary>
+    /// The duration of how long the blinking effect will last
+    /// </summary>
+    public float blinkDuration = 1f;
+
+    [Tooltip("The delay between each blink")]
+    /// <summary>
+    /// The duration between each blink
+    /// </summary>
+    public float blinkTime = 0.01f;
+
+    /// <summary>
+    /// Check to see if the player is already in blinking effect
+    /// </summary>
+    private bool inBlink = false;
+
+    /// <summary>
+    /// Current state of the player
+    /// </summary>
+    public State _currentState;
+
+    /// <summary>
+    /// Length of time for recovery
+    /// </summary>
+    public float recoveryDelay;
 
     #endregion Variables
 
     private GameController _gc;
+    private SkinnedMeshRenderer _rend;
+
+    private float savedJumpForce = 1.0f;
+
+    private bool jump = false;
+
+    private bool fallDown = false;
+
+    private Animator _animator;
+
+    private PlayerAudioController playerAudio;
 
     #region Monobehaviour
 
@@ -101,7 +159,12 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         _gc = FindObjectOfType<GameController>();
-        regularGravity = Physics.gravity;
+        _rend = GetComponentInChildren<SkinnedMeshRenderer>();
+        StartCoroutine(StateRecovery(recoveryDelay/2)); // Start the game at 1 hit this resembles subway surfers
+        //_currentState = State.Normal;
+        //regularGravity = Physics.gravity;
+        _animator = GetComponentInChildren<Animator>();
+        playerAudio = GetComponent<PlayerAudioController>();
     }
 
 	void Update () {
@@ -136,7 +199,26 @@ public class PlayerMovement : MonoBehaviour
                 }
             }*/
         }
+        if (gameOver)
+        {
+            Physics.gravity = regularGravity;
+        }
 	}
+
+    void FixedUpdate()
+    {
+        if (jump)
+        {
+            FixedUpdateJump();
+            jump = false;
+        }
+        if (fallDown)
+        {
+            ChangeGravity();
+            DownForce();
+            fallDown = false;
+        }
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -146,13 +228,29 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        //if(other.gameObject.CompareTag("Ground"))
+         //   isGrounded = true;
+
         if (other.CompareTag("Target"))             // Check if player has arrived at target.
             arrivedAtTarget = true;
 
         if (other.CompareTag("Hand"))               // If the hand has grabbed the player.
         {
             //Debug.Log("Hit Hand");
+            gameOver = true;
+            //_gc.ShowMessage("YOU LOSE!");
+            //AttachToHand(other.transform);      // This is if the player is grabbed by the hand.
+            GameManager.Instance.gameSettings.gameStart = false;
             HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
+            transform.parent.position = hand.GetGrabPosition().position;
+            hand.SetGrabAnim();
+            hand.SetGameOver(true);
+            _animator.SetTrigger("Caught");
+            playerAudio.PlaySound(3);
+            AttachToHand(hand.yogurtGrabPos);      
+            _currentState = State.EndGame;
+            _gc.SetGameOver(true);
+            /*
             if (targetIndex == hand.GetHandLaneIndex())
             {
                 if (!hand.GetComponent<HandAI>().SucceededGrab())
@@ -160,29 +258,36 @@ public class PlayerMovement : MonoBehaviour
                     gameOver = true;
                     hand.SetGrabbed();
                     _gc.ShowMessage("YOU LOSE!");
+                    AttachToHand(other.transform);      // This is if the player is grabbed by the hand.
                     GameManager.Instance.gameSettings.gameStart = false;
                 }
             }
-            /*else
+            else
             {
                 Debug.Log("Not in same lane. Hand: " + hand.GetHandLaneIndex() + " Player: " + targetIndex);
             }*/
         }
         if (other.CompareTag("Collectable"))
         {
-            Debug.Log("CANDY!");
-            _gc.AddScore();
-            _gc.ShowMessage("Candy!");
+            //Debug.Log("CANDY!");
+            _gc.IncrementScore(125);
+            playerAudio.PlaySound(1);
+            //_gc.ShowMessage("Candy!");
         }
         if (other.CompareTag("Obstacle"))
         {
-            Debug.Log("OBSTACLE!");
-            _gc.ShowMessage("You hit an obstacle!");
+            //Debug.Log("OBSTACLE!");
+            //_gc.ShowMessage("You hit an obstacle!");
+            playerAudio.PlaySound(2);
+            //_gc.IncrementScore(-300);
+            GetHit();
         }
         if (other.CompareTag("JumpHeight"))
         {
             //Debug.Log("JumpHeight");
-            ChangeGravity();
+            //ChangeGravity();
+            //DownForce();
+            fallDown = true;
         }
     }
 
@@ -264,21 +369,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Jump()
     {
-        if (!gameOver)
-        {
-            if (isGrounded)
-            {
-                float jumpForce = maxJumpForce * (GameManager.Instance.gameSettings.playerWeight * 0.15f);
-                if (jumpForce <= minJumpForce)
-                    jumpForce = minJumpForce;
-                else if (jumpForce > maxJumpForce)
-                    jumpForce = maxJumpForce;
-                //Debug.Log(jumpForce);
-                //Debug.Log(GameManager.Instance.gameSettings.playerWeight);
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                isGrounded = false;
-            }
-        }
+        jump = true;
     }
 
     /// <summary>
@@ -290,6 +381,7 @@ public class PlayerMovement : MonoBehaviour
         if (gameOver)
         {
             transform.parent = p;
+            transform.position = p.position;
             rb.isKinematic = true;
         }
     }
@@ -321,6 +413,21 @@ public class PlayerMovement : MonoBehaviour
         return gameOver;
     }
 
+    /// <summary>
+    /// Function call whenever the player gets hit by an obstacle or anything that will hurt the player
+    /// If there will ever be a life system in the game, add a float param that takes in the amount of damage
+    /// the player will receive. But for now, its empty
+    /// </summary>
+    public void GetHit()
+    {
+        if (!inBlink)
+            StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
+        if (_currentState == State.Hit)
+            _currentState = State.TwoHit;
+        else if (_currentState == State.Normal)
+            StartCoroutine(StateRecovery(recoveryDelay));
+    }
+
     #endregion Public Methods
 
     #region Private Methods
@@ -330,18 +437,21 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            MoveDown();
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            MoveUp();
-        if (Input.GetKeyDown(KeyCode.A))
-            targetIndex = 2;
-        if (Input.GetKeyDown(KeyCode.S))
-            targetIndex = 1;
-        if (Input.GetKeyDown(KeyCode.D))
-            targetIndex = 0;
-        if (Input.GetKeyDown(KeyCode.Space))
-            Jump();
+        if (_currentState != State.TwoHit)
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+                MoveDown();
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+                MoveUp();
+            if (Input.GetKeyDown(KeyCode.A))
+                targetIndex = 2;
+            if (Input.GetKeyDown(KeyCode.S))
+                targetIndex = 1;
+            if (Input.GetKeyDown(KeyCode.D))
+                targetIndex = 0;
+            if (Input.GetKeyDown(KeyCode.Space))
+                Jump();
+        }
     }
 
     /// <summary>
@@ -358,6 +468,27 @@ public class PlayerMovement : MonoBehaviour
             // Interpolates the player's position between current position and destination.
             //transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
             parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
+        }
+    }
+
+    private void FixedUpdateJump()
+    {
+        if (!gameOver)
+        {
+            if (isGrounded)
+            {
+                float jumpForce = maxJumpForce * (GameManager.Instance.gameSettings.playerWeight * 0.15f);
+                if (jumpForce <= minJumpForce)
+                    jumpForce = minJumpForce;
+                else if (jumpForce > maxJumpForce)
+                    jumpForce = maxJumpForce;
+                //Debug.Log(jumpForce);
+                //Debug.Log(GameManager.Instance.gameSettings.playerWeight);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                savedJumpForce = jumpForce;
+                isGrounded = false;
+                playerAudio.PlaySound(0);
+            }
         }
     }
 
@@ -386,6 +517,32 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(Physics.gravity);
         if (isGrounded)
             Physics.gravity = regularGravity;
+    }
+
+    private void DownForce()
+    {
+        rb.AddForce(-Vector3.up * (savedJumpForce/2), ForceMode.Impulse);
+    }
+
+    private IEnumerator BlinkEffect(float duration, float delay)
+    {
+        inBlink = true;
+        while(duration > 0)
+        {
+            duration -= Time.deltaTime;
+            _rend.enabled = !_rend.enabled;
+            yield return new WaitForSeconds(delay);
+        }
+        _rend.enabled = true;
+        inBlink = false;
+    }
+
+    private IEnumerator StateRecovery(float recoveryDelay)
+    {
+        _currentState = State.Hit;
+        yield return new WaitForSeconds(recoveryDelay);
+        if(_currentState != State.TwoHit)
+            _currentState = State.Normal;
     }
 
     #endregion Private Methods

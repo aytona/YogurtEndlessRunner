@@ -29,6 +29,163 @@ public class HandMovement : MonoBehaviour
     /// </summary>
     private Vector3 currentPos, nextPos;
 
+    /// <summary>
+    /// Can the hand move to hide or to grab, false if the hand is following the player.
+    /// </summary>
+    private bool freeMove = false;
+
+    private bool gameOver = false;
+
+    public Transform yogurtGrabPos;
+
+    private Animator _animator;
+
+    #endregion Variables
+
+    #region Monobehaviour
+
+    void Start () {
+        targetIndex = -1;
+        _animator = GetComponentInChildren<Animator>();
+	}
+
+	void Update () {
+        if (!gameOver)
+        {
+            MoveToPosition();
+            MoveToPlane();
+        }
+	}
+
+    #endregion Monobehaviour
+
+    #region Public Methods
+
+    /// <summary>
+    /// Set the next destination for the hand.
+    /// </summary>
+    /// <param name="n">Index of the plane that the hand will go to, 0, 1, or 2.</param>
+    public void SetNextPosition(int n)
+    {
+        //Debug.Log("Setting Next Position to : " + n);
+        targetIndex = n;
+        if (targetIndex >= targets.Length)
+            targetIndex = 2;
+        if (targetIndex < 0)
+            targetIndex = 0;
+    }
+
+    /// <summary>
+    /// Set the free move to true or false.
+    /// </summary>
+    /// <param name="b">True is for when you want the hand to move to a specific location. False is for when you want the hand to follow the plane the player is in.</param>
+    public void SetFreeMove(bool b)
+    {
+        freeMove = b;
+    }
+
+    /// <summary>
+    /// Get the index of the lane the hand is in.
+    /// </summary>
+    /// <returns>Returns an int that represents the lane the hand is currently in. -1 means the hand is hiding.</returns>
+    public int GetHandLaneIndex()
+    {
+        return targetIndex;
+    }
+
+    /// <summary>
+    /// Set the position of the next position, this position is used in free move mode.
+    /// </summary>
+    /// <param name="t">The transform of the next position.</param>
+    public void SetNextPosition(Transform t)
+    {
+        nextPos = t.position;
+    }
+
+    public void SetGrabAnim()
+    {
+        _animator.SetTrigger("Grab");
+    }
+
+    public Transform GetGrabPosition()
+    {
+        return yogurtGrabPos;
+    }
+
+    public void SetGameOver(bool b)
+    {
+        gameOver = b;
+    }
+
+    public void EndGameHide(Transform hidePosition)
+    {
+        freeMove = true;
+        speed /= 2;
+        nextPos = hidePosition.position;
+        StartCoroutine(EndMoveLoop());
+    }
+
+    #endregion Public Methods
+
+    #region Private Methods
+
+    /// <summary>
+    /// Moves hand to the next position when in free move mode.
+    /// </summary>
+    private void MoveToPosition()
+    {
+        if (freeMove)
+        {
+            currentPos = this.transform.position;           // Set current position to the hand's current postion
+
+            // Interpolates the hand's position between current position and destination.
+            LerpPositions(currentPos, nextPos);
+        }
+    }
+
+    /// <summary>
+    /// Moves hand from one plane to another when not in free move mode.
+    /// </summary>
+    private void MoveToPlane()
+    {
+        if (!freeMove)
+        {
+            if (targetIndex > -1)
+            {
+                currentPos = this.transform.position;           // Set current position to the hand's current postion
+
+                nextPos.z = targets[targetIndex].position.z;    // Sets the next position to one of the targets, indicated by the target index.
+                nextPos.y = targets[targetIndex].position.y;
+                nextPos.y += 1;
+
+                // Interpolates the hand's position between current position and destination.
+                LerpPositions(currentPos, nextPos);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Lerps from one Vector to another.
+    /// </summary>
+    /// <param name="pos1">Initial Position</param>
+    /// <param name="pos2">Target Position</param>
+    private void LerpPositions(Vector3 pos1, Vector3 pos2)
+    {
+        transform.position = Vector3.Lerp(pos1, pos2, Time.deltaTime * speed);
+    }
+
+    private IEnumerator EndMoveLoop()
+    {
+        MoveToPosition();
+        yield return new WaitForEndOfFrame();
+        StartCoroutine(EndMoveLoop());
+    }
+
+    #endregion Private Methods
+
+    #region Old Hand Movement Variables and Methods
+    /*
+
     [Tooltip("Tweak the X position of the hand's grab.")]
     /// <summary>
     /// Tweaks the X position of the hand when grabbing.
@@ -82,28 +239,6 @@ public class HandMovement : MonoBehaviour
     /// </summary>
     private bool grabbedCharacter = false;
 
-    #endregion Variables
-
-    #region Monobehaviour
-
-    void Start () {
-        neutralXPos = transform.position.x;     // Save the x position of the hand for later use.
-        neutralZPos = transform.position.z;     // Save the z position of the hand for later use.
-        targetIndex = -1;
-	}
-
-	void Update () {
-        // These are called on the Update, the booleans in the methods control if they are called.
-        HideHand();
-        MoveToPlane();
-        MoveToGrabPosition();
-        AttemptGrab();
-	}
-
-    #endregion Monobehaviour
-
-    #region Public Methods
-
     /// <summary>
     /// Tell the hand if it can move of not.
     /// </summary>
@@ -132,20 +267,6 @@ public class HandMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the next destination for the hand.
-    /// </summary>
-    /// <param name="n">Index of the plane that the hand will go to, 0, 1, or 2.</param>
-    public void SetNextPosition(int n)
-    {
-        //Debug.Log("Setting Next Position to : " + n);
-        targetIndex = n;
-        if (targetIndex >= targets.Length)
-            targetIndex = 2;
-        if (targetIndex < 0)
-            targetIndex = 0;
-    }
-
-    /// <summary>
     /// Hide the hand away from play.
     /// </summary>
     /// <param name="b">True =  hide hand form view; False = show hand in play.</param>
@@ -169,38 +290,6 @@ public class HandMovement : MonoBehaviour
     public bool HasGrabbed()
     {
         return grabbedCharacter;
-    }
-
-    public int GetHandLaneIndex()
-    {
-        return targetIndex;
-    }
-
-    #endregion Public Methods
-
-    #region Private Methods
-
-    /// <summary>
-    /// Moves hand from one plane to another.  Manipulates the Y position of the hand.
-    /// </summary>
-    private void MoveToPlane()
-    {
-        if (canMove)    // If hand is set to move...
-        {
-            if (targetIndex > -1)
-            {
-                currentPos = this.transform.position;           // Set current position to the hand's current postion
-                nextPos = currentPos;
-                //nextPos.z = targets[targetIndex].position.z;    // Sets the next position to one of the targets, indicated by the target index.
-                //nextPos.y = targets[targetIndex].position.y;
-                nextPos = targets[targetIndex].position;
-                nextPos.y += 1;
-                nextPos.z -= 1;
-
-                // Interpolates the hand's position between current position and destination.
-                LerpPositions(currentPos, nextPos);
-            }
-        }
     }
 
     /// <summary>
@@ -283,16 +372,7 @@ public class HandMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Lerps from one VEctor to another.
-    /// </summary>
-    /// <param name="pos1">Initial Position</param>
-    /// <param name="pos2">Target Position</param>
-    private void LerpPositions(Vector3 pos1, Vector3 pos2)
-    {
-        transform.position = Vector3.Lerp(pos1, pos2, Time.deltaTime * speed);
-    }
-
-    #endregion Private Methods
+    */
+    #endregion Old Hand Movement Variables and Methods
 
 }
