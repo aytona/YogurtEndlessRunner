@@ -68,6 +68,8 @@ public class GameController : MonoBehaviour
 
     private Image startImage, placeHolder;
     private RawImage openingImage;
+
+    public Sprite iPhone5Opening;
     #endregion OpeningScreenVariables
 
     #region EndScreenVariables
@@ -96,6 +98,10 @@ public class GameController : MonoBehaviour
         startImage = StartButton.GetComponent<Image>();
         openingImage = OpeningScreen.GetComponent<RawImage>();
         placeHolder = OpeningScreen.GetComponentInChildren<Image>();
+        if (GameManager.Instance.currentAspect == DeviceAspect.iPhone5)
+        {
+            placeHolder.sprite = iPhone5Opening;
+        }
 	}
 
 	void Update () {
