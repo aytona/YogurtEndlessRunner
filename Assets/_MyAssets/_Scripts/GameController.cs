@@ -78,6 +78,8 @@ public class GameController : MonoBehaviour
 
     public Text finalScore;
 
+    public Text distanceTraveled;
+
     private bool gameOver = false;
 
     #endregion EndScreenVariables
@@ -255,5 +257,6 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         endScreen.SetActive(true);
         finalScore.text = score.text;
+        distanceTraveled.text = "Distance Traveled: " + (int)GameManager.Instance.gameSettings.distance + "m";
     }
 }
