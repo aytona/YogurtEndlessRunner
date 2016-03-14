@@ -175,37 +175,37 @@ public class GameController : MonoBehaviour
         string scoreText;
         playerScore+=inc;
 
-        /* Try scoreText = string.Format("{0:0000000}", playerScore); */
+        scoreText = string.Format("{0:0000000}", playerScore);
         
-        if (playerScore < 0)
-        {
-            playerScore = 0;
-            scoreText = "000000" + playerScore;
-        }
-        else if (playerScore < 1000)
-        {
-            scoreText = "0000" + playerScore;
-        }
-        else if (playerScore < 10000)
-        {
-            scoreText = "000" + playerScore;
-        }
-        else if (playerScore < 100000)
-        {
-            scoreText = "00" + playerScore;
-        }
-        else if (playerScore < 1000000)
-        {
-            scoreText = "0" + playerScore;
-        }
-        else
-        {
-            if (playerScore > 99999999)
-            {
-                playerScore = 99999999;
-            }
-            scoreText = playerScore.ToString();
-        }
+//        if (playerScore < 0)
+//        {
+//            playerScore = 0;
+//            scoreText = "000000" + playerScore;
+//        }
+//        else if (playerScore < 1000)
+//        {
+//            scoreText = "0000" + playerScore;
+//        }
+//        else if (playerScore < 10000)
+//        {
+//            scoreText = "000" + playerScore;
+//        }
+//        else if (playerScore < 100000)
+//        {
+//            scoreText = "00" + playerScore;
+//        }
+//        else if (playerScore < 1000000)
+//        {
+//            scoreText = "0" + playerScore;
+//        }
+//        else
+//        {
+//            if (playerScore > 99999999)
+//            {
+//                playerScore = 99999999;
+//            }
+//            scoreText = playerScore.ToString();
+//        }
 
         score.text = scoreText;
     }
