@@ -18,6 +18,16 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion Enums
 
+    #region Extra Classes
+
+    [System.Serializable]
+    public class TransformArray2D
+    {
+        public Transform[] targetArray;
+    }
+
+    #endregion Extra Classes
+
     #region Variables
 
     [Tooltip("Array of targets, where the player can move to, don't mess with this.")]
@@ -25,7 +35,12 @@ public class PlayerMovement : MonoBehaviour
     /// Array of targets, where the player can move to.
     /// </summary>
     [SerializeField]
-    private Transform[] targets;
+    private TransformArray2D[] targets;
+
+    /// <summary>
+    /// Device the game is currently being played on. 0 - iPhone4, 1 - iPhone5, 2 - iPad.
+    /// </summary>
+    private int currentDevice = 2;
 
     [Tooltip("Speed at which the player will move between planes.")]
     /// <summary>
@@ -165,6 +180,13 @@ public class PlayerMovement : MonoBehaviour
         //regularGravity = Physics.gravity;
         _animator = GetComponentInChildren<Animator>();
         playerAudio = GetComponent<PlayerAudioController>();
+
+        // Get the current device.  Sets the positions for the hand to move to and from.
+        currentDevice = (int)GameManager.Instance.currentAspect;
+        if (currentDevice > 2)
+        {
+            currentDevice = 2;
+        }
     }
 
 	void Update () {
@@ -463,7 +485,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //currentPos = this.transform.position;       // Set current position to the player's current postion
             currentPos = parentObject.position;
-            nextPos = targets[targetIndex].position;    // Sets the next position to one of the targets, indicated by the target index.
+            nextPos = targets[currentDevice].targetArray[targetIndex].position;    // Sets the next position to one of the targets, indicated by the target index.
 
             // Interpolates the player's position between current position and destination.
             //transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
