@@ -9,7 +9,9 @@ public class Data : Singleton<Data>
 
     public void SetTotalDistance(float distance)
     {
-        PlayerPrefs.SetFloat("TotalDistance", distance);
+        float totalDistance = PlayerPrefs.GetFloat("TotalDistance", 0);
+        totalDistance += distance;
+        PlayerPrefs.SetFloat("TotalDistance", totalDistance);
     }
 
     public float GetTotalDistance()
@@ -20,7 +22,9 @@ public class Data : Singleton<Data>
 
     public void SetTotalScore(int playerScore)
     {
-        PlayerPrefs.SetInt("TotalScore", playerScore);
+        int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
+        totalScore += playerScore;
+        PlayerPrefs.SetInt("TotalScore", totalScore);
     }
 
     public int GetTotalScore()
