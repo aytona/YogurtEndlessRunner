@@ -258,5 +258,7 @@ public class GameController : MonoBehaviour
         endScreen.SetActive(true);
         finalScore.text = score.text;
         distanceTraveled.text = "Distance Traveled: " + (int)GameManager.Instance.gameSettings.distance + "m";
+        GameManager.Instance.gameData.SetTotalDistance(GameManager.Instance.gameSettings.distance);
+        GameManager.Instance.gameData.SetTotalScore(playerScore);
     }
 }
