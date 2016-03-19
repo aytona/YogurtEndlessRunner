@@ -153,6 +153,21 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public float recoveryDelay;
 
+    /// <summary>
+    /// Checker if the speed has already been modified, so it doesn't stack
+    /// </summary>
+    private bool speedModifierChecker = false;
+
+    /// <summary>
+    /// Length of time for the speed modifier to last
+    /// </summary>
+    private float speedModifierDuration;
+
+    /// <summary>
+    /// The amount the speed is modified by in decimal
+    /// </summary>
+    private float speedModifierAmount = 0.75f;  // TODO: Assign this number on the object if there are other objects that modifies the speed
+
     #endregion Variables
 
     private GameController _gc;
@@ -303,6 +318,13 @@ public class PlayerMovement : MonoBehaviour
             playerAudio.PlaySound(2);
             //_gc.IncrementScore(-300);
             GetHit();
+        }
+        if (other.CompareTag("SpeedModifier"))
+        {
+            if (!speedModifierChecker)
+            {
+                StartCoroutine(SpeedModifierEffect(speedModifierDuration, speedModifierAmount));
+            }
         }
         if (other.CompareTag("JumpHeight"))
         {
@@ -565,6 +587,15 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(recoveryDelay);
         if(_currentState != State.TwoHit)
             _currentState = State.Normal;
+    }
+
+    private IEnumerator SpeedModifierEffect(float duration, float speed)
+    {
+        Time.timeScale = speed;
+        speedModifierChecker = true;
+        yield return new WaitForSeconds(duration);
+        Time.timeScale = 1;
+        speedModifierChecker = false;
     }
 
     #endregion Private Methods
