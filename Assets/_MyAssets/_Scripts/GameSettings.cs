@@ -80,7 +80,7 @@ public class GameSettings : MonoBehaviour {
                 playerWeight += speedIncreaser;
             }
         }
-        Debug.Log("Distance traveled: " + distance);
+        Debug.Log(Time.timeScale);
     }
 
     void OnGUI()
