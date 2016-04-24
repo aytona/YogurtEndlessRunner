@@ -44,12 +44,12 @@ public class TouchControl : MonoBehaviour
     /// <summary>
     /// Which direction the is the swipe in.
     /// </summary>
-    private TouchInput _touchInput;
+    private TouchInput m_TouchInput;
 
     /// <summary>
     /// Reference to the player movement script attached to the character.  Used to call the movement methods.
     /// </summary>
-    private PlayerMovement _player;
+    private PlayerMovement m_Player;
 
     #endregion Variables
 
@@ -57,14 +57,14 @@ public class TouchControl : MonoBehaviour
 
     // Use this for initialization
 	void Start () {
-        _player = GetComponent<PlayerMovement>();           // Get PlayerMovement component
+        m_Player = GetComponent<PlayerMovement>();           // Get PlayerMovement component
         screenHeight = Screen.height;                       // Get screen's height
         minSwipeLength = swipePercentage * screenHeight;    // Get the minimum swipe length
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (_player._currentState != PlayerMovement.State.TwoHit)
+        if (m_Player.m_CurrentState != PlayerMovement.State.TwoHit)
         {
             DetectTouchInput();
         }
@@ -108,12 +108,12 @@ public class TouchControl : MonoBehaviour
                 if (direction.y > 0)// && direction.y > direction.x)   // Swiped up
                 {
                     //Debug.Log("Swipe Up");
-                    _touchInput = TouchInput.swipeUp;
+                    m_TouchInput = TouchInput.swipeUp;
                 }
                 if (direction.y < 0)// && direction.y < direction.x)   // Swiped down
                 {
                     //Debug.Log("Swipe Down");
-                    _touchInput = TouchInput.swipeDown;
+                    m_TouchInput = TouchInput.swipeDown;
                 }
                 /*if (direction.x > 0 && direction.x > direction.y)   // Swiped right
                 {
@@ -128,7 +128,7 @@ public class TouchControl : MonoBehaviour
             }
             else
             {
-                _touchInput = TouchInput.touch;
+                m_TouchInput = TouchInput.touch;
             }
             // Reset the touch
             directionChosen = false;
@@ -141,20 +141,20 @@ public class TouchControl : MonoBehaviour
     /// </summary>
     private void MovePlayer()
     {
-        switch (_touchInput)
+        switch (m_TouchInput)
         {
             case TouchInput.swipeUp:
-                _player.MoveUp();
+                m_Player.MoveUp();
                 break;
             case TouchInput.swipeDown:
-                _player.MoveDown();
+                m_Player.MoveDown();
                 break;
             case TouchInput.touch:
                 //Debug.Log("Touch");
-                _player.Jump();
+                m_Player.Jump();
                 break;
         }
-        _touchInput = TouchInput.none;    // Reset the touch.
+        m_TouchInput = TouchInput.none;    // Reset the touch.
     }
 
     #endregion Private Methods - Touch Input

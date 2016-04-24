@@ -69,7 +69,7 @@ public class HandAI : MonoBehaviour
     /// </summary>
     private void CheckPlayerState()
     {
-        _playerState = _player._currentState;
+        _playerState = _player.m_CurrentState;
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ public class HandAI : MonoBehaviour
                 break;
             case PlayerMovement.State.EndGame:
                 _movement.EndGameHide(hidePosition[currentDevice]);
-                _player._currentState = PlayerMovement.State.None;
+                _player.m_CurrentState = PlayerMovement.State.None;
                 break;
         }
     }
