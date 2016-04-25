@@ -106,6 +106,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private bool gameOver = true;       // Start as true to wait for start of game.
 
+    /// <summary>
+    /// Is it the start of the game?  Used to set stuff in motion after the player presses start.
+    /// </summary>
+    private bool startOfGame = true;
+
     [Tooltip("The parent object of the player.  The object that will move between planes. DO NOT MESS WITH UNLESS YOU KNOW WHAT IT DOES!")]
     /// <summary>
     /// Container of the player object.
@@ -140,6 +145,22 @@ public class PlayerMovement : MonoBehaviour
     /// Time the character will stay in the air when it jumps.
     /// </summary>
     public float timeInTheAir;
+
+    [Tooltip("Time the character surf on the spoon. (in seconds)")]
+    /// <summary>
+    /// Amount of time the surfing will last.
+    /// </summary>
+    public float surfTime = 10.0f;
+
+    /// <summary>
+    /// Stores the surfing coroutine.
+    /// </summary>
+    private Coroutine surfCoroutine = null;
+
+    /// <summary>
+    /// If the player is surfing.
+    /// </summary>
+    private bool isSurfing = false;
 
     [Tooltip("The duration of how long the player will blink")]
     /// <summary>
@@ -181,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Length of time for the speed modifier to last
     /// </summary>
-    private float speedModifierDuration;
+    private float speedModifierDuration = 0;
 
     /// <summary>
     /// The amount the speed is modified by in decimal
@@ -216,9 +237,6 @@ public class PlayerMovement : MonoBehaviour
         m_Animations = GetComponentInChildren<PlayerAnimation>();
         m_PlayerAudio = GetComponent<PlayerAudioController>();
 
-        // Start the game at 1 hit this resembles subway surfers
-        StartCoroutine(StateRecovery(recoveryDelay/2));
-
         // Get the current device.  Sets the positions for the hand to move to and from
         currentDevice = (int)GameManager.Instance.currentAspect;
         if (currentDevice > 2)
@@ -231,6 +249,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (!gameOver)
         {
+            if(startOfGame)
+            {
+                // Start the game at 1 hit this resembles subway surfers
+                StartCoroutine(StateRecovery(recoveryDelay));
+                startOfGame = false;
+            }
             CheckInput();       // For testing
             MoveToPosition();   // Constantly move to the next position, the next position is changed by the touch control
             ResetGravity();     // Checks if the player is grounded and resets the gravity to normal if grounded
@@ -250,6 +274,7 @@ public class PlayerMovement : MonoBehaviour
         {
             FixedUpdateJump();
             m_Animations.Play(PlayerAnimation.PlayerStates.Jump);
+            //Debug.Log("Jumping");
             isJumping = false;
         }
         if (isFallingDown)
@@ -311,6 +336,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if(other.CompareTag("Spoon"))
+        {
+            Surf(true);
+        }
+
         if (other.CompareTag("JumpHeight"))         // If the player hits the "ceiling" of it's jump
         {
             isFallingDown = true;
@@ -370,6 +400,27 @@ public class PlayerMovement : MonoBehaviour
         isJumping = true;
     }
 
+    public void Surf(bool isSurfing)
+    {
+        if (isSurfing)
+        {
+            if (surfCoroutine != null)
+            {
+                StopCoroutine(surfCoroutine);
+            }
+            //m_CurrentState = State.Normal; // [NOTE: This freezes the game]
+            surfCoroutine = StartCoroutine(StartSurfing());
+        }
+        else
+        {
+            if (surfCoroutine != null)
+            {
+                StopCoroutine(surfCoroutine);
+            }
+            DeactivateSurfing();
+        }
+    }
+
     /// <summary>
     /// Attach character to the Transform passed into the method, preferably the hand's Transform.
     /// </summary>
@@ -418,12 +469,19 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void GetHit()
     {
-        if (!inBlink)
-            StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
-        if (m_CurrentState == State.Hit)
-            m_CurrentState = State.TwoHit;
-        else if (m_CurrentState == State.Normal)
-            StartCoroutine(StateRecovery(recoveryDelay));
+        if (!isSurfing)
+        {
+            if (!inBlink)
+                StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
+            if (m_CurrentState == State.Hit)
+                m_CurrentState = State.TwoHit;
+            else if (m_CurrentState == State.Normal)
+                StartCoroutine(StateRecovery(recoveryDelay));
+        }
+        else
+        {
+            Surf(false);
+        }
     }
 
     #endregion Public Methods
@@ -441,14 +499,18 @@ public class PlayerMovement : MonoBehaviour
                 MoveDown();
             if (Input.GetKeyDown(KeyCode.UpArrow))
                 MoveUp();
-            if (Input.GetKeyDown(KeyCode.A))
+            /*if (Input.GetKeyDown(KeyCode.A))
                 targetIndex = 2;
             if (Input.GetKeyDown(KeyCode.S))
                 targetIndex = 1;
             if (Input.GetKeyDown(KeyCode.D))
-                targetIndex = 0;
+                targetIndex = 0;*/
             if (Input.GetKeyDown(KeyCode.Space))
                 Jump();
+            if (Input.GetKeyDown(KeyCode.P))
+                Surf(true);
+            if (Input.GetKeyDown(KeyCode.O))
+                Surf(false);
         }
     }
 
@@ -522,6 +584,40 @@ public class PlayerMovement : MonoBehaviour
         m_RigidBody.AddForce(-Vector3.up * (savedJumpForce/2), ForceMode.Impulse);
     }
 
+    /// <summary>
+    /// Activate the surfing animation.
+    /// </summary>
+    private void ActivateSurfing()
+    {
+        bool hasChanged = false;
+        while (!hasChanged)
+        {
+            if (isGrounded)
+            {
+                m_Animations.Play(PlayerAnimation.PlayerStates.Surf);
+                isSurfing = true;
+                hasChanged = true;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Deactivate the surfing animation.
+    /// </summary>
+    private void DeactivateSurfing()
+    {
+        bool hasChanged = false;
+        while (!hasChanged)
+        {
+            if (isGrounded)
+            {
+                m_Animations.Play(PlayerAnimation.PlayerStates.Run);
+                isSurfing = false;
+                hasChanged = true;
+            }
+        }
+    }
+
     private IEnumerator BlinkEffect(float duration, float delay)
     {
         inBlink = true;
@@ -537,10 +633,13 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator StateRecovery(float recoveryDelay)
     {
-        m_CurrentState = State.Hit;
-        yield return new WaitForSeconds(recoveryDelay);
-        if(m_CurrentState != State.TwoHit)
-            m_CurrentState = State.Normal;
+        if (!isSurfing)
+        {
+            m_CurrentState = State.Hit;
+            yield return new WaitForSeconds(recoveryDelay);
+            if (m_CurrentState != State.TwoHit)
+                m_CurrentState = State.Normal;
+        }
     }
 
     private IEnumerator SpeedModifierEffect(float duration, float speed)
@@ -550,6 +649,13 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(duration);
         Time.timeScale = 1;
         speedModifierChecker = false;
+    }
+
+    private IEnumerator StartSurfing()
+    {
+        ActivateSurfing();
+        yield return new WaitForSeconds(surfTime);
+        DeactivateSurfing();
     }
 
     #endregion Private Methods
@@ -565,7 +671,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded && arrivedAtTarget)
         {
-            int tempTargetIndex = targetIndex;
             Ray ray = Camera.main.ScreenPointToRay(_t.position);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, layerMask))

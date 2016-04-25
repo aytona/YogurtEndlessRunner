@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -163,7 +164,8 @@ public class GameController : MonoBehaviour
     {
         GameManager.Instance.gameSettings.gameRestart = true;
         GameManager.Instance.gameSettings.gameStart = false;
-        Application.LoadLevel(0);
+        //Application.LoadLevel(0);
+        SceneManager.LoadScene(0);
     }
 
     public Text score, message, level;

@@ -1148,8 +1148,8 @@ ModelImporter:
     - serializedVersion: 16
       name: SurfBumpLeft
       takeName: Take 001
-      firstFrame: 148
-      lastFrame: 162
+      firstFrame: 151
+      lastFrame: 155
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1310,8 +1310,8 @@ ModelImporter:
     - serializedVersion: 16
       name: SurfBumpRight
       takeName: Take 001
-      firstFrame: 162
-      lastFrame: 180
+      firstFrame: 169
+      lastFrame: 175
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
