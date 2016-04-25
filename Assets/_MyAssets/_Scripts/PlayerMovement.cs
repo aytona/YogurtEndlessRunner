@@ -146,6 +146,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public float timeInTheAir;
 
+    [Tooltip("Distance the player will move forward in its jump. Creates the jump arc.")]
+    /// <summary>
+    /// Distance the player will move forward in its jump
+    /// </summary>
+    public float jumpDistance = 1.0f;
+
     [Tooltip("Time the character surf on the spoon. (in seconds)")]
     /// <summary>
     /// Amount of time the surfing will last.
@@ -180,6 +186,11 @@ public class PlayerMovement : MonoBehaviour
     private bool inBlink = false;
 
     /// <summary>
+    /// Stores the blink coroutine.
+    /// </summary>
+    private Coroutine blinkCoroutine = null;
+
+    /// <summary>
     /// Used for blinking the player.
     /// </summary>
     private SkinnedMeshRenderer m_Renderder;
@@ -188,6 +199,11 @@ public class PlayerMovement : MonoBehaviour
     /// Current state of the player
     /// </summary>
     public State m_CurrentState;
+
+    /// <summary>
+    /// Stores the state coroutine.
+    /// </summary>
+    private Coroutine stateCoroutine = null;
 
     /// <summary>
     /// Length of time for recovery
@@ -252,7 +268,11 @@ public class PlayerMovement : MonoBehaviour
             if(startOfGame)
             {
                 // Start the game at 1 hit this resembles subway surfers
-                StartCoroutine(StateRecovery(recoveryDelay));
+                if(stateCoroutine != null)
+                {
+                    StopCoroutine(stateCoroutine);
+                }
+                stateCoroutine = StartCoroutine(StateRecovery(recoveryDelay));
                 startOfGame = false;
             }
             CheckInput();       // For testing
@@ -273,6 +293,7 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping)
         {
             FixedUpdateJump();
+
             m_Animations.Play(PlayerAnimation.PlayerStates.Jump);
             //Debug.Log("Jumping");
             isJumping = false;
@@ -281,6 +302,7 @@ public class PlayerMovement : MonoBehaviour
         {
             ChangeGravity();
             DownForce();
+
             isFallingDown = false;
         }
     }
@@ -398,6 +420,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         isJumping = true;
+        count = Time.time;
     }
 
     public void Surf(bool isSurfing)
@@ -408,7 +431,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 StopCoroutine(surfCoroutine);
             }
-            //m_CurrentState = State.Normal; // [NOTE: This freezes the game]
+            //m_CurrentState = State.Normal; // [NOTE: This freezes the game] [NOTE AGAIN: Maybe not]
             surfCoroutine = StartCoroutine(StartSurfing());
         }
         else
@@ -472,11 +495,25 @@ public class PlayerMovement : MonoBehaviour
         if (!isSurfing)
         {
             if (!inBlink)
-                StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
+            {
+                if(blinkCoroutine != null)
+                {
+                    StopCoroutine(blinkCoroutine);
+                }
+                blinkCoroutine = StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
+            }
             if (m_CurrentState == State.Hit)
+            {
                 m_CurrentState = State.TwoHit;
+            }
             else if (m_CurrentState == State.Normal)
-                StartCoroutine(StateRecovery(recoveryDelay));
+            {
+                if(stateCoroutine != null)
+                {
+                    StopCoroutine(stateCoroutine);
+                }
+                stateCoroutine = StartCoroutine(StateRecovery(recoveryDelay));
+            }
         }
         else
         {
@@ -514,6 +551,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    float count = 0;
+
     /// <summary>
     /// Moves player from one point to another.
     /// </summary>
@@ -527,7 +566,21 @@ public class PlayerMovement : MonoBehaviour
 
             // Interpolates the player's position between current position and destination.
             //transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
-            parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
+            if(Time.time - count < 0.65f)
+                parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed * 0.2f);
+            else
+                parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
+        }
+        else
+        {
+            //Debug.Log("Jump move");
+            currentPos = parentObject.position;
+            nextPos = new Vector3(targets[currentDevice].targetArray[targetIndex].position.x + jumpDistance, 
+                                  targets[currentDevice].targetArray[targetIndex].position.y,
+                                  targets[currentDevice].targetArray[targetIndex].position.z);    // Sets the next position to one of the targets, indicated by the target index.
+            
+            // Interpolates the player's position between current position and destination.
+            parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed * 0.2f);
         }
     }
 
