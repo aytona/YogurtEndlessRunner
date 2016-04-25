@@ -80,7 +80,7 @@ public class GameSettings : MonoBehaviour {
                 playerWeight += speedIncreaser;
             }
         }
-        Debug.Log(Time.timeScale);
+        //Debug.Log(Time.timeScale);
     }
 
     void OnGUI()

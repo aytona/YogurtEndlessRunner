@@ -17,6 +17,9 @@ public class ItemGenerator : MonoBehaviour {
     [Tooltip("Speed Modifiers to be spawned")]
     public GameObject speedModifier;
 
+    [Tooltip("Surfing spoon power-up")]
+    public GameObject spoonPowerup;
+
     [Tooltip("Array of targets, where the items and obstacles generate at")]
     [SerializeField]
     private Transform targets;
@@ -30,6 +33,9 @@ public class ItemGenerator : MonoBehaviour {
     [Tooltip("Speed Modifier Ratio")]
     public int speedModifierRatio;
 
+    [Tooltip("Spoon Powerup Ratio")]
+    public int spoonPowerupRatio;
+
     [Tooltip("Ground Spawn Repeat Rate")]
     public float groundRepeatRate;
 
@@ -42,6 +48,7 @@ public class ItemGenerator : MonoBehaviour {
     private List<GameObject> items;
     private List<GameObject> obstacles;
     private List<GameObject> speedModifiers;
+    private List<GameObject> spoonPowerupList;
 
     // List of everything to spawn
     public List<GameObject> groundSpawns;
@@ -91,6 +98,15 @@ public class ItemGenerator : MonoBehaviour {
             speedModifiers.Add(obj);
         }
 
+        // Pool spoon powerup objects
+        spoonPowerupList = new List<GameObject>();
+        for (int i = 0; i < spoonPowerupRatio; i++)
+        {
+            GameObject obj = Instantiate(spoonPowerup);
+            obj.SetActive(false);
+            spoonPowerupList.Add(obj);
+        }
+
         // Initiate Spawns - Maybe better to make it into a Queue
         groundSpawns = new List<GameObject>();
         foreach (GameObject i in items)
@@ -109,6 +125,8 @@ public class ItemGenerator : MonoBehaviour {
         // Same thing as ground spawns
         airSpawns = new List<GameObject>();
         foreach (GameObject i in speedModifiers)
+            airSpawns.Add(i);
+        foreach (GameObject i in spoonPowerupList)
             airSpawns.Add(i);
         
         //InvokeRepeating("Spawn", 1f, repeatRate);

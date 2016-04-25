@@ -82,14 +82,34 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = false;
 
     /// <summary>
+    /// Used for jumping physics math.
+    /// </summary>
+    private float savedJumpForce = 1.0f;
+
+    /// <summary>
+    /// If the player is jumping.
+    /// </summary>
+    private bool isJumping = false;
+
+    /// <summary>
+    /// If the player is falling down.
+    /// </summary>
+    private bool isFallingDown = false;
+
+    /// <summary>
     /// Player's rigidbody.
     /// </summary>
-    private Rigidbody rb;
+    private Rigidbody m_RigidBody;
 
     /// <summary>
     /// Is the game over?
     /// </summary>
     private bool gameOver = true;       // Start as true to wait for start of game.
+
+    /// <summary>
+    /// Is it the start of the game?  Used to set stuff in motion after the player presses start.
+    /// </summary>
+    private bool startOfGame = true;
 
     [Tooltip("The parent object of the player.  The object that will move between planes. DO NOT MESS WITH UNLESS YOU KNOW WHAT IT DOES!")]
     /// <summary>
@@ -126,6 +146,22 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public float timeInTheAir;
 
+    [Tooltip("Time the character surf on the spoon. (in seconds)")]
+    /// <summary>
+    /// Amount of time the surfing will last.
+    /// </summary>
+    public float surfTime = 10.0f;
+
+    /// <summary>
+    /// Stores the surfing coroutine.
+    /// </summary>
+    private Coroutine surfCoroutine = null;
+
+    /// <summary>
+    /// If the player is surfing.
+    /// </summary>
+    private bool isSurfing = false;
+
     [Tooltip("The duration of how long the player will blink")]
     /// <summary>
     /// The duration of how long the blinking effect will last
@@ -144,9 +180,14 @@ public class PlayerMovement : MonoBehaviour
     private bool inBlink = false;
 
     /// <summary>
+    /// Used for blinking the player.
+    /// </summary>
+    private SkinnedMeshRenderer m_Renderder;
+
+    /// <summary>
     /// Current state of the player
     /// </summary>
-    public State _currentState;
+    public State m_CurrentState;
 
     /// <summary>
     /// Length of time for recovery
@@ -161,42 +202,42 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Length of time for the speed modifier to last
     /// </summary>
-    private float speedModifierDuration;
+    private float speedModifierDuration = 0;
 
     /// <summary>
     /// The amount the speed is modified by in decimal
     /// </summary>
     private float speedModifierAmount = 0.75f;  // TODO: Assign this number on the object if there are other objects that modifies the speed
 
+    /// <summary>
+    /// Reference to the class that controls all the player's animations.
+    /// </summary>
+    private PlayerAnimation m_Animations;
+
+    /// <summary>
+    /// Reference to the class that controls all the player's audio.
+    /// </summary>
+    private PlayerAudioController m_PlayerAudio;
+
+    /// <summary>
+    /// Reference to the game controller.
+    /// </summary>
+    private GameController m_GameController;
+
     #endregion Variables
-
-    private GameController _gc;
-    private SkinnedMeshRenderer _rend;
-
-    private float savedJumpForce = 1.0f;
-
-    private bool jump = false;
-
-    private bool fallDown = false;
-
-    private Animator _animator;
-
-    private PlayerAudioController playerAudio;
 
     #region Monobehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        _gc = FindObjectOfType<GameController>();
-        _rend = GetComponentInChildren<SkinnedMeshRenderer>();
-        StartCoroutine(StateRecovery(recoveryDelay/2)); // Start the game at 1 hit this resembles subway surfers
-        //_currentState = State.Normal;
-        //regularGravity = Physics.gravity;
-        _animator = GetComponentInChildren<Animator>();
-        playerAudio = GetComponent<PlayerAudioController>();
+        // Get all references needed
+        m_RigidBody = GetComponent<Rigidbody>();
+        m_GameController = FindObjectOfType<GameController>();
+        m_Renderder = GetComponentInChildren<SkinnedMeshRenderer>();
+        m_Animations = GetComponentInChildren<PlayerAnimation>();
+        m_PlayerAudio = GetComponent<PlayerAudioController>();
 
-        // Get the current device.  Sets the positions for the hand to move to and from.
+        // Get the current device.  Sets the positions for the hand to move to and from
         currentDevice = (int)GameManager.Instance.currentAspect;
         if (currentDevice > 2)
         {
@@ -205,134 +246,106 @@ public class PlayerMovement : MonoBehaviour
     }
 
 	void Update () {
+
         if (!gameOver)
         {
-            CheckInput();       // For testing
-            MoveToPosition();
-            ResetGravity();
-            /*
-            // The following is for testing with the mouse
-            if (Input.GetMouseButtonDown(0))
+            if(startOfGame)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100, layerMask))
-                {
-                    switch (hit.collider.name)
-                    {
-                        case "FarPlane":
-                            targetIndex = 2;
-                            break;
-                        case "MiddlePlane":
-                            targetIndex = 1;
-                            break;
-                        case "NearPlane":
-                            targetIndex = 0;
-                            break;
-                        default:
-                            Debug.Log("No Plane");
-                            break;
-                    }
-                }
-            }*/
+                // Start the game at 1 hit this resembles subway surfers
+                StartCoroutine(StateRecovery(recoveryDelay));
+                startOfGame = false;
+            }
+            CheckInput();       // For testing
+            MoveToPosition();   // Constantly move to the next position, the next position is changed by the touch control
+            ResetGravity();     // Checks if the player is grounded and resets the gravity to normal if grounded
         }
+
+        // If the game is over reset the gravity to regular gravity
         if (gameOver)
         {
             Physics.gravity = regularGravity;
         }
+
 	}
 
     void FixedUpdate()
     {
-        if (jump)
+        if (isJumping)
         {
             FixedUpdateJump();
-            jump = false;
+            m_Animations.Play(PlayerAnimation.PlayerStates.Jump);
+            //Debug.Log("Jumping");
+            isJumping = false;
         }
-        if (fallDown)
+        if (isFallingDown)
         {
             ChangeGravity();
             DownForce();
-            fallDown = false;
+            isFallingDown = false;
         }
     }
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Ground"))  // Check if player is grounded before player can jump again.
+        if (other.gameObject.CompareTag("Ground")) // Check if player is grounded before player can jump again.
+        {  
             isGrounded = true;
+            m_Animations.Play(PlayerAnimation.PlayerStates.Grounded);
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        //if(other.gameObject.CompareTag("Ground"))
-         //   isGrounded = true;
-
         if (other.CompareTag("Target"))             // Check if player has arrived at target.
             arrivedAtTarget = true;
 
-        if (other.CompareTag("Hand"))               // If the hand has grabbed the player.
+        if (other.CompareTag("Hand"))               // If the hand has grabbed the player.  The GAME IS OVER!
         {
-            //Debug.Log("Hit Hand");
             gameOver = true;
-            //_gc.ShowMessage("YOU LOSE!");
-            //AttachToHand(other.transform);      // This is if the player is grabbed by the hand.
             GameManager.Instance.gameSettings.gameStart = false;
             HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
             transform.parent.position = hand.GetGrabPosition().position;
             hand.SetGrabAnim();
             hand.SetGameOver(true);
-            _animator.SetTrigger("Caught");
-            playerAudio.PlaySound(3);
+            m_Animations.Play(PlayerAnimation.PlayerStates.Caught);
+            m_PlayerAudio.PlaySound(3);
             AttachToHand(hand.yogurtGrabPos);      
-            _currentState = State.EndGame;
-            _gc.SetGameOver(true);
-            /*
-            if (targetIndex == hand.GetHandLaneIndex())
-            {
-                if (!hand.GetComponent<HandAI>().SucceededGrab())
-                {
-                    gameOver = true;
-                    hand.SetGrabbed();
-                    _gc.ShowMessage("YOU LOSE!");
-                    AttachToHand(other.transform);      // This is if the player is grabbed by the hand.
-                    GameManager.Instance.gameSettings.gameStart = false;
-                }
-            }
-            else
-            {
-                Debug.Log("Not in same lane. Hand: " + hand.GetHandLaneIndex() + " Player: " + targetIndex);
-            }*/
+            m_CurrentState = State.EndGame;
+            m_GameController.SetGameOver(true);
         }
-        if (other.CompareTag("Collectable"))
+
+        if (other.CompareTag("Collectable"))        // Pick up a collectable that gives you points
         {
             //Debug.Log("CANDY!");
-            _gc.IncrementScore(125);
-            playerAudio.PlaySound(1);
-            //_gc.ShowMessage("Candy!");
+            m_GameController.IncrementScore(125);   // Increment score [NOTE: there is a better way to do this.]
+            m_PlayerAudio.PlaySound(1);
         }
-        if (other.CompareTag("Obstacle"))
+
+        if (other.CompareTag("Obstacle"))           // Hit an obstacle
         {
             //Debug.Log("OBSTACLE!");
-            //_gc.ShowMessage("You hit an obstacle!");
-            playerAudio.PlaySound(2);
-            //_gc.IncrementScore(-300);
+            m_PlayerAudio.PlaySound(2);
             GetHit();
         }
-        if (other.CompareTag("SpeedModifier"))
+
+        if (other.CompareTag("SpeedModifier"))      // Collectable that slows down the speed
         {
             if (!speedModifierChecker)
             {
                 StartCoroutine(SpeedModifierEffect(speedModifierDuration, speedModifierAmount));
             }
         }
-        if (other.CompareTag("JumpHeight"))
+
+        if(other.CompareTag("Spoon"))
         {
-            //Debug.Log("JumpHeight");
-            //ChangeGravity();
-            //DownForce();
-            fallDown = true;
+            Surf(true);
         }
+
+        if (other.CompareTag("JumpHeight"))         // If the player hits the "ceiling" of it's jump
+        {
+            isFallingDown = true;
+        }
+
     }
 
     #endregion Monobehaviour
@@ -353,6 +366,7 @@ public class PlayerMovement : MonoBehaviour
                     targetIndex++;
                     arrivedAtTarget = false;
                 }
+                m_Animations.Play(PlayerAnimation.PlayerStates.LeftBump);
                 //Debug.Log("Move Up");
             }
         }
@@ -372,38 +386,8 @@ public class PlayerMovement : MonoBehaviour
                     targetIndex--;
                     arrivedAtTarget = false;
                 }
+                m_Animations.Play(PlayerAnimation.PlayerStates.RightBump);
                 //Debug.Log("Move Down");
-            }
-        }
-    }
-
-    /// <summary>
-    /// Check to see if you hit a plane and then change the index to the plane that was hit.
-    /// </summary>
-    /// <param name="_t"></param>
-    public void MovePlayerToPlane(Touch _t)
-    {
-        if (isGrounded && arrivedAtTarget)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(_t.position);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100, layerMask))
-            {
-                switch (hit.collider.name)
-                {
-                    case "FarPlane":
-                        targetIndex = 2;
-                        break;
-                    case "MiddlePlane":
-                        targetIndex = 1;
-                        break;
-                    case "NearPlane":
-                        targetIndex = 0;
-                        break;
-                    default:
-                        //Debug.Log("No Plane");
-                        break;
-                }
             }
         }
     }
@@ -413,7 +397,28 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Jump()
     {
-        jump = true;
+        isJumping = true;
+    }
+
+    public void Surf(bool isSurfing)
+    {
+        if (isSurfing)
+        {
+            if (surfCoroutine != null)
+            {
+                StopCoroutine(surfCoroutine);
+            }
+            //m_CurrentState = State.Normal; // [NOTE: This freezes the game]
+            surfCoroutine = StartCoroutine(StartSurfing());
+        }
+        else
+        {
+            if (surfCoroutine != null)
+            {
+                StopCoroutine(surfCoroutine);
+            }
+            DeactivateSurfing();
+        }
     }
 
     /// <summary>
@@ -426,7 +431,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.parent = p;
             transform.position = p.position;
-            rb.isKinematic = true;
+            m_RigidBody.isKinematic = true;
         }
     }
 
@@ -464,12 +469,19 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void GetHit()
     {
-        if (!inBlink)
-            StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
-        if (_currentState == State.Hit)
-            _currentState = State.TwoHit;
-        else if (_currentState == State.Normal)
-            StartCoroutine(StateRecovery(recoveryDelay));
+        if (!isSurfing)
+        {
+            if (!inBlink)
+                StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
+            if (m_CurrentState == State.Hit)
+                m_CurrentState = State.TwoHit;
+            else if (m_CurrentState == State.Normal)
+                StartCoroutine(StateRecovery(recoveryDelay));
+        }
+        else
+        {
+            Surf(false);
+        }
     }
 
     #endregion Public Methods
@@ -481,20 +493,24 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void CheckInput()
     {
-        if (_currentState != State.TwoHit)
+        if (m_CurrentState != State.TwoHit)
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
                 MoveDown();
             if (Input.GetKeyDown(KeyCode.UpArrow))
                 MoveUp();
-            if (Input.GetKeyDown(KeyCode.A))
+            /*if (Input.GetKeyDown(KeyCode.A))
                 targetIndex = 2;
             if (Input.GetKeyDown(KeyCode.S))
                 targetIndex = 1;
             if (Input.GetKeyDown(KeyCode.D))
-                targetIndex = 0;
+                targetIndex = 0;*/
             if (Input.GetKeyDown(KeyCode.Space))
                 Jump();
+            if (Input.GetKeyDown(KeyCode.P))
+                Surf(true);
+            if (Input.GetKeyDown(KeyCode.O))
+                Surf(false);
         }
     }
 
@@ -528,10 +544,10 @@ public class PlayerMovement : MonoBehaviour
                     jumpForce = maxJumpForce;
                 //Debug.Log(jumpForce);
                 //Debug.Log(GameManager.Instance.gameSettings.playerWeight);
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                m_RigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 savedJumpForce = jumpForce;
                 isGrounded = false;
-                playerAudio.PlaySound(0);
+                m_PlayerAudio.PlaySound(0);
             }
         }
     }
@@ -565,7 +581,41 @@ public class PlayerMovement : MonoBehaviour
 
     private void DownForce()
     {
-        rb.AddForce(-Vector3.up * (savedJumpForce/2), ForceMode.Impulse);
+        m_RigidBody.AddForce(-Vector3.up * (savedJumpForce/2), ForceMode.Impulse);
+    }
+
+    /// <summary>
+    /// Activate the surfing animation.
+    /// </summary>
+    private void ActivateSurfing()
+    {
+        bool hasChanged = false;
+        while (!hasChanged)
+        {
+            if (isGrounded)
+            {
+                m_Animations.Play(PlayerAnimation.PlayerStates.Surf);
+                isSurfing = true;
+                hasChanged = true;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Deactivate the surfing animation.
+    /// </summary>
+    private void DeactivateSurfing()
+    {
+        bool hasChanged = false;
+        while (!hasChanged)
+        {
+            if (isGrounded)
+            {
+                m_Animations.Play(PlayerAnimation.PlayerStates.Run);
+                isSurfing = false;
+                hasChanged = true;
+            }
+        }
     }
 
     private IEnumerator BlinkEffect(float duration, float delay)
@@ -574,19 +624,22 @@ public class PlayerMovement : MonoBehaviour
         while(duration > 0)
         {
             duration -= Time.deltaTime;
-            _rend.enabled = !_rend.enabled;
+            m_Renderder.enabled = !m_Renderder.enabled;
             yield return new WaitForSeconds(delay);
         }
-        _rend.enabled = true;
+        m_Renderder.enabled = true;
         inBlink = false;
     }
 
     private IEnumerator StateRecovery(float recoveryDelay)
     {
-        _currentState = State.Hit;
-        yield return new WaitForSeconds(recoveryDelay);
-        if(_currentState != State.TwoHit)
-            _currentState = State.Normal;
+        if (!isSurfing)
+        {
+            m_CurrentState = State.Hit;
+            yield return new WaitForSeconds(recoveryDelay);
+            if (m_CurrentState != State.TwoHit)
+                m_CurrentState = State.Normal;
+        }
     }
 
     private IEnumerator SpeedModifierEffect(float duration, float speed)
@@ -598,5 +651,77 @@ public class PlayerMovement : MonoBehaviour
         speedModifierChecker = false;
     }
 
+    private IEnumerator StartSurfing()
+    {
+        ActivateSurfing();
+        yield return new WaitForSeconds(surfTime);
+        DeactivateSurfing();
+    }
+
     #endregion Private Methods
+
+    #region Obsolete
+
+    /// <summary>
+    /// Check to see if you hit a plane and then change the index to the plane that was hit.
+    /// [NOTE: No longer being used as there is no more direct lane selection]
+    /// </summary>
+    /// <param name="_t"></param>
+    public void MovePlayerToPlane(Touch _t)
+    {
+        if (isGrounded && arrivedAtTarget)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(_t.position);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100, layerMask))
+            {
+                switch (hit.collider.name)
+                {
+                    case "FarPlane":
+                        targetIndex = 2;
+                        break;
+                    case "MiddlePlane":
+                        targetIndex = 1;
+                        break;
+                    case "NearPlane":
+                        targetIndex = 0;
+                        break;
+                    default:
+                        //Debug.Log("No Plane");
+                        break;
+                }
+            }
+        }
+    }
+
+    private void MovePlayerToPlane()
+    {  
+        // The following is for testing with the mouse
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100, layerMask))
+            {
+                switch (hit.collider.name)
+                {
+                    case "FarPlane":
+                        targetIndex = 2;
+                        break;
+                    case "MiddlePlane":
+                        targetIndex = 1;
+                        break;
+                    case "NearPlane":
+                        targetIndex = 0;
+                        break;
+                    default:
+                        Debug.Log("No Plane");
+                        break;
+                }
+            }
+        }
+    }
+
+
+    #endregion Obsolete
 }
