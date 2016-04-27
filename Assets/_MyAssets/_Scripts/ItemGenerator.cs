@@ -14,6 +14,12 @@ public class ItemGenerator : MonoBehaviour {
     [Tooltip("Obstacle to be spawned")]
     public GameObject obstacle;
 
+    [Tooltip("Speed Modifiers to be spawned")]
+    public GameObject speedModifier;
+
+    [Tooltip("Surfing spoon power-up")]
+    public GameObject spoonPowerup;
+
     [Tooltip("Array of targets, where the items and obstacles generate at")]
     [SerializeField]
     private Transform targets;
@@ -24,20 +30,36 @@ public class ItemGenerator : MonoBehaviour {
     [Tooltip("Obstacle Ratio")]
     public int obstacleRatio;
 
-    [Tooltip("Spawn Repeat Rate")]
-    public float repeatRate;
+    [Tooltip("Speed Modifier Ratio")]
+    public int speedModifierRatio;
+
+    [Tooltip("Spoon Powerup Ratio")]
+    public int spoonPowerupRatio;
+
+    [Tooltip("Ground Spawn Repeat Rate")]
+    public float groundRepeatRate;
+
+    [Tooltip("Air Spawn Repeat Rate")]
+    public float airRepeatRate;
 
     public float maxRepeatRate;
 
     // List of GameObjects to pool
     private List<GameObject> items;
     private List<GameObject> obstacles;
+    private List<GameObject> speedModifiers;
+    private List<GameObject> spoonPowerupList;
 
     // List of everything to spawn
-    private List<GameObject> spawns;
+    public List<GameObject> groundSpawns;
+    public List<GameObject> airSpawns;
 
     // private bool willGrow = true;
     private GameController _gc;
+
+    private GameSettings _settings;
+
+    private bool canShuffle = false;
 
     #endregion Variables
 
@@ -48,6 +70,7 @@ public class ItemGenerator : MonoBehaviour {
         // TODO: Current level number should affect the itemRatio and obstacleRatio in someway.
         // EX: itemRatio *= level * 0.x; (Or any variation)
         _gc = FindObjectOfType<GameController>();
+        _settings = FindObjectOfType<GameSettings>();
         // Pool item objects
         items = new List<GameObject>();
         for (int i = 0; i < itemRatio; i++)
@@ -66,42 +89,88 @@ public class ItemGenerator : MonoBehaviour {
             obstacles.Add(obj);
         }
 
-        // Initiate Spawns - Maybe better to make it into a Queue
-        spawns = new List<GameObject>();
-        foreach (GameObject i in items)
-            spawns.Add(i);
-        foreach (GameObject i in obstacles)
-            spawns.Add(i);
-        for (int i = 0; i < spawns.Count; i++)
+        // Pool speed modifiers objects
+        speedModifiers = new List<GameObject>();
+        for (int i = 0; i < speedModifierRatio; i++)
         {
-            GameObject temp = spawns[i];
-            int randIndex = Random.Range(i, spawns.Count);
-            spawns[i] = spawns[randIndex];
-            spawns[randIndex] = temp;
+            GameObject obj = Instantiate(speedModifier);
+            obj.SetActive(false);
+            speedModifiers.Add(obj);
         }
+
+        // Pool spoon powerup objects
+        spoonPowerupList = new List<GameObject>();
+        for (int i = 0; i < spoonPowerupRatio; i++)
+        {
+            GameObject obj = Instantiate(spoonPowerup);
+            obj.SetActive(false);
+            spoonPowerupList.Add(obj);
+        }
+
+        // Initiate Spawns - Maybe better to make it into a Queue
+        groundSpawns = new List<GameObject>();
+        foreach (GameObject i in items)
+            groundSpawns.Add(i);
+        foreach (GameObject i in obstacles)
+            groundSpawns.Add(i);
+        // Randomizes the objects inside the list
+        for (int i = 0; i < groundSpawns.Count; i++)
+        {
+            GameObject temp = groundSpawns[i];
+            int randIndex = Random.Range(i, groundSpawns.Count);
+            groundSpawns[i] = groundSpawns[randIndex];
+            groundSpawns[randIndex] = temp;
+        }
+
+        // Same thing as ground spawns
+        airSpawns = new List<GameObject>();
+        foreach (GameObject i in speedModifiers)
+            airSpawns.Add(i);
+        foreach (GameObject i in spoonPowerupList)
+            airSpawns.Add(i);
         
         //InvokeRepeating("Spawn", 1f, repeatRate);
         StartCoroutine(SpawnLoop());
+        StartCoroutine(AirSpawnLoop(airRepeatRate));
     }
 
     #endregion Monobehaviour
 
     #region Private Methods
     
-    private void Spawn()
+    private void GroundSpawn()
     {
-        for (int i = 0; i < spawns.Count; i++)
+        for (int i = 0; i < groundSpawns.Count; i++)
         {
             // randTarget = Random.Range(0, targets.Length);
 
             // Note: Whenever an object deactivates, it will reactive the same one
             // Current work around is making the number of objects and obstacles small
-            if (!spawns[i].activeInHierarchy)
+            if (!groundSpawns[i].activeInHierarchy)
             {
-                spawns[i].GetComponent<RandomObjectSet>().SetRandomObject();
-                spawns[i].transform.position = targets.transform.position;
-                spawns[i].transform.rotation = targets.transform.rotation;
-                spawns[i].SetActive(true);
+                groundSpawns[i].GetComponent<RandomObjectSet>().SetRandomObject();
+                groundSpawns[i].transform.position = targets.transform.position;
+                groundSpawns[i].transform.rotation = targets.transform.rotation;
+                groundSpawns[i].SetActive(true);
+                //GameObject temp = groundSpawns[i];
+                //groundSpawns.Remove(groundSpawns[i]);
+
+                break;
+            }
+        }
+    }
+
+    private void AirSpawn()
+    {
+        for (int i = 0; i < airSpawns.Count; i++)
+        {
+            if (!airSpawns[i].activeInHierarchy)
+            {
+                airSpawns[i].GetComponent<RandomObjectSet>().SetRandomObject();
+                airSpawns[i].transform.position = new Vector3(targets.transform.position.x, targets.transform.position.y + 1.5f, targets.transform.position.z);
+                airSpawns[i].transform.rotation = targets.transform.rotation;
+                airSpawns[i].SetActive(true);
+
                 break;
             }
         }
@@ -109,9 +178,42 @@ public class ItemGenerator : MonoBehaviour {
 
     private IEnumerator SpawnLoop()
     {
-        Spawn();
-        yield return new WaitForSeconds(repeatRate);
+        GroundSpawn();
+        if (_gc.currentLevel %3 == 0)
+        {
+            if (canShuffle)
+            {
+                Shuffle();
+                canShuffle = false;
+            }
+        }
+        else
+        {
+            canShuffle = true;
+        }
+        yield return new WaitForSeconds(groundRepeatRate);
         StartCoroutine(SpawnLoop());
+    }
+
+    private IEnumerator AirSpawnLoop(float repeatRate)
+    {
+        AirSpawn();
+        yield return new WaitForSeconds(repeatRate);
+        float newRepeatRate = Random.Range(5f, 20f);          // TODO: Balance the min and max
+        StartCoroutine(AirSpawnLoop(newRepeatRate));
+    }
+
+    private void Shuffle()
+    {
+        int randomNum;
+        GameObject temp;
+        for (int i = groundSpawns.Count - 1; i > 0; i--)
+        {
+            randomNum = Random.Range(0, i);
+            temp = groundSpawns[randomNum];
+            groundSpawns[randomNum] = groundSpawns[i];
+            groundSpawns[i] = temp;
+        }
     }
 
     #endregion Private Methods
@@ -122,10 +224,10 @@ public class ItemGenerator : MonoBehaviour {
     {
         if (_gc.currentLevel % 3 == 0)
         {
-            repeatRate -= 0.3f;
-            if (repeatRate < maxRepeatRate)
+            groundRepeatRate -= 0.3f;
+            if (groundRepeatRate < maxRepeatRate)
             {
-                repeatRate = maxRepeatRate;
+                groundRepeatRate = maxRepeatRate;
             }
         }
     }

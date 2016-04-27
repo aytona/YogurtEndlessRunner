@@ -22,10 +22,15 @@ public class HandAI : MonoBehaviour
     private PlayerMovement.State _playerState;
 
     [Tooltip("Use an empty GameObject to set the position of the hand when hidden.")]
-    public Transform hidePosition;
+    public Transform[] hidePosition;
 
     [Tooltip("Use an empty GameObject to set the position of the hand when threatening the player.")]
-    public Transform threatPosition;
+    public Transform[] threatPosition;
+
+    /// <summary>
+    /// Device the game is currently being played on. 0 - iPhone4, 1 - iPhone5, 2 - iPad.
+    /// </summary>
+    private int currentDevice = 2;
 
     /// <summary>
     /// Is the hand following the player?
@@ -40,6 +45,13 @@ public class HandAI : MonoBehaviour
     {
         _movement = GetComponent<HandMovement>();   // Set the reference.
         _player = FindObjectOfType<PlayerMovement>();
+
+        // Get the current device.  Sets the positions for the hand to move to and from.
+        currentDevice = (int)GameManager.Instance.currentAspect;
+        if (currentDevice > 2)
+        {
+            currentDevice = 2;
+        }
     }
 
     void Update()
@@ -57,7 +69,7 @@ public class HandAI : MonoBehaviour
     /// </summary>
     private void CheckPlayerState()
     {
-        _playerState = _player._currentState;
+        _playerState = _player.m_CurrentState;
     }
 
     /// <summary>
@@ -72,13 +84,13 @@ public class HandAI : MonoBehaviour
                 // If the player's state is normal, then the hand will hide where the player cannot see it
                 _movement.SetFreeMove(true);
                 followPlayer = false;
-                _movement.SetNextPosition(hidePosition);
+                _movement.SetNextPosition(hidePosition[currentDevice]);
                 break;
             case PlayerMovement.State.Hit:
                 // Player has been hit once
                 // If player hit once then gets hit again the hand will grab the player
                 _movement.SetFreeMove(false);
-                _movement.SetNextPosition(threatPosition);
+                _movement.SetNextPosition(threatPosition[currentDevice]);
                 followPlayer = true;
                 break;
             case PlayerMovement.State.TwoHit:
@@ -89,8 +101,8 @@ public class HandAI : MonoBehaviour
                 _movement.SetNextPosition(_player.transform);
                 break;
             case PlayerMovement.State.EndGame:
-                _movement.EndGameHide(hidePosition);
-                _player._currentState = PlayerMovement.State.None;
+                _movement.EndGameHide(hidePosition[currentDevice]);
+                _player.m_CurrentState = PlayerMovement.State.None;
                 break;
         }
     }

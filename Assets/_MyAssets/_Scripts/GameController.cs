@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -68,6 +69,8 @@ public class GameController : MonoBehaviour
 
     private Image startImage, placeHolder;
     private RawImage openingImage;
+
+    public Sprite iPhone5Opening;
     #endregion OpeningScreenVariables
 
     #region EndScreenVariables
@@ -75,6 +78,8 @@ public class GameController : MonoBehaviour
     public GameObject endScreen, inGameScore, pauseButton;
 
     public Text finalScore;
+
+    public Text distanceTraveled;
 
     private bool gameOver = false;
 
@@ -96,6 +101,10 @@ public class GameController : MonoBehaviour
         startImage = StartButton.GetComponent<Image>();
         openingImage = OpeningScreen.GetComponent<RawImage>();
         placeHolder = OpeningScreen.GetComponentInChildren<Image>();
+        if (GameManager.Instance.currentAspect == DeviceAspect.iPhone5)
+        {
+            placeHolder.sprite = iPhone5Opening;
+        }
 	}
 
 	void Update () {
@@ -155,7 +164,8 @@ public class GameController : MonoBehaviour
     {
         GameManager.Instance.gameSettings.gameRestart = true;
         GameManager.Instance.gameSettings.gameStart = false;
-        Application.LoadLevel(0);
+        //Application.LoadLevel(0);
+        SceneManager.LoadScene(0);
     }
 
     public Text score, message, level;
@@ -167,37 +177,37 @@ public class GameController : MonoBehaviour
         string scoreText;
         playerScore+=inc;
 
-        /* Try scoreText = string.Format("{0:0000000}", playerScore); */
+        scoreText = string.Format("{0:0000000}", playerScore);
         
-        if (playerScore < 0)
-        {
-            playerScore = 0;
-            scoreText = "000000" + playerScore;
-        }
-        else if (playerScore < 1000)
-        {
-            scoreText = "0000" + playerScore;
-        }
-        else if (playerScore < 10000)
-        {
-            scoreText = "000" + playerScore;
-        }
-        else if (playerScore < 100000)
-        {
-            scoreText = "00" + playerScore;
-        }
-        else if (playerScore < 1000000)
-        {
-            scoreText = "0" + playerScore;
-        }
-        else
-        {
-            if (playerScore > 99999999)
-            {
-                playerScore = 99999999;
-            }
-            scoreText = playerScore.ToString();
-        }
+//        if (playerScore < 0)
+//        {
+//            playerScore = 0;
+//            scoreText = "000000" + playerScore;
+//        }
+//        else if (playerScore < 1000)
+//        {
+//            scoreText = "0000" + playerScore;
+//        }
+//        else if (playerScore < 10000)
+//        {
+//            scoreText = "000" + playerScore;
+//        }
+//        else if (playerScore < 100000)
+//        {
+//            scoreText = "00" + playerScore;
+//        }
+//        else if (playerScore < 1000000)
+//        {
+//            scoreText = "0" + playerScore;
+//        }
+//        else
+//        {
+//            if (playerScore > 99999999)
+//            {
+//                playerScore = 99999999;
+//            }
+//            scoreText = playerScore.ToString();
+//        }
 
         score.text = scoreText;
     }
@@ -249,5 +259,8 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         endScreen.SetActive(true);
         finalScore.text = score.text;
+        distanceTraveled.text = "Distance Traveled: " + (int)GameManager.Instance.gameSettings.distance + "m";
+        GameManager.Instance.gameData.SetTotalDistance(GameManager.Instance.gameSettings.distance);
+        GameManager.Instance.gameData.SetTotalScore(playerScore);
     }
 }

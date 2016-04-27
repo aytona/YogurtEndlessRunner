@@ -13,13 +13,16 @@ public class GameSettings : MonoBehaviour {
     public float playerWeight;
 
     [Tooltip("The delay between each speed increase in seconds")]
-    public int coroutineDelay;
+    public float coroutineDelay;
 
     [Tooltip("Next level speed multiplier")]
-    public int speedMultiplier;
+    public float speedMultiplier;
 
     [Tooltip("The speed cap")]
-    public int speedCap;
+    public float speedCap;
+    
+    [HideInInspector]
+    public float distance = 0;      // The distance traveled by the player
 
     [HideInInspector]
     public bool gameRestart = false;
@@ -27,7 +30,7 @@ public class GameSettings : MonoBehaviour {
     [HideInInspector]
     public bool gameStart = false;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int level;
 
     private float gameSpeedDefault;
@@ -46,6 +49,7 @@ public class GameSettings : MonoBehaviour {
         gameSpeedDefault = gameSpeed;
         playerWeightDefault = playerWeight;
         maxSpeed = gameSpeedDefault;
+        distance = 0;
         _gc = FindObjectOfType<GameController>();
     }
 
@@ -65,6 +69,7 @@ public class GameSettings : MonoBehaviour {
 
         else if (gameStart)
         {
+            distance += Time.deltaTime * gameSpeed / gameSpeedDefault;
             if (afterDelay)
             {
                 StartCoroutine(SpeedDelay(coroutineDelay));
@@ -75,6 +80,7 @@ public class GameSettings : MonoBehaviour {
                 playerWeight += speedIncreaser;
             }
         }
+        //Debug.Log(Time.timeScale);
     }
 
     void OnGUI()
@@ -85,7 +91,7 @@ public class GameSettings : MonoBehaviour {
 
     #region Private Methods
 
-    private IEnumerator SpeedDelay(int delay)
+    private IEnumerator SpeedDelay(float delay)
     {
         afterDelay = false;
         yield return new WaitForSeconds(delay);
