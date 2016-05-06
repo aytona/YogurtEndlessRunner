@@ -89,6 +89,16 @@ public class GameSettings : MonoBehaviour {
     }
     #endregion Monobehaviour
 
+    #region Public Methods
+
+    public void ZeroSpeed()
+    {
+        if(!gameStart)
+            gameSpeed = 0;
+    }
+
+    #endregion Public Methods
+
     #region Private Methods
 
     private IEnumerator SpeedDelay(float delay)
