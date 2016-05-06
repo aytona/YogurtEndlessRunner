@@ -152,6 +152,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public float jumpDistance = 1.0f;
 
+    [Tooltip("Reference to the shadow sprite.  Used to fade out the shadow.")]
+    /// <summary>
+    /// Reference to the shadow sprite.  Used to fade out the shadow.
+    /// </summary>
+    public SpriteRenderer shadowSprite;
+
     [Tooltip("Time the character surf on the spoon. (in seconds)")]
     /// <summary>
     /// Amount of time the surfing will last.
@@ -193,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Used for blinking the player.
     /// </summary>
-    private SkinnedMeshRenderer m_Renderder;
+    public SkinnedMeshRenderer m_Renderder;
 
     /// <summary>
     /// Current state of the player
@@ -249,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
         // Get all references needed
         m_RigidBody = GetComponent<Rigidbody>();
         m_GameController = FindObjectOfType<GameController>();
-        m_Renderder = GetComponentInChildren<SkinnedMeshRenderer>();
+        //m_Renderder = GetComponentInChildren<SkinnedMeshRenderer>();  
         m_Animations = GetComponentInChildren<PlayerAnimation>();
         m_PlayerAudio = GetComponent<PlayerAudioController>();
 
@@ -331,7 +337,8 @@ public class PlayerMovement : MonoBehaviour
             hand.SetGameOver(true);
             m_Animations.Play(PlayerAnimation.PlayerStates.Caught);
             m_PlayerAudio.PlaySound(3);
-            AttachToHand(hand.yogurtGrabPos);      
+            AttachToHand(hand.yogurtGrabPos);
+            StartCoroutine(FadeOutSprite(shadowSprite));
             m_CurrentState = State.EndGame;
             m_GameController.SetGameOver(true);
         }
@@ -431,7 +438,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 StopCoroutine(surfCoroutine);
             }
-            //m_CurrentState = State.Normal; // [NOTE: This freezes the game] [NOTE AGAIN: Maybe not]
+            m_CurrentState = State.Normal; // [NOTE: This freezes the game] [NOTE AGAIN: Maybe not]
             surfCoroutine = StartCoroutine(StartSurfing());
         }
         else
@@ -536,12 +543,6 @@ public class PlayerMovement : MonoBehaviour
                 MoveDown();
             if (Input.GetKeyDown(KeyCode.UpArrow))
                 MoveUp();
-            /*if (Input.GetKeyDown(KeyCode.A))
-                targetIndex = 2;
-            if (Input.GetKeyDown(KeyCode.S))
-                targetIndex = 1;
-            if (Input.GetKeyDown(KeyCode.D))
-                targetIndex = 0;*/
             if (Input.GetKeyDown(KeyCode.Space))
                 Jump();
             if (Input.GetKeyDown(KeyCode.P))
@@ -567,11 +568,11 @@ public class PlayerMovement : MonoBehaviour
             // Interpolates the player's position between current position and destination.
             //transform.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
             if(Time.time - count < 0.65f)
-                parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed * 0.2f);
+                parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed * 0.5f); //speed * 0.2f);   // Slowly moving back after a jump
             else
                 parentObject.position = Vector3.Lerp(currentPos, nextPos, Time.deltaTime * speed);
         }
-        else
+        else // Moving forward during a jump
         {
             //Debug.Log("Jump move");
             currentPos = parentObject.position;
@@ -642,16 +643,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ActivateSurfing()
     {
-        bool hasChanged = false;
-        while (!hasChanged)
-        {
-            if (isGrounded)
-            {
-                m_Animations.Play(PlayerAnimation.PlayerStates.Surf);
-                isSurfing = true;
-                hasChanged = true;
-            }
-        }
+        m_Animations.Play(PlayerAnimation.PlayerStates.Surf);
+        if(!isSurfing)
+            shadowSprite.transform.localScale = new Vector3(shadowSprite.transform.localScale.x * 2f, 
+                                                            shadowSprite.transform.localScale.y, shadowSprite.transform.localScale.z);
+        isSurfing = true;
     }
 
     /// <summary>
@@ -659,16 +655,10 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void DeactivateSurfing()
     {
-        bool hasChanged = false;
-        while (!hasChanged)
-        {
-            if (isGrounded)
-            {
-                m_Animations.Play(PlayerAnimation.PlayerStates.Run);
-                isSurfing = false;
-                hasChanged = true;
-            }
-        }
+        m_Animations.Play(PlayerAnimation.PlayerStates.Run);
+        isSurfing = false;
+        shadowSprite.transform.localScale = new Vector3(shadowSprite.transform.localScale.x * 0.5f,
+                                                        shadowSprite.transform.localScale.y, shadowSprite.transform.localScale.z);
     }
 
     private IEnumerator BlinkEffect(float duration, float delay)
@@ -709,6 +699,14 @@ public class PlayerMovement : MonoBehaviour
         ActivateSurfing();
         yield return new WaitForSeconds(surfTime);
         DeactivateSurfing();
+    }
+
+    private IEnumerator FadeOutSprite(SpriteRenderer sr)
+    {
+        sr.color = new Color(0f, 0f, 0f, Mathf.SmoothStep(0.0f, sr.color.a, 0.6f));
+        yield return new WaitForEndOfFrame();
+        if(sr.color.a > 0.0f)
+            StartCoroutine(FadeOutSprite(sr));
     }
 
     #endregion Private Methods
