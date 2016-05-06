@@ -331,6 +331,7 @@ public class PlayerMovement : MonoBehaviour
         {
             gameOver = true;
             GameManager.Instance.gameSettings.gameStart = false;
+            GameManager.Instance.gameSettings.ZeroSpeed();
             HandMovement hand = other.gameObject.GetComponentInParent<HandMovement>();
             transform.parent.position = hand.GetGrabPosition().position;
             hand.SetGrabAnim();
@@ -355,6 +356,13 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("OBSTACLE!");
             m_PlayerAudio.PlaySound(2);
             GetHit();
+        }
+
+        if (other.CompareTag("ObstacleLarge"))           // Hit a large obstacle
+        {
+            //Debug.Log("OBSTACLE!");
+            m_PlayerAudio.PlaySound(2);
+            GetBigHit();
         }
 
         if (other.CompareTag("SpeedModifier"))      // Collectable that slows down the speed
@@ -525,6 +533,34 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             Surf(false);
+        }
+    }
+
+    public void GetBigHit()
+    {
+        if (!isSurfing)
+        {
+            if (!inBlink)
+            {
+                if (blinkCoroutine != null)
+                {
+                    StopCoroutine(blinkCoroutine);
+                }
+                blinkCoroutine = StartCoroutine(BlinkEffect(blinkDuration, blinkTime));
+            }
+            m_CurrentState = State.TwoHit;
+        }
+        else
+        {
+            Surf(false);
+            if (m_CurrentState == State.Normal)
+            {
+                if (stateCoroutine != null)
+                {
+                    StopCoroutine(stateCoroutine);
+                }
+                stateCoroutine = StartCoroutine(StateRecovery(recoveryDelay));
+            }
         }
     }
 
