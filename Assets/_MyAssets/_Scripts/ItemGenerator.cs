@@ -14,6 +14,9 @@ public class ItemGenerator : MonoBehaviour {
     [Tooltip("Obstacle to be spawned")]
     public GameObject obstacle;
 
+    [Tooltip("Large Obstacle to be spawned")]
+    public GameObject largeObstacle;
+
     [Tooltip("Speed Modifiers to be spawned")]
     public GameObject speedModifier;
 
@@ -29,6 +32,9 @@ public class ItemGenerator : MonoBehaviour {
 
     [Tooltip("Obstacle Ratio")]
     public int obstacleRatio;
+
+    [Tooltip("Large Obstacle Ratio")]
+    public int largeObstacleRatio;
 
     [Tooltip("Speed Modifier Ratio")]
     public int speedModifierRatio;
@@ -47,6 +53,7 @@ public class ItemGenerator : MonoBehaviour {
     // List of GameObjects to pool
     private List<GameObject> items;
     private List<GameObject> obstacles;
+    private List<GameObject> obstaclesLarge;
     private List<GameObject> speedModifiers;
     private List<GameObject> spoonPowerupList;
 
@@ -89,6 +96,15 @@ public class ItemGenerator : MonoBehaviour {
             obstacles.Add(obj);
         }
 
+        // Pool large obstacle objects
+        obstaclesLarge = new List<GameObject>();
+        for (int i = 0; i < largeObstacleRatio; i++)
+        {
+            GameObject obj = Instantiate(largeObstacle);
+            obj.SetActive(false);
+            obstaclesLarge.Add(obj);
+        }
+
         // Pool speed modifiers objects
         speedModifiers = new List<GameObject>();
         for (int i = 0; i < speedModifierRatio; i++)
@@ -113,6 +129,9 @@ public class ItemGenerator : MonoBehaviour {
             groundSpawns.Add(i);
         foreach (GameObject i in obstacles)
             groundSpawns.Add(i);
+        foreach (GameObject i in obstaclesLarge)
+            groundSpawns.Add(i);
+
         // Randomizes the objects inside the list
         for (int i = 0; i < groundSpawns.Count; i++)
         {
