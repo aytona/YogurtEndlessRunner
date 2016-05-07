@@ -22,7 +22,8 @@ public class MarkerSpawner : MonoBehaviour {
 	private int counter = 0;
 
 	void Update() {
-		if ((GameManager.Instance.gameSettings.distance /* - offset */) % repeatDistance == 0 && GameManager.Instance.gameSettings.gameStart) {
+		if ((GameManager.Instance.gameSettings.distance /* - offset */) % repeatDistance == 0 &&
+			GameManager.Instance.gameSettings.gameStart) {
 
 		}
 	}
