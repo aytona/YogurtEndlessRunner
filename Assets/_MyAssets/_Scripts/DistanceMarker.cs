@@ -3,18 +3,19 @@ using System.Collections;
 
 public class DistanceMarker : MonoBehaviour {
 
-	private Renderer rend;
-	private Material mat;
+	public string distanceText;
 
 	void Start() {
-		rend = GetComponent<Renderer>();
-		mat = rend.material;
+		distanceText = GetComponentInChildren<TextMesh>().text;
 	}
 
 	void Update() {
-		float emission = Mathf.PingPong(Time.time, 0.4f);
-		Color baseColor = Color.white;
-		Color finalColor = baseColor * Mathf.LinearToGammaSpace(emission);
-		mat.SetColor("_EmissionColor", finalColor);
+		transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
+
+		if (transform.position.x <= GameManager.Instance.lengthBeforeDespawn || 
+			!GameManager.Instance.gameSettings.gameStart)
+		{
+			Destroy(gameObject);
+		}
 	}
 }
