@@ -15,14 +15,14 @@ public class GameSettings : MonoBehaviour {
     [Tooltip("The delay between each speed increase in seconds")]
     public float coroutineDelay;
 
-    [Tooltip("Next level speed multiplier")]
-    public float speedMultiplier;
+	[Tooltip("Next level speed multiplier")]
+	public float speedMultiplier;
 
     [Tooltip("The speed cap")]
     public float speedCap;
     
     [HideInInspector]
-    public float distance = 0;      // The distance traveled by the player
+    public float distance = 0;
 
     [HideInInspector]
     public bool gameRestart = false;
@@ -65,6 +65,7 @@ public class GameSettings : MonoBehaviour {
             maxSpeed = gameSpeedDefault;
             gameRestart = false;
             _gc = FindObjectOfType<GameController>();
+			distance = 0;
         }
 
         else if (gameStart)

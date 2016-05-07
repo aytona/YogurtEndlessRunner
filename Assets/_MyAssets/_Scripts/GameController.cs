@@ -113,6 +113,7 @@ public class GameController : MonoBehaviour
         //    StartButton.SetActive(true);
         //    allowDemo = false;
         //}
+		//Debug.Log(GameManager.Instance.gameSettings.distance);
         if (gameStarted)
         {
             StartCoroutine(SceneTransition());
