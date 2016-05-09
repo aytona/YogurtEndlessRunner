@@ -16,15 +16,23 @@ public class MarkerSpawner : MonoBehaviour {
 	[Tooltip("The distance the flag spawns on every..")]
 	public int repeatDistance;
 
+	[Tooltip("Player object")]
+	public Transform player;
+
 	/// <summary>
 	/// The counter of flags spawned
 	/// </summary>
-	private int counter = 0;
+	private int counter = 1;
 
 	void Update() {
-		if ((GameManager.Instance.gameSettings.distance /* - offset */) % repeatDistance == 0 &&
-			GameManager.Instance.gameSettings.gameStart) {
+//		if ((GameManager.Instance.gameSettings.distance /* - offset */) % repeatDistance == 0 &&
+//			GameManager.Instance.gameSettings.gameStart) {
+//
+//		}
 
+		if (GameManager.Instance.gameSettings.distance == ((gameObject.transform.position.x - player.transform.position.x) * counter)) {
+			GameObject flag = Instantiate(_flagPrefab);
+			flag.GetComponent<DistanceMarker>().distanceText = (repeatDistance * counter).ToString();
 		}
 	}
 }

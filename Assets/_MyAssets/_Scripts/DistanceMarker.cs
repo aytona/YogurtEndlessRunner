@@ -6,7 +6,7 @@ public class DistanceMarker : MonoBehaviour {
 	public string distanceText;
 
 	void Start() {
-		distanceText = GetComponentInChildren<TextMesh>().text;
+		GetComponentInChildren<TextMesh>().text = distanceText;
 	}
 
 	void Update() {
