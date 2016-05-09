@@ -24,15 +24,42 @@ public class MarkerSpawner : MonoBehaviour {
 	/// </summary>
 	private int counter = 1;
 
-	void Update() {
+	private float offset;
+
+	private bool setOffset = false;
+	private bool flagSpawn = false;
+
+	void LateUpdate() {
 //		if ((GameManager.Instance.gameSettings.distance /* - offset */) % repeatDistance == 0 &&
 //			GameManager.Instance.gameSettings.gameStart) {
 //
 //		}
 
-		if (GameManager.Instance.gameSettings.distance == ((gameObject.transform.position.x - player.transform.position.x) * counter)) {
-			GameObject flag = Instantiate(_flagPrefab);
-			flag.GetComponent<DistanceMarker>().distanceText = (repeatDistance * counter).ToString();
+		if (GameManager.Instance.gameSettings.gameStart && !setOffset) {
+			offset = transform.position.x - player.transform.position.x;
+			setOffset = true;
 		}
+
+		if (GameManager.Instance.gameSettings.gameRestart && setOffset) {
+			setOffset = false;
+		}
+
+		if (offset > 0 && (int)((GameManager.Instance.gameSettings.distance + offset) * counter) % (int)(repeatDistance * counter) == 0
+			&& !flagSpawn) {
+			flagSpawn = true;
+		}
+
+		else if (flagSpawn) {
+			flagSpawn = false;
+			SpawnFlag();
+		}
+
+		Debug.Log((int)GameManager.Instance.gameSettings.distance + offset);
+	}
+
+	private void SpawnFlag() {
+		GameObject flag = Instantiate(_flagPrefab, transform.position, Quaternion.identity) as GameObject;
+		flag.GetComponent<DistanceMarker>().distanceText = (repeatDistance * counter).ToString();
+		counter++;
 	}
 }
