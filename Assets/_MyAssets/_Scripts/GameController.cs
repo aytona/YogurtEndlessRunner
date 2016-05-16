@@ -80,6 +80,8 @@ public class GameController : MonoBehaviour
 
     private bool gameOver = false;
 
+	private string sceneName;
+
     #endregion EndScreenVariables
 
     #region MonoBehaviour
@@ -102,6 +104,7 @@ public class GameController : MonoBehaviour
         {
             placeHolder.sprite = iPhone5Opening;
         }
+		sceneName = SceneManager.GetActiveScene().name;
 	}
 
 	void Update () {
@@ -136,7 +139,7 @@ public class GameController : MonoBehaviour
             pauseButton.transform.Translate(Vector3.up * Time.deltaTime * 0.2f, Space.Self);
             StartCoroutine(ShowEndScreen());
         }
-       
+		Debug.Log((int)GameManager.Instance.gameSettings.distance);
 	}
 
     #endregion MonoBehaviour
@@ -163,7 +166,7 @@ public class GameController : MonoBehaviour
         GameManager.Instance.gameSettings.gameRestart = true;
         GameManager.Instance.gameSettings.gameStart = false;
         //Application.LoadLevel(0);
-        SceneManager.LoadScene(0);
+		SceneManager.LoadScene(sceneName);
     }
 
     public Text score, message, level;
