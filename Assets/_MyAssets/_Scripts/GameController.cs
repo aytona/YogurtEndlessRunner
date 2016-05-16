@@ -22,9 +22,6 @@ public class GameController : MonoBehaviour
 
     #endregion References
 
-    [Tooltip("Set to true to allow the demo.")]
-    public bool allowDemo;
-
     #region PauseScreenVariables
 
     /// <summary>

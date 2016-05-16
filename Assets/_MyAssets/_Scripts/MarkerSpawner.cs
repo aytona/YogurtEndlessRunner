@@ -51,7 +51,8 @@ public class MarkerSpawner : MonoBehaviour {
 
 		else if (offset > 0 && !flagSpawned &&
 			(int)(GameManager.Instance.gameSettings.distance + offset) % (int)(nextDistance) == 0) {
-			SpawnFlag();
+                Debug.Log("Spawning Flag");
+			    SpawnFlag();
 		}
 	}
 
