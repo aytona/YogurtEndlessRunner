@@ -81,12 +81,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool isGrounded = false;
 
-    [SerializeField]
-    private Transform groundCheck;
-
-    [SerializeField]
-    private Transform plane;
-
     /// <summary>
     /// Used for jumping physics math.
     /// </summary>
