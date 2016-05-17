@@ -1,0 +1,658 @@
+fileFormatVersion: 2
+guid: fe5e1f39d03c3584fa04bf7baaa028a2
+timeCreated: 1463443605
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Geo
+    100002: Hand_Geo
+    100004: //RootNode
+    100006: Index_Base_JNT
+    100008: Index_END_NOBIND_JNT
+    100010: Index_Mid_JNT
+    100012: Index_Tip_JNT
+    100014: Joints
+    100016: Main_Arm_JNT
+    100018: Middle_Base_JNT
+    100020: Middle_END_NOBIND_JNT
+    100022: Middle_Mid_JNT
+    100024: Middle_Tip_JNT
+    100026: Pinky_Base_JNT
+    100028: Pinky_END_NOBIND_JNT
+    100030: Pinky_Mid_JNT
+    100032: Pinky_Tip_JNT
+    100034: Rig_FIN_with_spoon:Ankel_L_JNT
+    100036: Rig_FIN_with_spoon:Ankel_R_JNT
+    100038: Rig_FIN_with_spoon:Ball_L_JNT
+    100040: Rig_FIN_with_spoon:Ball_R_JNT
+    100042: Rig_FIN_with_spoon:Clavical_L_Bind_JNT
+    100044: Rig_FIN_with_spoon:Clavical_L_FK_JNT
+    100046: Rig_FIN_with_spoon:Clavical_L_IK_JNT
+    100048: Rig_FIN_with_spoon:Clavical_R_Bind_JNT
+    100050: Rig_FIN_with_spoon:Clavical_R_FK_JNT
+    100052: Rig_FIN_with_spoon:Clavical_R_IK_JNT
+    100054: Rig_FIN_with_spoon:Elbow_L_Bind_JNT
+    100056: Rig_FIN_with_spoon:Elbow_L_FK_JNT
+    100058: Rig_FIN_with_spoon:Elbow_L_IK_JNT
+    100060: Rig_FIN_with_spoon:Elbow_R_Bind_JNT
+    100062: Rig_FIN_with_spoon:Elbow_R_FK_JNT
+    100064: Rig_FIN_with_spoon:Elbow_R_IK_JNT
+    100066: Rig_FIN_with_spoon:Geo
+    100068: Rig_FIN_with_spoon:Hand_L_Bind_JNT
+    100070: Rig_FIN_with_spoon:Hand_L_FK_JNT
+    100072: Rig_FIN_with_spoon:Hand_L_IK_JNT
+    100074: Rig_FIN_with_spoon:Hand_R_Bind_JNT
+    100076: Rig_FIN_with_spoon:Hand_R_FK_JNT
+    100078: Rig_FIN_with_spoon:Hand_R_IK_JNT
+    100080: Rig_FIN_with_spoon:Hip_L_JNT
+    100082: Rig_FIN_with_spoon:Hip_R_JNT
+    100084: Rig_FIN_with_spoon:Index_Base_L_JNT
+    100086: Rig_FIN_with_spoon:Index_Base_R_JNT
+    100088: Rig_FIN_with_spoon:Index_Mid_L_JNT
+    100090: Rig_FIN_with_spoon:Index_Mid_R_JNT
+    100092: Rig_FIN_with_spoon:Index_Tip_NOBIND_L_JNT
+    100094: Rig_FIN_with_spoon:Index_Tip_NOBIND_R_JNT
+    100096: Rig_FIN_with_spoon:Knee_L_JNT
+    100098: Rig_FIN_with_spoon:Knee_R_JNT
+    100100: Rig_FIN_with_spoon:Middle_Base_L_JNT
+    100102: Rig_FIN_with_spoon:Middle_Base_R_JNT
+    100104: Rig_FIN_with_spoon:Middle_Mid_L_JNT1
+    100106: Rig_FIN_with_spoon:Middle_Mid_R_JNT1
+    100108: Rig_FIN_with_spoon:Middle_Tip_L_NOBIND_JNT
+    100110: Rig_FIN_with_spoon:Middle_Tip_R_NOBIND_JNT
+    100112: Rig_FIN_with_spoon:Pinky_Base_L_JNT
+    100114: Rig_FIN_with_spoon:Pinky_Base_R_JNT
+    100116: Rig_FIN_with_spoon:Pinky_Mid_L_JNT
+    100118: Rig_FIN_with_spoon:Pinky_Mid_R_JNT
+    100120: Rig_FIN_with_spoon:Pinky_Tip_NOBIND_L_JNT
+    100122: Rig_FIN_with_spoon:Pinky_Tip_NOBIND_R_JNT
+    100124: Rig_FIN_with_spoon:Root_JNT
+    100126: Rig_FIN_with_spoon:Spine_1_JNT
+    100128: Rig_FIN_with_spoon:Spine_2_JNT
+    100130: Rig_FIN_with_spoon:Spoon_JNT
+    100132: Rig_FIN_with_spoon:Sppon_GEO
+    100134: Rig_FIN_with_spoon:Thumb_Base_L_JNT
+    100136: Rig_FIN_with_spoon:Thumb_Base_R_JNT
+    100138: Rig_FIN_with_spoon:Thumb_Mid_L_JNT
+    100140: Rig_FIN_with_spoon:Thumb_Mid_R_JNT
+    100142: Rig_FIN_with_spoon:Thumb_Tip_L_NOBIND_JNT
+    100144: Rig_FIN_with_spoon:Thumb_Tip_R_NOBIND_JNT
+    100146: Rig_FIN_with_spoon:Toe_Tip_L_JNT
+    100148: Rig_FIN_with_spoon:Toe_Tip_R_JNT
+    100150: Rig_FIN_with_spoon:Top_Of_Cup_JNT
+    100152: Rig_FIN_with_spoon:Yogurt_1_JNT
+    100154: Rig_FIN_with_spoon:Yogurt_2_JNT
+    100156: Rig_FIN_with_spoon:Yogurt_3_JNT
+    100158: Rig_FIN_with_spoon:Yogurt_4_JNT
+    100160: Rig_FIN_with_spoon:yogurt_mesh
+    100162: Rig_FIN_with_spoon:Yogurt_Tip_NOBIND_JNT
+    100164: Thumb_Base_JNT
+    100166: Thumb_END_NOBIND_JNT
+    100168: Thumb_Mid_JNT
+    100170: Thumb_Tip_JNT
+    100172: Wrist_JNT
+    400000: Geo
+    400002: Hand_Geo
+    400004: //RootNode
+    400006: Index_Base_JNT
+    400008: Index_END_NOBIND_JNT
+    400010: Index_Mid_JNT
+    400012: Index_Tip_JNT
+    400014: Joints
+    400016: Main_Arm_JNT
+    400018: Middle_Base_JNT
+    400020: Middle_END_NOBIND_JNT
+    400022: Middle_Mid_JNT
+    400024: Middle_Tip_JNT
+    400026: Pinky_Base_JNT
+    400028: Pinky_END_NOBIND_JNT
+    400030: Pinky_Mid_JNT
+    400032: Pinky_Tip_JNT
+    400034: Rig_FIN_with_spoon:Ankel_L_JNT
+    400036: Rig_FIN_with_spoon:Ankel_R_JNT
+    400038: Rig_FIN_with_spoon:Ball_L_JNT
+    400040: Rig_FIN_with_spoon:Ball_R_JNT
+    400042: Rig_FIN_with_spoon:Clavical_L_Bind_JNT
+    400044: Rig_FIN_with_spoon:Clavical_L_FK_JNT
+    400046: Rig_FIN_with_spoon:Clavical_L_IK_JNT
+    400048: Rig_FIN_with_spoon:Clavical_R_Bind_JNT
+    400050: Rig_FIN_with_spoon:Clavical_R_FK_JNT
+    400052: Rig_FIN_with_spoon:Clavical_R_IK_JNT
+    400054: Rig_FIN_with_spoon:Elbow_L_Bind_JNT
+    400056: Rig_FIN_with_spoon:Elbow_L_FK_JNT
+    400058: Rig_FIN_with_spoon:Elbow_L_IK_JNT
+    400060: Rig_FIN_with_spoon:Elbow_R_Bind_JNT
+    400062: Rig_FIN_with_spoon:Elbow_R_FK_JNT
+    400064: Rig_FIN_with_spoon:Elbow_R_IK_JNT
+    400066: Rig_FIN_with_spoon:Geo
+    400068: Rig_FIN_with_spoon:Hand_L_Bind_JNT
+    400070: Rig_FIN_with_spoon:Hand_L_FK_JNT
+    400072: Rig_FIN_with_spoon:Hand_L_IK_JNT
+    400074: Rig_FIN_with_spoon:Hand_R_Bind_JNT
+    400076: Rig_FIN_with_spoon:Hand_R_FK_JNT
+    400078: Rig_FIN_with_spoon:Hand_R_IK_JNT
+    400080: Rig_FIN_with_spoon:Hip_L_JNT
+    400082: Rig_FIN_with_spoon:Hip_R_JNT
+    400084: Rig_FIN_with_spoon:Index_Base_L_JNT
+    400086: Rig_FIN_with_spoon:Index_Base_R_JNT
+    400088: Rig_FIN_with_spoon:Index_Mid_L_JNT
+    400090: Rig_FIN_with_spoon:Index_Mid_R_JNT
+    400092: Rig_FIN_with_spoon:Index_Tip_NOBIND_L_JNT
+    400094: Rig_FIN_with_spoon:Index_Tip_NOBIND_R_JNT
+    400096: Rig_FIN_with_spoon:Knee_L_JNT
+    400098: Rig_FIN_with_spoon:Knee_R_JNT
+    400100: Rig_FIN_with_spoon:Middle_Base_L_JNT
+    400102: Rig_FIN_with_spoon:Middle_Base_R_JNT
+    400104: Rig_FIN_with_spoon:Middle_Mid_L_JNT1
+    400106: Rig_FIN_with_spoon:Middle_Mid_R_JNT1
+    400108: Rig_FIN_with_spoon:Middle_Tip_L_NOBIND_JNT
+    400110: Rig_FIN_with_spoon:Middle_Tip_R_NOBIND_JNT
+    400112: Rig_FIN_with_spoon:Pinky_Base_L_JNT
+    400114: Rig_FIN_with_spoon:Pinky_Base_R_JNT
+    400116: Rig_FIN_with_spoon:Pinky_Mid_L_JNT
+    400118: Rig_FIN_with_spoon:Pinky_Mid_R_JNT
+    400120: Rig_FIN_with_spoon:Pinky_Tip_NOBIND_L_JNT
+    400122: Rig_FIN_with_spoon:Pinky_Tip_NOBIND_R_JNT
+    400124: Rig_FIN_with_spoon:Root_JNT
+    400126: Rig_FIN_with_spoon:Spine_1_JNT
+    400128: Rig_FIN_with_spoon:Spine_2_JNT
+    400130: Rig_FIN_with_spoon:Spoon_JNT
+    400132: Rig_FIN_with_spoon:Sppon_GEO
+    400134: Rig_FIN_with_spoon:Thumb_Base_L_JNT
+    400136: Rig_FIN_with_spoon:Thumb_Base_R_JNT
+    400138: Rig_FIN_with_spoon:Thumb_Mid_L_JNT
+    400140: Rig_FIN_with_spoon:Thumb_Mid_R_JNT
+    400142: Rig_FIN_with_spoon:Thumb_Tip_L_NOBIND_JNT
+    400144: Rig_FIN_with_spoon:Thumb_Tip_R_NOBIND_JNT
+    400146: Rig_FIN_with_spoon:Toe_Tip_L_JNT
+    400148: Rig_FIN_with_spoon:Toe_Tip_R_JNT
+    400150: Rig_FIN_with_spoon:Top_Of_Cup_JNT
+    400152: Rig_FIN_with_spoon:Yogurt_1_JNT
+    400154: Rig_FIN_with_spoon:Yogurt_2_JNT
+    400156: Rig_FIN_with_spoon:Yogurt_3_JNT
+    400158: Rig_FIN_with_spoon:Yogurt_4_JNT
+    400160: Rig_FIN_with_spoon:yogurt_mesh
+    400162: Rig_FIN_with_spoon:Yogurt_Tip_NOBIND_JNT
+    400164: Thumb_Base_JNT
+    400166: Thumb_END_NOBIND_JNT
+    400168: Thumb_Mid_JNT
+    400170: Thumb_Tip_JNT
+    400172: Wrist_JNT
+    4300000: Hand_Geo
+    4300002: Rig_FIN_with_spoon:yogurt_mesh
+    4300004: Rig_FIN_with_spoon:Sppon_GEO
+    7400000: Idle
+    7400002: Grab
+    9500000: //RootNode
+    13700000: Hand_Geo
+    13700002: Rig_FIN_with_spoon:Sppon_GEO
+    13700004: Rig_FIN_with_spoon:yogurt_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Geo
+        weight: 1
+      - path: Geo/Hand_Geo
+        weight: 1
+      - path: Geo/Rig_FIN_with_spoon:Geo
+        weight: 1
+      - path: Geo/Rig_FIN_with_spoon:Geo/Rig_FIN_with_spoon:Sppon_GEO
+        weight: 1
+      - path: Geo/Rig_FIN_with_spoon:Geo/Rig_FIN_with_spoon:yogurt_mesh
+        weight: 1
+      - path: Joints
+        weight: 1
+      - path: Joints/Main_Arm_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Index_Base_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Index_Base_JNT/Index_Mid_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Index_Base_JNT/Index_Mid_JNT/Index_Tip_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Index_Base_JNT/Index_Mid_JNT/Index_Tip_JNT/Index_END_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Middle_Base_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Middle_Base_JNT/Middle_Mid_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Middle_Base_JNT/Middle_Mid_JNT/Middle_Tip_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Middle_Base_JNT/Middle_Mid_JNT/Middle_Tip_JNT/Middle_END_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Pinky_Base_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Pinky_Base_JNT/Pinky_Mid_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Pinky_Base_JNT/Pinky_Mid_JNT/Pinky_Tip_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Pinky_Base_JNT/Pinky_Mid_JNT/Pinky_Tip_JNT/Pinky_END_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT/Rig_FIN_with_spoon:Knee_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT/Rig_FIN_with_spoon:Knee_L_JNT/Rig_FIN_with_spoon:Ankel_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT/Rig_FIN_with_spoon:Knee_L_JNT/Rig_FIN_with_spoon:Ankel_L_JNT/Rig_FIN_with_spoon:Ball_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT/Rig_FIN_with_spoon:Knee_L_JNT/Rig_FIN_with_spoon:Ankel_L_JNT/Rig_FIN_with_spoon:Ball_L_JNT/Rig_FIN_with_spoon:Toe_Tip_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT/Rig_FIN_with_spoon:Knee_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT/Rig_FIN_with_spoon:Knee_R_JNT/Rig_FIN_with_spoon:Ankel_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT/Rig_FIN_with_spoon:Knee_R_JNT/Rig_FIN_with_spoon:Ankel_R_JNT/Rig_FIN_with_spoon:Ball_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT/Rig_FIN_with_spoon:Knee_R_JNT/Rig_FIN_with_spoon:Ankel_R_JNT/Rig_FIN_with_spoon:Ball_R_JNT/Rig_FIN_with_spoon:Toe_Tip_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Index_Base_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Index_Base_L_JNT/Rig_FIN_with_spoon:Index_Mid_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Index_Base_L_JNT/Rig_FIN_with_spoon:Index_Mid_L_JNT/Rig_FIN_with_spoon:Index_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_L_JNT/Rig_FIN_with_spoon:Middle_Mid_L_JNT1
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_L_JNT/Rig_FIN_with_spoon:Middle_Mid_L_JNT1/Rig_FIN_with_spoon:Middle_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_L_JNT/Rig_FIN_with_spoon:Pinky_Mid_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_L_JNT/Rig_FIN_with_spoon:Pinky_Mid_L_JNT/Rig_FIN_with_spoon:Pinky_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_L_JNT/Rig_FIN_with_spoon:Thumb_Mid_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_L_JNT/Rig_FIN_with_spoon:Thumb_Mid_L_JNT/Rig_FIN_with_spoon:Thumb_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_FK_JNT/Rig_FIN_with_spoon:Elbow_L_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_FK_JNT/Rig_FIN_with_spoon:Elbow_L_FK_JNT/Rig_FIN_with_spoon:Hand_L_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_IK_JNT/Rig_FIN_with_spoon:Elbow_L_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_IK_JNT/Rig_FIN_with_spoon:Elbow_L_IK_JNT/Rig_FIN_with_spoon:Hand_L_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Index_Base_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Index_Base_R_JNT/Rig_FIN_with_spoon:Index_Mid_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Index_Base_R_JNT/Rig_FIN_with_spoon:Index_Mid_R_JNT/Rig_FIN_with_spoon:Index_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_R_JNT/Rig_FIN_with_spoon:Middle_Mid_R_JNT1
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_R_JNT/Rig_FIN_with_spoon:Middle_Mid_R_JNT1/Rig_FIN_with_spoon:Middle_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_R_JNT/Rig_FIN_with_spoon:Pinky_Mid_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_R_JNT/Rig_FIN_with_spoon:Pinky_Mid_R_JNT/Rig_FIN_with_spoon:Pinky_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_R_JNT/Rig_FIN_with_spoon:Thumb_Mid_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_R_JNT/Rig_FIN_with_spoon:Thumb_Mid_R_JNT/Rig_FIN_with_spoon:Thumb_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_FK_JNT/Rig_FIN_with_spoon:Elbow_R_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_FK_JNT/Rig_FIN_with_spoon:Elbow_R_FK_JNT/Rig_FIN_with_spoon:Hand_R_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_IK_JNT/Rig_FIN_with_spoon:Elbow_R_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_IK_JNT/Rig_FIN_with_spoon:Elbow_R_IK_JNT/Rig_FIN_with_spoon:Hand_R_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT/Rig_FIN_with_spoon:Yogurt_2_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT/Rig_FIN_with_spoon:Yogurt_2_JNT/Rig_FIN_with_spoon:Yogurt_3_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT/Rig_FIN_with_spoon:Yogurt_2_JNT/Rig_FIN_with_spoon:Yogurt_3_JNT/Rig_FIN_with_spoon:Yogurt_4_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT/Rig_FIN_with_spoon:Yogurt_2_JNT/Rig_FIN_with_spoon:Yogurt_3_JNT/Rig_FIN_with_spoon:Yogurt_4_JNT/Rig_FIN_with_spoon:Yogurt_Tip_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spoon_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Thumb_Base_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Thumb_Base_JNT/Thumb_Mid_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Thumb_Base_JNT/Thumb_Mid_JNT/Thumb_Tip_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Thumb_Base_JNT/Thumb_Mid_JNT/Thumb_Tip_JNT/Thumb_END_NOBIND_JNT
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Grab
+      takeName: Take 001
+      firstFrame: 33
+      lastFrame: 65
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Geo
+        weight: 1
+      - path: Geo/Hand_Geo
+        weight: 1
+      - path: Geo/Rig_FIN_with_spoon:Geo
+        weight: 1
+      - path: Geo/Rig_FIN_with_spoon:Geo/Rig_FIN_with_spoon:Sppon_GEO
+        weight: 1
+      - path: Geo/Rig_FIN_with_spoon:Geo/Rig_FIN_with_spoon:yogurt_mesh
+        weight: 1
+      - path: Joints
+        weight: 1
+      - path: Joints/Main_Arm_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Index_Base_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Index_Base_JNT/Index_Mid_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Index_Base_JNT/Index_Mid_JNT/Index_Tip_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Index_Base_JNT/Index_Mid_JNT/Index_Tip_JNT/Index_END_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Middle_Base_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Middle_Base_JNT/Middle_Mid_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Middle_Base_JNT/Middle_Mid_JNT/Middle_Tip_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Middle_Base_JNT/Middle_Mid_JNT/Middle_Tip_JNT/Middle_END_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Pinky_Base_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Pinky_Base_JNT/Pinky_Mid_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Pinky_Base_JNT/Pinky_Mid_JNT/Pinky_Tip_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Pinky_Base_JNT/Pinky_Mid_JNT/Pinky_Tip_JNT/Pinky_END_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT/Rig_FIN_with_spoon:Knee_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT/Rig_FIN_with_spoon:Knee_L_JNT/Rig_FIN_with_spoon:Ankel_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT/Rig_FIN_with_spoon:Knee_L_JNT/Rig_FIN_with_spoon:Ankel_L_JNT/Rig_FIN_with_spoon:Ball_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_L_JNT/Rig_FIN_with_spoon:Knee_L_JNT/Rig_FIN_with_spoon:Ankel_L_JNT/Rig_FIN_with_spoon:Ball_L_JNT/Rig_FIN_with_spoon:Toe_Tip_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT/Rig_FIN_with_spoon:Knee_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT/Rig_FIN_with_spoon:Knee_R_JNT/Rig_FIN_with_spoon:Ankel_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT/Rig_FIN_with_spoon:Knee_R_JNT/Rig_FIN_with_spoon:Ankel_R_JNT/Rig_FIN_with_spoon:Ball_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Hip_R_JNT/Rig_FIN_with_spoon:Knee_R_JNT/Rig_FIN_with_spoon:Ankel_R_JNT/Rig_FIN_with_spoon:Ball_R_JNT/Rig_FIN_with_spoon:Toe_Tip_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Index_Base_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Index_Base_L_JNT/Rig_FIN_with_spoon:Index_Mid_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Index_Base_L_JNT/Rig_FIN_with_spoon:Index_Mid_L_JNT/Rig_FIN_with_spoon:Index_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_L_JNT/Rig_FIN_with_spoon:Middle_Mid_L_JNT1
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_L_JNT/Rig_FIN_with_spoon:Middle_Mid_L_JNT1/Rig_FIN_with_spoon:Middle_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_L_JNT/Rig_FIN_with_spoon:Pinky_Mid_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_L_JNT/Rig_FIN_with_spoon:Pinky_Mid_L_JNT/Rig_FIN_with_spoon:Pinky_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_L_JNT/Rig_FIN_with_spoon:Thumb_Mid_L_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_Bind_JNT/Rig_FIN_with_spoon:Elbow_L_Bind_JNT/Rig_FIN_with_spoon:Hand_L_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_L_JNT/Rig_FIN_with_spoon:Thumb_Mid_L_JNT/Rig_FIN_with_spoon:Thumb_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_FK_JNT/Rig_FIN_with_spoon:Elbow_L_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_FK_JNT/Rig_FIN_with_spoon:Elbow_L_FK_JNT/Rig_FIN_with_spoon:Hand_L_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_IK_JNT/Rig_FIN_with_spoon:Elbow_L_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_L_IK_JNT/Rig_FIN_with_spoon:Elbow_L_IK_JNT/Rig_FIN_with_spoon:Hand_L_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Index_Base_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Index_Base_R_JNT/Rig_FIN_with_spoon:Index_Mid_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Index_Base_R_JNT/Rig_FIN_with_spoon:Index_Mid_R_JNT/Rig_FIN_with_spoon:Index_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_R_JNT/Rig_FIN_with_spoon:Middle_Mid_R_JNT1
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Middle_Base_R_JNT/Rig_FIN_with_spoon:Middle_Mid_R_JNT1/Rig_FIN_with_spoon:Middle_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_R_JNT/Rig_FIN_with_spoon:Pinky_Mid_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Pinky_Base_R_JNT/Rig_FIN_with_spoon:Pinky_Mid_R_JNT/Rig_FIN_with_spoon:Pinky_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_R_JNT/Rig_FIN_with_spoon:Thumb_Mid_R_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_Bind_JNT/Rig_FIN_with_spoon:Elbow_R_Bind_JNT/Rig_FIN_with_spoon:Hand_R_Bind_JNT/Rig_FIN_with_spoon:Thumb_Base_R_JNT/Rig_FIN_with_spoon:Thumb_Mid_R_JNT/Rig_FIN_with_spoon:Thumb_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_FK_JNT/Rig_FIN_with_spoon:Elbow_R_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_FK_JNT/Rig_FIN_with_spoon:Elbow_R_FK_JNT/Rig_FIN_with_spoon:Hand_R_FK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_IK_JNT/Rig_FIN_with_spoon:Elbow_R_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Clavical_R_IK_JNT/Rig_FIN_with_spoon:Elbow_R_IK_JNT/Rig_FIN_with_spoon:Hand_R_IK_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT/Rig_FIN_with_spoon:Yogurt_2_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT/Rig_FIN_with_spoon:Yogurt_2_JNT/Rig_FIN_with_spoon:Yogurt_3_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT/Rig_FIN_with_spoon:Yogurt_2_JNT/Rig_FIN_with_spoon:Yogurt_3_JNT/Rig_FIN_with_spoon:Yogurt_4_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spine_1_JNT/Rig_FIN_with_spoon:Spine_2_JNT/Rig_FIN_with_spoon:Top_Of_Cup_JNT/Rig_FIN_with_spoon:Yogurt_1_JNT/Rig_FIN_with_spoon:Yogurt_2_JNT/Rig_FIN_with_spoon:Yogurt_3_JNT/Rig_FIN_with_spoon:Yogurt_4_JNT/Rig_FIN_with_spoon:Yogurt_Tip_NOBIND_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Rig_FIN_with_spoon:Root_JNT/Rig_FIN_with_spoon:Spoon_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Thumb_Base_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Thumb_Base_JNT/Thumb_Mid_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Thumb_Base_JNT/Thumb_Mid_JNT/Thumb_Tip_JNT
+        weight: 1
+      - path: Joints/Main_Arm_JNT/Wrist_JNT/Thumb_Base_JNT/Thumb_Mid_JNT/Thumb_Tip_JNT/Thumb_END_NOBIND_JNT
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
