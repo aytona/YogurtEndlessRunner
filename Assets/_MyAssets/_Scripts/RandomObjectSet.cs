@@ -24,7 +24,7 @@ public class RandomObjectSet : MonoBehaviour {
 
     #region MonoBehaviour
 
-    void Start()
+    void Awake()
     {
         if (multi)
         {
@@ -65,7 +65,7 @@ public class RandomObjectSet : MonoBehaviour {
         if (multi)
         {
             // Have all 3 items active
-            if (randNum < 25 && maxNumOfObjects == 3)
+            if (randNum < 25 && maxNumOfObjects > 2)
             {
                 for (int i = 0; i < setObjects.Length; i++)
                 {
