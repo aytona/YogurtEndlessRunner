@@ -139,7 +139,6 @@ public class GameController : MonoBehaviour
             pauseButton.transform.Translate(Vector3.up * Time.deltaTime * 0.2f, Space.Self);
             StartCoroutine(ShowEndScreen());
         }
-		Debug.Log((int)GameManager.Instance.gameSettings.distance);
 	}
 
     #endregion MonoBehaviour
