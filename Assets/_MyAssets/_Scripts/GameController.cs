@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
     /// <summary>
     /// Reference to the hand ai script.
     /// </summary>
-    private HandAI _hand;
+    //private HandAI _hand;
 
     private ItemGenerator spawnPool;
 
@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour
 
     void Start () {
         _player = FindObjectOfType<PlayerMovement>();
-        _hand = FindObjectOfType<HandAI>();
+        //_hand = FindObjectOfType<HandAI>();
         score.text = "0000000";
         //if (allowDemo)
             

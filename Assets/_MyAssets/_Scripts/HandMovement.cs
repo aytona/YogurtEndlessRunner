@@ -11,7 +11,7 @@ public class HandMovement : MonoBehaviour
     /// Array of targets, where the player can move to.
     /// </summary>
     [SerializeField]
-    private Transform[] targets;
+    private Transform[] targets = null;
 
     [Tooltip("Speed at which the hand will move between planes and when grabbing.")]
     /// <summary>

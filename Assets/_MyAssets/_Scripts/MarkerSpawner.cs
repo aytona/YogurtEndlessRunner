@@ -77,7 +77,7 @@ public class MarkerSpawner : MonoBehaviour {
 			(int)(GameManager.Instance.gameSettings.distance + offset) % (int)(nextDistance) == 0) {
                 if (nextDistance - GameManager.Instance.gameSettings.distance < 1.0f + offset) // Should prevent multiple spawns at once
                 {
-                    Debug.Log("Spawning Flag");
+                    //Debug.Log("Spawning Flag");
                     SpawnFlag();
                 }
 		}
