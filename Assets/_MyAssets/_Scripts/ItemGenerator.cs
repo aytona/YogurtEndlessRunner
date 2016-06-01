@@ -25,7 +25,7 @@ public class ItemGenerator : MonoBehaviour {
 
     [Tooltip("Array of targets, where the items and obstacles generate at")]
     [SerializeField]
-    private Transform targets;
+    private Transform targets = null;
 
     [Tooltip("Item Ratio")]
     public int itemRatio;
@@ -64,7 +64,7 @@ public class ItemGenerator : MonoBehaviour {
     // private bool willGrow = true;
     private GameController _gc;
 
-    private GameSettings _settings;
+    //private GameSettings _settings;
 
     private bool canShuffle = false;
 
@@ -77,7 +77,7 @@ public class ItemGenerator : MonoBehaviour {
         // TODO: Current level number should affect the itemRatio and obstacleRatio in someway.
         // EX: itemRatio *= level * 0.x; (Or any variation)
         _gc = FindObjectOfType<GameController>();
-        _settings = FindObjectOfType<GameSettings>();
+        //_settings = FindObjectOfType<GameSettings>();
         // Pool item objects
         items = new List<GameObject>();
         for (int i = 0; i < itemRatio; i++)

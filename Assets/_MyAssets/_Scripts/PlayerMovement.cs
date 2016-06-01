@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     /// Array of targets, where the player can move to.
     /// </summary>
     [SerializeField]
-    private TransformArray2D[] targets;
+    private TransformArray2D[] targets = null;
 
     /// <summary>
     /// Device the game is currently being played on. 0 - iPhone4, 1 - iPhone5, 2 - iPad.

@@ -18,7 +18,7 @@ public class RandomObjectSet : MonoBehaviour {
 
     private int maxPercent = 100;
 
-    private int lastPosition;
+    //private int lastPosition;
 
     #endregion Variables
 
