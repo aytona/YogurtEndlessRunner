@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
         score.text = "0000000";
         //if (allowDemo)
             
-        //StartButton.SetActive(true);
+        StartButton.SetActive(true);
         GameManager.Instance.gameSettings.gameRestart = true;
         PauseIcon.GetComponentInChildren<Button>().interactable = false;
         paused = false;     // Might want to initialize pause as true if we want the game to be paused at the start
@@ -100,10 +100,10 @@ public class GameController : MonoBehaviour
         startImage = StartButton.GetComponent<Image>();
         openingImage = OpeningScreen.GetComponent<RawImage>();
         placeHolder = OpeningScreen.GetComponentInChildren<Image>();
-        /*if (GameManager.Instance.currentAspect == DeviceAspect.iPhone5)
+        if (GameManager.Instance.currentAspect == DeviceAspect.iPhone5)
         {
             placeHolder.sprite = iPhone5Opening;
-        }*/
+        }
 		sceneName = SceneManager.GetActiveScene().name;
 	}
 
@@ -117,8 +117,7 @@ public class GameController : MonoBehaviour
         if (gameStarted)
         {
             StartCoroutine(SceneTransition());
-            //StartButton.transform.Translate(-Vector3.right * Time.deltaTime, Space.Self);
-            StartButton.GetComponent<Image>().CrossFadeAlpha(0, 1, false);
+            StartButton.transform.Translate(-Vector3.right * Time.deltaTime, Space.Self);
         }
         if (paused)
         {
