@@ -63,6 +63,7 @@ public class ItemGenerator : MonoBehaviour {
 
     // private bool willGrow = true;
     private GameController _gc;
+    private Game _gameController;
 
     private GameSettings _settings;
 
@@ -77,6 +78,7 @@ public class ItemGenerator : MonoBehaviour {
         // TODO: Current level number should affect the itemRatio and obstacleRatio in someway.
         // EX: itemRatio *= level * 0.x; (Or any variation)
         _gc = FindObjectOfType<GameController>();
+        _gameController = FindObjectOfType<Game>();
         _settings = FindObjectOfType<GameSettings>();
         // Pool item objects
         items = new List<GameObject>();
@@ -198,7 +200,7 @@ public class ItemGenerator : MonoBehaviour {
     private IEnumerator SpawnLoop()
     {
         GroundSpawn();
-        if (_gc.currentLevel %3 == 0)
+        if ((_gc != null && _gc.currentLevel %3 == 0) || (_gameController != null && _gameController.currentLevel %3 == 0))
         {
             if (canShuffle)
             {
@@ -241,7 +243,7 @@ public class ItemGenerator : MonoBehaviour {
 
     public void UpdateRepeatRate()
     {
-        if (_gc.currentLevel % 3 == 0)
+        if ((_gc != null && _gc.currentLevel % 3 == 0) || (_gameController != null && _gameController.currentLevel % 3 == 0))
         {
             groundRepeatRate -= 0.3f;
             if (groundRepeatRate < maxRepeatRate)

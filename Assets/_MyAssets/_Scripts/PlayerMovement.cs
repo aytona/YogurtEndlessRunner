@@ -245,6 +245,7 @@ public class PlayerMovement : MonoBehaviour
     /// Reference to the game controller.
     /// </summary>
     private GameController m_GameController;
+    private Game m_GC;
 
     #endregion Variables
 
@@ -255,6 +256,7 @@ public class PlayerMovement : MonoBehaviour
         // Get all references needed
         m_RigidBody = GetComponent<Rigidbody>();
         m_GameController = FindObjectOfType<GameController>();
+        m_GC = FindObjectOfType<Game>();
         //m_Renderder = GetComponentInChildren<SkinnedMeshRenderer>();  
         m_Animations = GetComponentInChildren<PlayerAnimation>();
         m_PlayerAudio = GetComponent<PlayerAudioController>();
@@ -341,13 +343,19 @@ public class PlayerMovement : MonoBehaviour
             AttachToHand(hand.yogurtGrabPos);
             StartCoroutine(FadeOutSprite(shadowSprite));
             m_CurrentState = State.EndGame;
-            m_GameController.SetGameOver(true);
+            if (m_GameController != null)
+                m_GameController.SetGameOver(true);
+            else if (m_GC != null)
+                m_GC.SetGameOver(true);
         }
 
         if (other.CompareTag("Collectable"))        // Pick up a collectable that gives you points
         {
             //Debug.Log("CANDY!");
-            m_GameController.IncrementScore(125);   // Increment score [NOTE: there is a better way to do this.]
+            if (m_GameController != null)
+                m_GameController.IncrementScore(125);   // Increment score [NOTE: there is a better way to do this.]
+            else if (m_GC != null)
+                m_GC.IncrementScore(125);
             m_PlayerAudio.PlaySound(1);
         }
 
