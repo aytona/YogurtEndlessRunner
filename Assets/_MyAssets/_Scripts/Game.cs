@@ -12,11 +12,6 @@ public class Game : MonoBehaviour {
     /// </summary>
     private PlayerMovement _player;
 
-    /// <summary>
-    /// Reference to the hand ai script.
-    /// </summary>
-    private HandAI _hand;
-
     private ItemGenerator spawnPool;
 
     /// <summary>
@@ -65,7 +60,6 @@ public class Game : MonoBehaviour {
     void Start()
     {
         _player = FindObjectOfType<PlayerMovement>();
-        _hand = FindObjectOfType<HandAI>();
         menuManager = FindObjectOfType<MenuManager>();
         score.text = "0000000";
 
