@@ -1,0 +1,130 @@
+fileFormatVersion: 2
+guid: 4b431aa9910ffa043bca00bf5a15a71e
+timeCreated: 1464902867
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Flag_Marker
+    21300002: Flag_BestRun
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 512
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  - buildTarget: Android
+    maxTextureSize: 512
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: Flag_Marker
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 528
+        width: 668
+        height: 485
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 157, y: -105.5}
+        - {x: 157, y: -97.5}
+        - {x: 118, y: -90.5}
+        - {x: 157, y: -49.5}
+        - {x: 157, y: 76.5}
+        - {x: -106, y: 118.5}
+        - {x: -142, y: 118.5}
+        - {x: -148, y: 115.5}
+        - {x: -164, y: 102.5}
+        - {x: -164, y: -107.5}
+        - {x: -158, y: -111.5}
+        - {x: -154, y: -113.5}
+        - {x: -147, y: -115.5}
+        - {x: -128, y: -115.5}
+        - {x: -119, y: -113.5}
+        - {x: 90, y: -110.5}
+        - {x: 154, y: -108.5}
+    - name: Flag_BestRun
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 42
+        width: 655
+        height: 467
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 71.5, y: -94}
+        - {x: -125.5, y: -88}
+        - {x: -127.5, y: -76}
+        - {x: 158.5, y: -76}
+        - {x: 158.5, y: -68}
+        - {x: 132.5, y: 6}
+        - {x: 158.5, y: 82}
+        - {x: 158.5, y: 85}
+        - {x: -112.5, y: 90}
+        - {x: -115.5, y: 117}
+        - {x: -139.5, y: 117}
+        - {x: -147.5, y: 116}
+        - {x: -155.5, y: 104}
+        - {x: -152.5, y: 89}
+        - {x: -144.5, y: -87}
+        - {x: -162.5, y: -94}
+        - {x: -162.5, y: -111}
+        - {x: -156.5, y: -116}
+        - {x: 31.5, y: -116}
+        - {x: 158.5, y: -110}
+        - {x: 158.5, y: -100}
+        - {x: 152.5, y: -98}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
