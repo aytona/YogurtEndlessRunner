@@ -39,6 +39,7 @@ public class GameSettings : MonoBehaviour {
     private float maxSpeed;
     private bool afterDelay = true;
     private GameController _gc;
+    private Game gameController;
 
     #endregion Variables
 
@@ -51,6 +52,7 @@ public class GameSettings : MonoBehaviour {
         maxSpeed = gameSpeedDefault;
         distance = 0;
         _gc = FindObjectOfType<GameController>();
+        gameController = FindObjectOfType<Game>();
     }
 
     // Probably can make this into a switch statement instead of in update
@@ -65,6 +67,7 @@ public class GameSettings : MonoBehaviour {
             maxSpeed = gameSpeedDefault;
             gameRestart = false;
             _gc = FindObjectOfType<GameController>();
+            gameController = FindObjectOfType<Game>();
 			distance = 0;
         }
 
@@ -106,7 +109,10 @@ public class GameSettings : MonoBehaviour {
     {
         afterDelay = false;
         yield return new WaitForSeconds(delay);
-        _gc.AddLevel();
+        if (_gc != null)
+            _gc.AddLevel();
+        else if (gameController != null)
+            gameController.AddLevel();
         if (maxSpeed < speedCap)
             maxSpeed += speedMultiplier;
         else
