@@ -34,7 +34,7 @@ public class GameManager : Singleton<GameManager> {
 
 #if UNITY_EDITOR
 
-    void Awake()
+    void Start()
     {
         if (Camera.main.aspect >= iPhone5Aspect)
         {
