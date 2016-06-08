@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ObjectTriggers : MonoBehaviour
 {
-
     #region MonoBehaviour
 
     void OnTriggerEnter(Collider other)

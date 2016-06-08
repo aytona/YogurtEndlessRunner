@@ -247,6 +247,8 @@ public class PlayerMovement : MonoBehaviour
     private GameController m_GameController;
     private Game m_GC;
 
+    private EffectController effectController;
+
     #endregion Variables
 
     #region Monobehaviour
@@ -260,6 +262,8 @@ public class PlayerMovement : MonoBehaviour
         //m_Renderder = GetComponentInChildren<SkinnedMeshRenderer>();  
         m_Animations = GetComponentInChildren<PlayerAnimation>();
         m_PlayerAudio = GetComponent<PlayerAudioController>();
+
+        effectController = GetComponentInChildren<EffectController>();
 
         // Get the current device.  Sets the positions for the hand to move to and from
         currentDevice = (int)GameManager.Instance.currentAspect;
@@ -352,6 +356,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Collectable"))        // Pick up a collectable that gives you points
         {
             //Debug.Log("CANDY!");
+            effectController.Collected();
             if (m_GameController != null)
                 m_GameController.IncrementScore(125);   // Increment score [NOTE: there is a better way to do this.]
             else if (m_GC != null)
@@ -361,6 +366,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("Obstacle"))           // Hit an obstacle
         {
+            effectController.Hit();
             //Debug.Log("OBSTACLE!");
             m_PlayerAudio.PlaySound(2);
             GetHit();
@@ -368,6 +374,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("ObstacleLarge"))           // Hit a large obstacle
         {
+            effectController.Hit();
             //Debug.Log("OBSTACLE!");
             m_PlayerAudio.PlaySound(2);
             GetBigHit();
