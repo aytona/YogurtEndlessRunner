@@ -87,7 +87,7 @@ public class MarkerSpawner : MonoBehaviour {
 		flagSpawned = true;
 		nextDistance += repeatDistance;
 		counter++;
-		GameObject flag = Instantiate(_flagPrefab, transform.position, Quaternion.identity) as GameObject;
+		GameObject flag = Instantiate(_flagPrefab, transform.position, transform.rotation) as GameObject;   // The platform tilt seems to be around 54 degree on X
 		flag.GetComponent<DistanceMarker>().distanceText = (repeatDistance * (counter - 1)).ToString() + "M";
 		flagSpawned = false;
 
