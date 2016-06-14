@@ -167,5 +167,6 @@ public class Game : MonoBehaviour {
         distanceTraveled.text = (int)GameManager.Instance.gameSettings.distance + "m";
         GameManager.Instance.gameData.SetTotalDistance(GameManager.Instance.gameSettings.distance);
         GameManager.Instance.gameData.SetTotalScore(playerScore);
+        GameManager.Instance.gameData.SetBestDistance(GameManager.Instance.gameSettings.distance);
     }
 }
