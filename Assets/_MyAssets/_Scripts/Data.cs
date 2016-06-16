@@ -51,4 +51,31 @@ public class Data : Singleton<Data>
         int totalScore = PlayerPrefs.GetInt("TotalScore", 0);
         return totalScore;
     }
+
+    public void SetBestScore(int playerScore)
+    {
+        int lastScore = PlayerPrefs.GetInt("BestScore", 0);
+        if (playerScore > lastScore)
+        {
+            PlayerPrefs.SetInt("BestScore", playerScore);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("BestScore", lastScore);
+        }
+    }
+
+    public int GetBestScore()
+    {
+        int bestScore = PlayerPrefs.GetInt("BestScore", 0);
+        return bestScore;
+    }
+
+    public void ResetStats()
+    {
+        PlayerPrefs.SetFloat("TotalDistance", 0);
+        PlayerPrefs.SetFloat("BestDistance", 0);
+        PlayerPrefs.SetInt("TotalScore", 0);
+        PlayerPrefs.SetInt("BestScore", 0);
+    }
 }
