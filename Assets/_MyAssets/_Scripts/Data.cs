@@ -20,6 +20,25 @@ public class Data : Singleton<Data>
         return totalDistance;
     }
 
+    public void SetBestDistance(float distance)
+    {
+        float lastDistance = PlayerPrefs.GetFloat("BestDistance", 0);
+        if (distance > lastDistance)
+        {
+            PlayerPrefs.SetFloat("BestDistance", distance);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("BestDistance", lastDistance);
+        }
+    }
+
+    public float GetBestDistance()
+    {
+        float bestDistance = PlayerPrefs.GetFloat("BestDistance", 0);
+        return bestDistance;
+    }
+
     public void SetTotalScore(int playerScore)
     {
         int totalScore = PlayerPrefs.GetInt("TotalScore", 0);

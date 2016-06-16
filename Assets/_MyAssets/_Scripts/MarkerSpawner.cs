@@ -3,15 +3,11 @@ using System.Collections;
 
 public class MarkerSpawner : MonoBehaviour {
 
-	// Average Speed: s = d/t
-	// Known: Speed of flag, and distance it needs to travel (s and d)
-	// Find: Total time (t)
-	// Time formula: t = d/s
-	// Total distance = markerspaner.x - player.x
-	// Speed = gamesettings.gamespeed (need average speed)
-
 	[Tooltip("The prefab of the flag")]
 	public GameObject _flagPrefab;
+
+    [Tooltip("The prefab of the best distance flag")]
+    public GameObject _bestFlagPrefab;
 
 	[Tooltip("The distance the flag spawns on every..\tNeeds to be min 32m")]
 	public int repeatDistance;
@@ -19,16 +15,16 @@ public class MarkerSpawner : MonoBehaviour {
 	[Tooltip("Player object")]
 	public Transform player;
 
-	/// <summary>
-	/// The counter of flags spawned
-	/// </summary>
-	private int counter = 1;
+    /// <summary>
+    /// The counter of flags spawned
+    /// </summary>
+    private int counter = 1;
 
 	private float offset;
 	private float nextDistance;
+    private float bestDistance;
 
-	private bool setOffset = false;
-	private bool flagSpawned = false;
+    private bool bestDistanceSpawned;
 
     private float iPadOffset = 4.125f;
     private float iPhone4Offset = 4.305f;
@@ -36,8 +32,10 @@ public class MarkerSpawner : MonoBehaviour {
 
 	void Start() {
         counter = 1;
-        repeatDistance = 25;
+        repeatDistance = 25;                // Do we want this manually set like this?
 		nextDistance = (repeatDistance - offset) * counter;
+        bestDistance = GameManager.Instance.gameData.GetBestDistance();
+        bestDistanceSpawned = false;
 		if (player == null) {
 			player = FindObjectOfType<PlayerMovement>().parentObject.transform;
 		}
@@ -56,42 +54,25 @@ public class MarkerSpawner : MonoBehaviour {
 	}
 
 	void Update() {
-		/*if (GameManager.Instance.gameSettings.gameStart && !setOffset) {
-			offset = transform.position.x - player.transform.position.x;
-
-			setOffset = true;
-			flagSpawned = false;
-		}*/
-
-        if(!setOffset)
-        {
-            setOffset = true;
-            flagSpawned = false;
+        if (nextDistance - GameManager.Instance.gameSettings.distance < 1.0f + offset) { // Should prevent multiple spawns at once
+            SpawnFlag();
         }
-
-		/*if (GameManager.Instance.gameSettings.gameRestart && setOffset) {
-			setOffset = false;
-		}*/
-
-		else if (offset > 0 && !flagSpawned &&
-			(int)(GameManager.Instance.gameSettings.distance + offset) % (int)(nextDistance) == 0) {
-                if (nextDistance - GameManager.Instance.gameSettings.distance < 1.0f + offset) // Should prevent multiple spawns at once
-                {
-                    //Debug.Log("Spawning Flag");
-                    SpawnFlag();
-                }
-		}
+        if ((bestDistance > 0f && bestDistance - GameManager.Instance.gameSettings.distance < 1.0f + offset)
+            && !bestDistanceSpawned) {
+            SpawnBestFlag();
+        }
 	}
 
 	private void SpawnFlag() {
-		flagSpawned = true;
 		nextDistance += repeatDistance;
 		counter++;
-		GameObject flag = Instantiate(_flagPrefab, transform.position, Quaternion.identity) as GameObject;
+		GameObject flag = Instantiate(_flagPrefab, transform.position, transform.rotation) as GameObject;   // The platform tilt seems to be around 54 degree on X
 		flag.GetComponent<DistanceMarker>().distanceText = (repeatDistance * (counter - 1)).ToString() + "M";
-		flagSpawned = false;
-
-        // Debug.Log(GameManager.Instance.gameSettings.distance);
-        // Debug.Log(GameManager.Instance.gameSettings.distance + offset);
 	}
+
+    private void SpawnBestFlag() {
+        bestDistanceSpawned = true;
+        GameObject flag = Instantiate(_bestFlagPrefab, transform.position, transform.rotation) as GameObject;
+        flag.GetComponent<DistanceMarker>().distanceText = (bestDistance.ToString("F2") + "M");
+    }
 }
