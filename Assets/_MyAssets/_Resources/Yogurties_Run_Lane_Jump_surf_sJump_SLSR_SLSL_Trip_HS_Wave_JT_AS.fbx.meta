@@ -1,0 +1,862 @@
+fileFormatVersion: 2
+guid: 21ecf2823640b1740bdfec86d9c5ab42
+timeCreated: 1466107412
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Ankel_L_JNT
+    100002: Ankel_R_JNT
+    100004: Ball_L_JNT
+    100006: Ball_R_JNT
+    100008: Clavical_L_Bind_JNT
+    100010: Clavical_L_FK_JNT
+    100012: Clavical_L_IK_JNT
+    100014: Clavical_R_Bind_JNT
+    100016: Clavical_R_FK_JNT
+    100018: Clavical_R_IK_JNT
+    100020: Elbow_L_Bind_JNT
+    100022: Elbow_L_FK_JNT
+    100024: Elbow_L_IK_JNT
+    100026: Elbow_R_Bind_JNT
+    100028: Elbow_R_FK_JNT
+    100030: Elbow_R_IK_JNT
+    100032: Geo
+    100034: Hand_L_Bind_JNT
+    100036: Hand_L_FK_JNT
+    100038: Hand_L_IK_JNT
+    100040: Hand_R_Bind_JNT
+    100042: Hand_R_FK_JNT
+    100044: Hand_R_IK_JNT
+    100046: Hip_L_JNT
+    100048: Hip_R_JNT
+    100050: Index_Base_L_JNT
+    100052: Index_Base_R_JNT
+    100054: Index_Mid_L_JNT
+    100056: Index_Mid_R_JNT
+    100058: Index_Tip_NOBIND_L_JNT
+    100060: Index_Tip_NOBIND_R_JNT
+    100062: JNT
+    100064: Knee_L_JNT
+    100066: Knee_R_JNT
+    100068: Middle_Base_L_JNT
+    100070: Middle_Base_R_JNT
+    100072: Middle_Mid_L_JNT1
+    100074: Middle_Mid_R_JNT1
+    100076: Middle_Tip_L_NOBIND_JNT
+    100078: Middle_Tip_R_NOBIND_JNT
+    100080: Pinky_Base_L_JNT
+    100082: Pinky_Base_R_JNT
+    100084: Pinky_Mid_L_JNT
+    100086: Pinky_Mid_R_JNT
+    100088: Pinky_Tip_NOBIND_L_JNT
+    100090: Pinky_Tip_NOBIND_R_JNT
+    100092: Root_JNT
+    100094: Spine_1_JNT
+    100096: Spine_2_JNT
+    100098: Spoon_JNT
+    100100: Sppon_GEO
+    100102: Thumb_Base_L_JNT
+    100104: Thumb_Base_R_JNT
+    100106: Thumb_Mid_L_JNT
+    100108: Thumb_Mid_R_JNT
+    100110: Thumb_Tip_L_NOBIND_JNT
+    100112: Thumb_Tip_R_NOBIND_JNT
+    100114: Toe_Tip_L_JNT
+    100116: Toe_Tip_R_JNT
+    100118: Top_Of_Cup_JNT
+    100120: Yogurt_1_JNT
+    100122: Yogurt_2_JNT
+    100124: Yogurt_3_JNT
+    100126: Yogurt_4_JNT
+    100128: yogurt_mesh
+    100130: Yogurt_Tip_NOBIND_JNT
+    100132: //RootNode
+    400000: Ankel_L_JNT
+    400002: Ankel_R_JNT
+    400004: Ball_L_JNT
+    400006: Ball_R_JNT
+    400008: Clavical_L_Bind_JNT
+    400010: Clavical_L_FK_JNT
+    400012: Clavical_L_IK_JNT
+    400014: Clavical_R_Bind_JNT
+    400016: Clavical_R_FK_JNT
+    400018: Clavical_R_IK_JNT
+    400020: Elbow_L_Bind_JNT
+    400022: Elbow_L_FK_JNT
+    400024: Elbow_L_IK_JNT
+    400026: Elbow_R_Bind_JNT
+    400028: Elbow_R_FK_JNT
+    400030: Elbow_R_IK_JNT
+    400032: Geo
+    400034: Hand_L_Bind_JNT
+    400036: Hand_L_FK_JNT
+    400038: Hand_L_IK_JNT
+    400040: Hand_R_Bind_JNT
+    400042: Hand_R_FK_JNT
+    400044: Hand_R_IK_JNT
+    400046: Hip_L_JNT
+    400048: Hip_R_JNT
+    400050: Index_Base_L_JNT
+    400052: Index_Base_R_JNT
+    400054: Index_Mid_L_JNT
+    400056: Index_Mid_R_JNT
+    400058: Index_Tip_NOBIND_L_JNT
+    400060: Index_Tip_NOBIND_R_JNT
+    400062: JNT
+    400064: Knee_L_JNT
+    400066: Knee_R_JNT
+    400068: Middle_Base_L_JNT
+    400070: Middle_Base_R_JNT
+    400072: Middle_Mid_L_JNT1
+    400074: Middle_Mid_R_JNT1
+    400076: Middle_Tip_L_NOBIND_JNT
+    400078: Middle_Tip_R_NOBIND_JNT
+    400080: Pinky_Base_L_JNT
+    400082: Pinky_Base_R_JNT
+    400084: Pinky_Mid_L_JNT
+    400086: Pinky_Mid_R_JNT
+    400088: Pinky_Tip_NOBIND_L_JNT
+    400090: Pinky_Tip_NOBIND_R_JNT
+    400092: Root_JNT
+    400094: Spine_1_JNT
+    400096: Spine_2_JNT
+    400098: Spoon_JNT
+    400100: Sppon_GEO
+    400102: Thumb_Base_L_JNT
+    400104: Thumb_Base_R_JNT
+    400106: Thumb_Mid_L_JNT
+    400108: Thumb_Mid_R_JNT
+    400110: Thumb_Tip_L_NOBIND_JNT
+    400112: Thumb_Tip_R_NOBIND_JNT
+    400114: Toe_Tip_L_JNT
+    400116: Toe_Tip_R_JNT
+    400118: Top_Of_Cup_JNT
+    400120: Yogurt_1_JNT
+    400122: Yogurt_2_JNT
+    400124: Yogurt_3_JNT
+    400126: Yogurt_4_JNT
+    400128: yogurt_mesh
+    400130: Yogurt_Tip_NOBIND_JNT
+    400132: //RootNode
+    4300000: yogurt_mesh
+    4300002: Sppon_GEO
+    7400000: Idle1
+    7400002: Jump2
+    7400004: Wave
+    7400006: Idle2
+    9500000: //RootNode
+    13700000: Sppon_GEO
+    13700002: yogurt_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle1
+      takeName: Take 001
+      firstFrame: 212
+      lastFrame: 239
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Geo
+        weight: 1
+      - path: Geo/Sppon_GEO
+        weight: 1
+      - path: Geo/yogurt_mesh
+        weight: 1
+      - path: JNT
+        weight: 1
+      - path: JNT/Root_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT/Ball_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT/Ball_L_JNT/Toe_Tip_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT/Ball_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT/Ball_R_JNT/Toe_Tip_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT/Index_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT/Index_Mid_L_JNT/Index_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT/Middle_Mid_L_JNT1
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT/Middle_Mid_L_JNT1/Middle_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT/Pinky_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT/Pinky_Mid_L_JNT/Pinky_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT/Thumb_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT/Thumb_Mid_L_JNT/Thumb_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT/Elbow_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT/Elbow_L_FK_JNT/Hand_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT/Elbow_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT/Elbow_L_IK_JNT/Hand_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT/Index_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT/Index_Mid_R_JNT/Index_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT/Middle_Mid_R_JNT1
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT/Middle_Mid_R_JNT1/Middle_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT/Pinky_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT/Pinky_Mid_R_JNT/Pinky_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT/Thumb_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT/Thumb_Mid_R_JNT/Thumb_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT/Elbow_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT/Elbow_R_FK_JNT/Hand_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT/Elbow_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT/Elbow_R_IK_JNT/Hand_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT/Yogurt_4_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT/Yogurt_4_JNT/Yogurt_Tip_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spoon_JNT
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wave
+      takeName: Take 001
+      firstFrame: 240
+      lastFrame: 280
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Geo
+        weight: 1
+      - path: Geo/Sppon_GEO
+        weight: 1
+      - path: Geo/yogurt_mesh
+        weight: 1
+      - path: JNT
+        weight: 1
+      - path: JNT/Root_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT/Ball_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT/Ball_L_JNT/Toe_Tip_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT/Ball_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT/Ball_R_JNT/Toe_Tip_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT/Index_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT/Index_Mid_L_JNT/Index_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT/Middle_Mid_L_JNT1
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT/Middle_Mid_L_JNT1/Middle_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT/Pinky_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT/Pinky_Mid_L_JNT/Pinky_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT/Thumb_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT/Thumb_Mid_L_JNT/Thumb_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT/Elbow_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT/Elbow_L_FK_JNT/Hand_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT/Elbow_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT/Elbow_L_IK_JNT/Hand_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT/Index_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT/Index_Mid_R_JNT/Index_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT/Middle_Mid_R_JNT1
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT/Middle_Mid_R_JNT1/Middle_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT/Pinky_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT/Pinky_Mid_R_JNT/Pinky_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT/Thumb_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT/Thumb_Mid_R_JNT/Thumb_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT/Elbow_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT/Elbow_R_FK_JNT/Hand_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT/Elbow_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT/Elbow_R_IK_JNT/Hand_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT/Yogurt_4_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT/Yogurt_4_JNT/Yogurt_Tip_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spoon_JNT
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jump2
+      takeName: Take 001
+      firstFrame: 283
+      lastFrame: 323
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Geo
+        weight: 1
+      - path: Geo/Sppon_GEO
+        weight: 1
+      - path: Geo/yogurt_mesh
+        weight: 1
+      - path: JNT
+        weight: 1
+      - path: JNT/Root_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT/Ball_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT/Ball_L_JNT/Toe_Tip_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT/Ball_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT/Ball_R_JNT/Toe_Tip_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT/Index_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT/Index_Mid_L_JNT/Index_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT/Middle_Mid_L_JNT1
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT/Middle_Mid_L_JNT1/Middle_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT/Pinky_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT/Pinky_Mid_L_JNT/Pinky_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT/Thumb_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT/Thumb_Mid_L_JNT/Thumb_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT/Elbow_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT/Elbow_L_FK_JNT/Hand_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT/Elbow_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT/Elbow_L_IK_JNT/Hand_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT/Index_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT/Index_Mid_R_JNT/Index_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT/Middle_Mid_R_JNT1
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT/Middle_Mid_R_JNT1/Middle_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT/Pinky_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT/Pinky_Mid_R_JNT/Pinky_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT/Thumb_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT/Thumb_Mid_R_JNT/Thumb_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT/Elbow_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT/Elbow_R_FK_JNT/Hand_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT/Elbow_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT/Elbow_R_IK_JNT/Hand_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT/Yogurt_4_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT/Yogurt_4_JNT/Yogurt_Tip_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spoon_JNT
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle2
+      takeName: Take 001
+      firstFrame: 330
+      lastFrame: 355
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Geo
+        weight: 1
+      - path: Geo/Sppon_GEO
+        weight: 1
+      - path: Geo/yogurt_mesh
+        weight: 1
+      - path: JNT
+        weight: 1
+      - path: JNT/Root_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT/Ball_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_L_JNT/Knee_L_JNT/Ankel_L_JNT/Ball_L_JNT/Toe_Tip_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT/Ball_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Hip_R_JNT/Knee_R_JNT/Ankel_R_JNT/Ball_R_JNT/Toe_Tip_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT/Index_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Index_Base_L_JNT/Index_Mid_L_JNT/Index_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT/Middle_Mid_L_JNT1
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Middle_Base_L_JNT/Middle_Mid_L_JNT1/Middle_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT/Pinky_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Pinky_Base_L_JNT/Pinky_Mid_L_JNT/Pinky_Tip_NOBIND_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT/Thumb_Mid_L_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_Bind_JNT/Elbow_L_Bind_JNT/Hand_L_Bind_JNT/Thumb_Base_L_JNT/Thumb_Mid_L_JNT/Thumb_Tip_L_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT/Elbow_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_FK_JNT/Elbow_L_FK_JNT/Hand_L_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT/Elbow_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_L_IK_JNT/Elbow_L_IK_JNT/Hand_L_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT/Index_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Index_Base_R_JNT/Index_Mid_R_JNT/Index_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT/Middle_Mid_R_JNT1
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Middle_Base_R_JNT/Middle_Mid_R_JNT1/Middle_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT/Pinky_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Pinky_Base_R_JNT/Pinky_Mid_R_JNT/Pinky_Tip_NOBIND_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT/Thumb_Mid_R_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_Bind_JNT/Elbow_R_Bind_JNT/Hand_R_Bind_JNT/Thumb_Base_R_JNT/Thumb_Mid_R_JNT/Thumb_Tip_R_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT/Elbow_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_FK_JNT/Elbow_R_FK_JNT/Hand_R_FK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT/Elbow_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Clavical_R_IK_JNT/Elbow_R_IK_JNT/Hand_R_IK_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT/Yogurt_4_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spine_1_JNT/Spine_2_JNT/Top_Of_Cup_JNT/Yogurt_1_JNT/Yogurt_2_JNT/Yogurt_3_JNT/Yogurt_4_JNT/Yogurt_Tip_NOBIND_JNT
+        weight: 1
+      - path: JNT/Root_JNT/Spoon_JNT
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

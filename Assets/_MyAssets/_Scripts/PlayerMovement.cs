@@ -306,7 +306,17 @@ public class PlayerMovement : MonoBehaviour
         {
             FixedUpdateJump();
 
-            m_Animations.Play(PlayerAnimation.PlayerStates.Jump);
+            if (!isSurfing)
+            {
+                if (Random.Range(0, 20) < 15)
+                    m_Animations.Play(PlayerAnimation.PlayerStates.Jump);
+                else
+                    m_Animations.Play(PlayerAnimation.PlayerStates.Jump2);
+            }
+            else
+            {
+                m_Animations.Play(PlayerAnimation.PlayerStates.Jump);
+            }
             //Debug.Log("Jumping");
             isJumping = false;
         }
