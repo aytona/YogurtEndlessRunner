@@ -7,6 +7,7 @@ public class PlayerAnimation : MonoBehaviour {
     {
         Run,
         Jump,
+        Jump2,
         LeftBump,
         RightBump,
         Surf,
@@ -17,7 +18,7 @@ public class PlayerAnimation : MonoBehaviour {
     [SerializeField]
     private Animator m_Animator;
 
-    private string[] triggerNames = { "isRunning", "jump", "leftBump", "rightBump", "isSurfing", "isCaught", "isGrounded" };
+    private string[] triggerNames = { "isRunning", "jump", "jump2", "leftBump", "rightBump", "isSurfing", "isCaught", "isGrounded" };
 
     public GameObject spoon;
 
@@ -31,11 +32,11 @@ public class PlayerAnimation : MonoBehaviour {
         int num = (int)animation;
         //Debug.Log(triggerNames[num]);
         m_Animator.SetTrigger(triggerNames[num]);
-        if (num == 0 || num == 5)
+        if (num == 0 || num == 6)
         {
             HideSpoon();
         }
-        else if(num == 4)
+        else if(num == 5)
         {
             ShowSpoon();
         }
