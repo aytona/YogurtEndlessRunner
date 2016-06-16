@@ -93,7 +93,10 @@ public class Game : MonoBehaviour {
         if (gameOver)
         {
             gameUI.transform.Translate(Vector3.up * Time.deltaTime * 0.2f, Space.Self);
-            StartCoroutine(ShowEndScreen());
+            if (!calledEndScreen) // Calls this coroutine only once
+            {
+                StartCoroutine(ShowEndScreen());
+            }
         }
     }
 
@@ -159,14 +162,18 @@ public class Game : MonoBehaviour {
         gameOver = b;
     }
 
+    private bool calledEndScreen = false;
+
     IEnumerator ShowEndScreen()
     {
+        calledEndScreen = true;
         yield return new WaitForSeconds(1.5f);
         menuManager.GoToCanvas(3);
         finalScore.text = score.text;
         distanceTraveled.text = (int)GameManager.Instance.gameSettings.distance + "m";
         GameManager.Instance.gameData.SetTotalDistance(GameManager.Instance.gameSettings.distance);
         GameManager.Instance.gameData.SetTotalScore(playerScore);
+        GameManager.Instance.gameData.SetBestScore(playerScore);
         GameManager.Instance.gameData.SetBestDistance(GameManager.Instance.gameSettings.distance);
     }
 }
