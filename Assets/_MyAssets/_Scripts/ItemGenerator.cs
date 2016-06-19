@@ -66,7 +66,7 @@ public class ItemGenerator : MonoBehaviour {
     private Game _gameController;
 
     //private GameSettings _settings;
-
+    private string previousAirSpawn = null;
     private bool canShuffle = false;
 
     #endregion Variables
@@ -184,15 +184,21 @@ public class ItemGenerator : MonoBehaviour {
 
     private void AirSpawn()
     {
+        if (previousAirSpawn == null)
+        {
+            previousAirSpawn = airSpawns[Random.Range(0, airSpawns.Count)].name;
+        }
+
         for (int i = 0; i < airSpawns.Count; i++)
         {
-            if (!airSpawns[i].activeInHierarchy)
+            if (!airSpawns[i].activeInHierarchy && previousAirSpawn != airSpawns[i].name)
             {
                 airSpawns[i].GetComponent<RandomObjectSet>().SetRandomObject();
                 airSpawns[i].transform.position = new Vector3(targets.transform.position.x, targets.transform.position.y + 1.5f, targets.transform.position.z);
                 airSpawns[i].transform.rotation = targets.transform.rotation;
                 airSpawns[i].SetActive(true);
-
+                previousAirSpawn = airSpawns[i].name;
+                
                 break;
             }
         }
