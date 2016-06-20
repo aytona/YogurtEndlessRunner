@@ -121,7 +121,6 @@ public class Game : MonoBehaviour {
     {
         GameManager.Instance.gameSettings.gameRestart = true;
         GameManager.Instance.gameSettings.gameStart = false;
-        //Application.LoadLevel(0);
         SceneManager.LoadScene(sceneName);
     }
 
