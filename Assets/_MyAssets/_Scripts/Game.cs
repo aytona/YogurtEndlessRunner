@@ -81,13 +81,13 @@ public class Game : MonoBehaviour {
         if (paused)
         {
             Time.timeScale = 0;
-            AudioListener.pause = true;
+            //AudioListener.pause = true;
             pauseButton.interactable = false;
         }
         else if (!paused)
         {
             Time.timeScale = 1;
-            AudioListener.pause = false;
+            //AudioListener.pause = false;
             pauseButton.interactable = true;
         }
         if (gameOver)

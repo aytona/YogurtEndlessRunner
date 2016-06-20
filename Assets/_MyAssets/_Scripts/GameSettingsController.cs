@@ -33,5 +33,6 @@ public class GameSettingsController : MonoBehaviour {
     {
         soundButton.GetComponent<Button>().image.overrideSprite = soundSprites[Convert.ToInt32(soundToggle)];
         adsButton.GetComponent<Button>().image.overrideSprite = adsSprites[Convert.ToInt32(adsToggle)];
+        AudioListener.pause = soundToggle;
     }
 }
