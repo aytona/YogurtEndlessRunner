@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: 9ea5772ba8232dd4eb4fa192af5fe9ee
+timeCreated: 1468568067
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Banana.001
+    100002: blueberry
+    100004: browniebites
+    100006: browniebites.001
+    100008: candycoatedchocolat.001
+    100010: candycoatedchocolat.008
+    100012: cherry
+    100014: Cylinder
+    100016: Cylinder.001
+    100018: kiwi
+    100020: //RootNode
+    100022: mango
+    100024: mini-marshmallow
+    100026: mini-marshmallow.001
+    100028: sour_chewy
+    100030: strawberry
+    400000: Banana.001
+    400002: blueberry
+    400004: browniebites
+    400006: browniebites.001
+    400008: candycoatedchocolat.001
+    400010: candycoatedchocolat.008
+    400012: cherry
+    400014: Cylinder
+    400016: Cylinder.001
+    400018: kiwi
+    400020: //RootNode
+    400022: mango
+    400024: mini-marshmallow
+    400026: mini-marshmallow.001
+    400028: sour_chewy
+    400030: strawberry
+    2300000: Banana.001
+    2300002: blueberry
+    2300004: browniebites
+    2300006: browniebites.001
+    2300008: candycoatedchocolat.001
+    2300010: candycoatedchocolat.008
+    2300012: cherry
+    2300014: Cylinder
+    2300016: Cylinder.001
+    2300018: kiwi
+    2300020: mango
+    2300022: mini-marshmallow
+    2300024: mini-marshmallow.001
+    2300026: sour_chewy
+    2300028: strawberry
+    3300000: Banana.001
+    3300002: blueberry
+    3300004: browniebites
+    3300006: browniebites.001
+    3300008: candycoatedchocolat.001
+    3300010: candycoatedchocolat.008
+    3300012: cherry
+    3300014: Cylinder
+    3300016: Cylinder.001
+    3300018: kiwi
+    3300020: mango
+    3300022: mini-marshmallow
+    3300024: mini-marshmallow.001
+    3300026: sour_chewy
+    3300028: strawberry
+    4300000: browniebites.001
+    4300002: candycoatedchocolat.008
+    4300004: mini-marshmallow.001
+    4300006: Cylinder.001
+    4300008: Cylinder
+    4300010: candycoatedchocolat.001
+    4300012: Banana.001
+    4300014: strawberry
+    4300016: sour_chewy
+    4300018: mini-marshmallow
+    4300020: cherry
+    4300022: mango
+    4300024: kiwi
+    4300026: browniebites
+    4300028: blueberry
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
