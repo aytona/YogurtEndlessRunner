@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: 069240119360fb341b8bd882aa17834f
+timeCreated: 1468954357
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: yogurt_impact_00006_0
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 512
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: yogurt_impact_00006_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -69, y: -30}
+        - {x: -92, y: -30}
+        - {x: -93, y: -33}
+        - {x: -93, y: -57}
+        - {x: -85, y: -59}
+        - {x: -67, y: -59}
+        - {x: -65, y: -56}
+        - {x: -65, y: -45}
+        - {x: -67, y: -37}
+      - - {x: 100, y: 16}
+        - {x: 98, y: 15}
+        - {x: 98, y: -13}
+        - {x: 104, y: -16}
+        - {x: 123, y: -16}
+        - {x: 123, y: 11}
+        - {x: 119, y: 16}
+      - - {x: -47, y: 9}
+        - {x: -49, y: 7}
+        - {x: -49, y: 3}
+        - {x: -46, y: 0}
+        - {x: -42, y: 0}
+        - {x: -39, y: 3}
+        - {x: -39, y: 7}
+        - {x: -41, y: 9}
+      - - {x: -26, y: 44}
+        - {x: -27, y: 43}
+        - {x: -27, y: 35}
+        - {x: -18, y: 35}
+        - {x: -18, y: 43}
+        - {x: -20, y: 44}
+      - - {x: -111, y: 69}
+        - {x: -115, y: 65}
+        - {x: -115, y: 40}
+        - {x: -97, y: 40}
+        - {x: -85, y: 45}
+        - {x: -85, y: 69}
+      - - {x: 88, y: 91}
+        - {x: 81, y: 90}
+        - {x: 81, y: 73}
+        - {x: 85, y: 71}
+        - {x: 105, y: 71}
+        - {x: 106, y: 75}
+        - {x: 106, y: 89}
+        - {x: 104, y: 91}
+      - - {x: -35, y: 102}
+        - {x: -54, y: 102}
+        - {x: -59, y: 101}
+        - {x: -59, y: 82}
+        - {x: -56, y: 81}
+        - {x: -38, y: 81}
+        - {x: -33, y: 85}
+        - {x: -32, y: 89}
+        - {x: -32, y: 99}
+      - - {x: 37, y: 111}
+        - {x: 31, y: 107}
+        - {x: 31, y: 95}
+        - {x: 34, y: 92}
+        - {x: 56, y: 92}
+        - {x: 56, y: 106}
+        - {x: 51, y: 111}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
     private GameController m_GameController;
     private Game m_GC;
 
-    private EffectController effectController;
+    public EffectController effectController;
 
     #endregion Variables
 
@@ -263,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
         m_Animations = GetComponentInChildren<PlayerAnimation>();
         m_PlayerAudio = GetComponent<PlayerAudioController>();
 
-        effectController = GetComponentInChildren<EffectController>();
+        //effectController = GetComponentInChildren<EffectController>();
 
         // Get the current device.  Sets the positions for the hand to move to and from
         currentDevice = (int)GameManager.Instance.currentAspect;
@@ -335,6 +335,7 @@ public class PlayerMovement : MonoBehaviour
         {  
             isGrounded = true;
             m_Animations.Play(PlayerAnimation.PlayerStates.Grounded);
+            effectController.Impact(); ;
         }
     }
 
@@ -663,6 +664,7 @@ public class PlayerMovement : MonoBehaviour
                 savedJumpForce = jumpForce;
                 isGrounded = false;
                 m_PlayerAudio.PlaySound(0);
+                effectController.Jump();
             }
         }
     }
