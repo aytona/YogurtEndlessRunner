@@ -249,6 +249,8 @@ public class PlayerMovement : MonoBehaviour
 
     public EffectController effectController;
 
+    public TrailSpawner trail;
+
     #endregion Variables
 
     #region Monobehaviour
@@ -706,6 +708,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ActivateSurfing()
     {
+        // Start trail
+        trail.StartTrail();
         m_Animations.Play(PlayerAnimation.PlayerStates.Surf);
         if(!isSurfing)
             shadowSprite.transform.localScale = new Vector3(shadowSprite.transform.localScale.x * 2f, 
@@ -718,6 +722,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void DeactivateSurfing()
     {
+        // Stop trail
+        trail.StopTrail();
         m_Animations.Play(PlayerAnimation.PlayerStates.Run);
         isSurfing = false;
         shadowSprite.transform.localScale = new Vector3(shadowSprite.transform.localScale.x * 0.5f,
