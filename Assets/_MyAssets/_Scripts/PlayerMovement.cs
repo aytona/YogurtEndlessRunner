@@ -335,6 +335,7 @@ public class PlayerMovement : MonoBehaviour
         {  
             isGrounded = true;
             m_Animations.Play(PlayerAnimation.PlayerStates.Grounded);
+            effectController.Impact(); ;
         }
     }
 

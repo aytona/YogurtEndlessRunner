@@ -74,9 +74,11 @@ public class Game : MonoBehaviour {
         if (gameStarted)
         {
             pauseButton.interactable = false;
-            menuManager.SetTimeToSwitch(3.0f);
-            menuManager.TimedHideAllCanvases();
-            StartCoroutine(SceneTransition());
+            /* removing the current challenge for the time being */
+            //menuManager.SetTimeToSwitch(3.0f);
+            //menuManager.TimedHideAllCanvases();
+            menuManager.HideAllCanvases();
+            StartCoroutine(SceneTransition(1.0f));
         }
         if (paused)
         {
@@ -149,10 +151,10 @@ public class Game : MonoBehaviour {
         paused = !paused;
     }
 
-    IEnumerator SceneTransition()
+    IEnumerator SceneTransition(float timeToWait)
     {
         gameStarted = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(timeToWait);
         StartGame();
     }
 

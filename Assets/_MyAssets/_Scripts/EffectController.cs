@@ -7,6 +7,8 @@ public class EffectController : MonoBehaviour {
     private string collectEffectName;
     [SerializeField]
     private string obstacleHitEffectName;
+    [SerializeField]
+    private string impactEffectName;
     private Animator a;
 
     void Start()
@@ -22,5 +24,10 @@ public class EffectController : MonoBehaviour {
     public void Hit()
     {
         a.Play(obstacleHitEffectName);
+    }
+
+    public void Impact()
+    {
+        a.Play(impactEffectName);
     }
 }
