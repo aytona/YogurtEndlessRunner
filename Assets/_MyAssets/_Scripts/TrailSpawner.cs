@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TrailSpawner : MonoBehaviour {
-
+    /*
     //public float spawnIntervalRatio = 1.0f;  // Add this later if necessary
     [Tooltip("The sprites needed to create the trail. In order.")]
     public Sprite[] trailSprites;
@@ -64,5 +64,42 @@ public class TrailSpawner : MonoBehaviour {
 
         // Restart the loop
         trailLoop = StartCoroutine(SpawnTrailLoop());
+    }
+     */
+
+    private LineRenderer trail;
+    public float scrollSpeed = 0.01f;
+    private bool trailOn = false;
+    private TrailFollow follow;
+
+    void Start()
+    {
+        trail = GetComponent<LineRenderer>();
+        follow = GetComponent<TrailFollow>();
+    }
+
+    void Update()
+    {
+        if(trailOn)
+            AnimateTrail();
+    }
+
+    private void AnimateTrail()
+    {
+        float offset = trail.material.mainTextureOffset.x + Time.deltaTime * scrollSpeed;
+        trail.material.mainTextureOffset = new Vector2(offset, 0);
+    }
+
+    public void StartTrail()
+    {
+        trailOn = true;
+        follow.hideTrail = false;
+    }
+
+    public void StopTrail()
+    {
+        trailOn = false;
+        follow.hideTrail = true;
+        trail.material.mainTextureOffset = Vector2.zero;
     }
 }
