@@ -7,6 +7,7 @@ public class RandomMeshGen : MonoBehaviour {
     [System.Serializable]
     public class Toppings
     {
+        public string toppingName;
         public Mesh toppingMesh;
         public Material toppingShader;
     }
@@ -22,15 +23,11 @@ public class RandomMeshGen : MonoBehaviour {
         GetRandomTopping();
     }
 
-    void OnDisable()
-    {
-        GetRandomTopping();
-    }
-
     private void GetRandomTopping()
     {
         Toppings randomTopping = toppingsList[Random.Range(0, toppingsList.Count)];
         gameObject.GetComponent<MeshFilter>().mesh = randomTopping.toppingMesh;
         gameObject.GetComponent<Renderer>().material = randomTopping.toppingShader;
+        gameObject.name = randomTopping.toppingName;
     }
 }
