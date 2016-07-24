@@ -8,7 +8,7 @@ public class RandomMeshGen : MonoBehaviour {
     public class Toppings
     {
         public Mesh toppingMesh;
-        public Shader toppingShader;
+        public Material toppingShader;
     }
 
     /// <summary>
@@ -31,6 +31,6 @@ public class RandomMeshGen : MonoBehaviour {
     {
         Toppings randomTopping = toppingsList[Random.Range(0, toppingsList.Count)];
         gameObject.GetComponent<MeshFilter>().mesh = randomTopping.toppingMesh;
-        gameObject.GetComponent<Material>().shader = randomTopping.toppingShader;
+        gameObject.GetComponent<Renderer>().material = randomTopping.toppingShader;
     }
 }
