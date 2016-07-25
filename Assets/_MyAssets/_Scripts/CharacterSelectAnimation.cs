@@ -2,42 +2,65 @@
 using System.Collections;
 
 public class CharacterSelectAnimation : MonoBehaviour {
-    private Animator m_Animator;
+    public Animator[] m_Animator;
     private string[] triggerNames = { "Selected", "Wave" };
-    public GameObject spoon;
-
+    public GameObject[] spoon;
     private float randomTime;
-
-    private bool isSelected = false;
+    public SkinnedMeshRenderer[] meshes;
+    public Color unselectedColour;
 
     void Start()
     {
-        m_Animator = GetComponent<Animator>();
         HideSpoon();
         StartCoroutine(RandomWave());
+        Select(0);
     }
 
-    public void Select()
+    // Pass in the charNum in the inpsector for the button
+    public void Select(int charNum)
     {
-        isSelected = !isSelected;
-        m_Animator.SetBool(triggerNames[0], isSelected);
+        for (int i = 0; i < m_Animator.Length; i++ )
+        {
+            if(i == charNum)
+            {
+                m_Animator[i].SetBool(triggerNames[0], true);
+                meshes[i].material.color = Color.white;
+            }
+            else
+            {
+                m_Animator[i].SetBool(triggerNames[0], false);
+                meshes[i].material.color =  unselectedColour;
+            }
+        }
+        CharacterSelectScreen.Instance.SelectCharacter(charNum);
     }
 
-    private IEnumerator RandomWave()
+    public IEnumerator RandomWave()
     {
         randomTime = Random.Range(5.0f, 7.5f);
+        int randomChar = Random.Range(0, m_Animator.Length);
         yield return new WaitForSeconds(randomTime);
-        m_Animator.SetTrigger(triggerNames[1]);
+        for (int i = 0; i < m_Animator.Length; i++)
+        {
+            if(randomChar == i)
+                m_Animator[i].SetTrigger(triggerNames[1]);
+        }
         StartCoroutine(RandomWave());
     }
 
     private void ShowSpoon()
     {
-        spoon.SetActive(true);
+        for (int i = 0; i < spoon.Length; i++)
+        {
+            spoon[i].SetActive(true);
+        }
     }
 
     private void HideSpoon()
     {
-        spoon.SetActive(false);
+        for (int i = 0; i < spoon.Length; i++)
+        {
+            spoon[i].SetActive(false);
+        }
     }
 }
