@@ -27,6 +27,9 @@ public class ItemGenerator : MonoBehaviour {
     [SerializeField]
     private Transform targets = null;
 
+    [Tooltip("Large Obstacle Delay Rate")]
+    public int numOfShufflesBeforeLargeSpawn;
+
     [Tooltip("Item Ratio")]
     public int itemRatio;
 
@@ -68,6 +71,7 @@ public class ItemGenerator : MonoBehaviour {
     //private GameSettings _settings;
     private string previousAirSpawn = null;
     private bool canShuffle = false;
+    private int currentShuffleNum;
 
     #endregion Variables
 
@@ -80,6 +84,8 @@ public class ItemGenerator : MonoBehaviour {
         _gc = FindObjectOfType<GameController>();
         _gameController = FindObjectOfType<Game>();
         //_settings = FindObjectOfType<GameSettings>();
+
+        currentShuffleNum = 0;
 
         // Pool item objects
         items = new List<GameObject>();
@@ -132,8 +138,9 @@ public class ItemGenerator : MonoBehaviour {
             groundSpawns.Add(i);
         foreach (GameObject i in obstacles)
             groundSpawns.Add(i);
-        foreach (GameObject i in obstaclesLarge)
-            groundSpawns.Add(i);
+        if (numOfShufflesBeforeLargeSpawn == 0)
+            foreach (GameObject i in obstaclesLarge)
+                groundSpawns.Add(i);
 
         // Randomizes the objects inside the list
         for (int i = 0; i < groundSpawns.Count; i++)
@@ -235,6 +242,11 @@ public class ItemGenerator : MonoBehaviour {
     {
         int randomNum;
         GameObject temp;
+        currentShuffleNum++;
+        if (currentShuffleNum == numOfShufflesBeforeLargeSpawn)
+            foreach (GameObject i in obstaclesLarge)
+                groundSpawns.Add(i);
+
         for (int i = groundSpawns.Count - 1; i > 0; i--)
         {
             randomNum = Random.Range(0, i);
