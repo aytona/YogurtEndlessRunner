@@ -21,6 +21,7 @@ public class RandomMeshGen : MonoBehaviour {
     void OnEnable()
     {
         GetRandomTopping();
+        GetRandomRotation();
     }
 
     private void GetRandomTopping()
@@ -29,5 +30,10 @@ public class RandomMeshGen : MonoBehaviour {
         gameObject.GetComponent<MeshFilter>().mesh = randomTopping.toppingMesh;
         gameObject.GetComponent<Renderer>().material = randomTopping.toppingShader;
         gameObject.name = randomTopping.toppingName;
+    }
+
+    private void GetRandomRotation()
+    {
+        transform.Rotate(new Vector3(0, 0, Random.Range(-180f, 180f)));
     }
 }
