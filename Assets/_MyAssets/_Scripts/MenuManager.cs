@@ -15,6 +15,10 @@ public class MenuManager : MonoBehaviour {
 
     private float timeToSwitch = 0;
 
+    public GameObject[] characters;
+
+    public int characterSelectCanvas;
+
 	void Start () 
     {
         currentCanvas = initialCanvas;
@@ -31,6 +35,10 @@ public class MenuManager : MonoBehaviour {
         HideCurrentCanvas();
         currentCanvas = canvasNum;
         ShowCurrentCanvas();
+        if(currentCanvas == characterSelectCanvas)
+        {
+            FindObjectOfType<CharacterSelectAnimation>().Select(0);
+        }
     }
 
     /// <summary>
@@ -68,6 +76,22 @@ public class MenuManager : MonoBehaviour {
     public void TimedHideAllCanvases()
     {
         StartCoroutine(WaitForHide());
+    }
+
+    private void ShowCharacters()
+    {
+        for (int i = 0; i < characters.Length; i++)
+        {
+            characters[i].SetActive(true);
+        }
+    }
+
+    private void HideCharacters()
+    {
+        for (int i = 0; i < characters.Length; i++)
+        {
+            characters[i].SetActive(false);
+        }
     }
 
     private void HideCurrentCanvas()
