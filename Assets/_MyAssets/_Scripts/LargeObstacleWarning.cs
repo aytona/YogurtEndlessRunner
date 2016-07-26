@@ -4,8 +4,15 @@ using System.Collections;
 public class LargeObstacleWarning : MonoBehaviour {
 
     public GameObject warningSign;
+    public string baseName;
     public float effectDuration;
     public float effectDelay;
+
+    void Awake()
+    {
+        string position = "WarningSign" + gameObject.name.Remove(0, baseName.Length);
+        warningSign = GameObject.Find(position);
+    }
 
     void OnEnable()
     {
@@ -19,14 +26,17 @@ public class LargeObstacleWarning : MonoBehaviour {
 
     private IEnumerator warningEffect(float duration, float delay)
     {
-        bool toggle = true;
+        bool toggle = false;
         while (duration > 0)
         {
             duration -= Time.deltaTime;
-            warningSign.SetActive(toggle);
+            if (toggle)
+                warningSign.GetComponent<WarningSignPosition>().textMesh.text = "!";
+            else
+                warningSign.GetComponent<WarningSignPosition>().textMesh.text = "";
             toggle = !toggle;
             yield return new WaitForSeconds(delay);
         }
-        warningSign.SetActive(false);
+        warningSign.GetComponent<WarningSignPosition>().textMesh.text = "";
     }
 }
