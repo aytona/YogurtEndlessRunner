@@ -9,14 +9,17 @@ public class BackgroundManager : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        ContiniousMovement();
     }
 
-    private void Movement()
+    private void ContiniousMovement()
     {
         foreach(GameObject i in ContinousBackground)
         {
-
+            if (i.transform.position.x >= GameManager.Instance.lengthBeforeDespawn)
+                i.transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
+            else
+                i.transform.Translate(widthOfPlatform, 0, 0);
         }
     }
 }
