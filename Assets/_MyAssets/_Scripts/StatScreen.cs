@@ -10,10 +10,14 @@ public class StatScreen : MonoBehaviour {
 
     private void GetData()
     {
-        bDistance = Data.Instance.GetBestDistance();
-        tDistance = Data.Instance.GetTotalDistance();
-        bScore = Data.Instance.GetBestScore();
-        tScore = Data.Instance.GetTotalScore();
+        //bDistance = Data.Instance.GetBestDistance();
+        bDistance = PlayerPrefs.GetFloat("BestDistance", 0);
+        //tDistance = Data.Instance.GetTotalDistance();
+        tDistance = PlayerPrefs.GetFloat("TotalDistance", 0);
+        //bScore = Data.Instance.GetBestScore();
+        bScore = PlayerPrefs.GetInt("BestScore", 0);
+        //tScore = Data.Instance.GetTotalScore();
+        tScore = PlayerPrefs.GetInt("TotalScore", 0);
     }
 
     private void SetData()
