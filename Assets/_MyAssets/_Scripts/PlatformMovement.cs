@@ -1,5 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/* Deprecated Script
+ * Check BackgroundManager.cs
+ * TODO: Scheduled for deletion
+ */
+
+using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour {
 
