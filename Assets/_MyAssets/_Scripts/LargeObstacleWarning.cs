@@ -32,9 +32,10 @@ public class LargeObstacleWarning : MonoBehaviour {
             duration -= Time.deltaTime;
             if (toggle)
                 warningSign.GetComponent<WarningSignPosition>().textMesh.text = "!";
-            else
+            else if (warningSign.GetComponent<WarningSignPosition>().textMesh != null)
                 warningSign.GetComponent<WarningSignPosition>().textMesh.text = "";
             toggle = !toggle;
+
             yield return new WaitForSeconds(delay);
         }
         warningSign.GetComponent<WarningSignPosition>().textMesh.text = "";
