@@ -27,7 +27,7 @@ public class GameSettings : MonoBehaviour {
     [HideInInspector]
     public bool gameRestart = false;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool gameStart = false;
 
     //[HideInInspector]
