@@ -6,7 +6,7 @@ public class BackgroundManager : MonoBehaviour
     #region Public Variables
     /// <summary>
     /// Parent background class that has the gameobject
-    /// and a bool coupled with it
+    /// and a checkers with it
     /// </summary>
     [System.Serializable]
     public class ParentBackground
@@ -39,6 +39,11 @@ public class BackgroundManager : MonoBehaviour
     /// The waitlist for the changing background
     /// </summary>
     private List<GameObject> waitingList = new List<GameObject>();
+
+    /// <summary>
+    /// Just a bool to call a function once
+    /// </summary>
+    private bool reachedDist;
     #endregion
 
     #region Monobehaviour
@@ -55,9 +60,7 @@ public class BackgroundManager : MonoBehaviour
     void FixedUpdate()
     {
         ContiniousMovement(activeBackground);
-        // TODO: Move this somewhere more appropriate
-        if (Mathf.Floor(GameManager.Instance.gameSettings.distance % distBetweenChange) + 1 == distBetweenChange)
-            TimeToChange();
+        DistanceTracker();
     }
     #endregion
 
@@ -113,6 +116,7 @@ public class BackgroundManager : MonoBehaviour
     /// </summary>
     private void TimeToChange()
     {
+        reachedDist = true;
         foreach (ParentBackground i in activeBackground)
             if (i.hasChangingBG)
                 i.timeForChange = true;
@@ -127,6 +131,18 @@ public class BackgroundManager : MonoBehaviour
         GameObject childBG =  Instantiate(obj, new Vector3(widthOfPlatform, 0, 0), Quaternion.identity) as GameObject;
         waitingList.Add(childBG);
         childBG.SetActive(false);
+    }
+
+    /// <summary>
+    /// Tracks the distance of the game
+    /// </summary>
+    private void DistanceTracker()
+    {
+        if (Mathf.Floor(GameManager.Instance.gameSettings.distance % distBetweenChange) + 1 == distBetweenChange
+            && !reachedDist)
+            TimeToChange();
+        else
+            reachedDist = false;
     }
     #endregion
 }
