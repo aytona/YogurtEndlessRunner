@@ -118,11 +118,15 @@ public class BackgroundManager : MonoBehaviour
                 i.timeForChange = true;
     }
 
+    /// <summary>
+    /// Initializing the list by adding the objs
+    /// </summary>
+    /// <param name="obj"></param>
     private void AddToList(GameObject obj)
     {
-        Instantiate(obj, Vector3.zero, Quaternion.identity);
-        waitingList.Add(obj);
-
+        GameObject childBG =  Instantiate(obj, new Vector3(widthOfPlatform, 0, 0), Quaternion.identity) as GameObject;
+        waitingList.Add(childBG);
+        childBG.SetActive(false);
     }
     #endregion
 }
