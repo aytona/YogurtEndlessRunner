@@ -3,7 +3,7 @@
 public class WarningSignPosition : MonoBehaviour {
 
     public float xOffsetPercent;
-    public TextMesh textMesh;
+    public SpriteRenderer sprite;
 
     void Start()
     {
@@ -11,6 +11,6 @@ public class WarningSignPosition : MonoBehaviour {
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
         Vector3 destination = new Vector3(worldPoint.x - xOffset, 0, 0);
         gameObject.transform.Translate(destination);
-        textMesh = gameObject.GetComponent<TextMesh>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 }

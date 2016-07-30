@@ -12,7 +12,7 @@ public class BackgroundManager : MonoBehaviour
     public class ParentBackground
     {
         public GameObject backGround;
-        public bool beingWorkedOn;
+        public bool timeForChange;
         public bool hasChangingBG;
     }
 
@@ -28,6 +28,9 @@ public class BackgroundManager : MonoBehaviour
     public float distBetweenChange;
     public float backgroundDelay;
 
+    /// <summary>
+    /// The list of active BGs being cycled
+    /// </summary>
     public List<ParentBackground> activeBackground;
     #endregion
 
@@ -45,26 +48,24 @@ public class BackgroundManager : MonoBehaviour
         foreach (GameObject i in ChangingBGPrefab)
             for (int j = 0; j < halfOfActiveBG; j++)
                 AddToList(i);
+        for (int i = 0; i < activeBackground.Count; i += 2)
+            activeBackground[i].hasChangingBG = true;
     }
 
     void FixedUpdate()
     {
         ContiniousMovement(activeBackground);
+        // TODO: Move this somewhere more appropriate
+        if (Mathf.Floor(GameManager.Instance.gameSettings.distance % distBetweenChange) + 1 == distBetweenChange)
+            TimeToChange();
     }
     #endregion
 
     #region Private Functions
-    private void ContiniousMovement(GameObject[] C_Background)
-    {
-        foreach(GameObject i in C_Background)
-        {
-            if (i.transform.position.x >= GameManager.Instance.lengthBeforeDespawn)
-                i.transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
-            else
-                i.transform.Translate(widthOfPlatform, 0, 0);
-        }
-    }
-
+    /// <summary>
+    /// Moves all the objects in the list
+    /// </summary>
+    /// <param name="C_Background"></param>
     private void ContiniousMovement(List<ParentBackground> C_Background)
     {
         foreach (ParentBackground i in C_Background)
@@ -72,49 +73,60 @@ public class BackgroundManager : MonoBehaviour
             if (i.backGround.transform.position.x >= GameManager.Instance.lengthBeforeDespawn)
                 i.backGround.transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
             else
+            {
                 i.backGround.transform.Translate(widthOfPlatform, 0, 0);
+                CheckForChange(i);
+            }
         }
-    }
-
-    private void DiffBackground(GameObject[] D_Background)
-    {
-
     }
 
     /// <summary>
-    /// Chooses the next background to be spawned
+    /// Returns the index of the next background
     /// </summary>
-    /// <param name="N_Background"></param>
-    private void NextBackground(GameObject[] N_Background)
+    /// <param name="N_Background">Waiting list</param>
+    private int NextBackground(List<GameObject> N_Background)
     {
-        int nextActiveIndex;
-        for (int i = 0; i < N_Background.Length; i++)
-        {
+        for (int i = 0; i < N_Background.Count; i++)
             if (N_Background[i].activeInHierarchy)
-            {
-                if (N_Background.Length < i + 1)
-                    nextActiveIndex = 0;
-                else
-                    nextActiveIndex = i;
-            }
-        }
+                if (i + 1 < N_Background.Count)
+                    return i;
+        return 0;
+    }
 
-        if (Mathf.Floor(GameManager.Instance.gameSettings.distance % distBetweenChange) + 1 == distBetweenChange)
+    /// <summary>
+    /// Checks the parentBG if its time to change childBG
+    /// And swaps childBG to the next changing BG in waitingList
+    /// </summary>
+    /// <param name="parentBG"></param>
+    private void CheckForChange(ParentBackground parentBG)
+    {
+        if (parentBG.hasChangingBG && parentBG.timeForChange)
         {
-            // New background change
+            // Swap the changing bg obj into the next changing bg obj
+            parentBG.timeForChange = false;
         }
     }
 
+    /// <summary>
+    /// Checks a ticker of each parentBG that
+    /// its time to change childBG
+    /// </summary>
+    private void TimeToChange()
+    {
+        foreach (ParentBackground i in activeBackground)
+            if (i.hasChangingBG)
+                i.timeForChange = true;
+    }
+
+    /// <summary>
+    /// Initializing the list by adding the objs
+    /// </summary>
+    /// <param name="obj"></param>
     private void AddToList(GameObject obj)
     {
-        Instantiate(obj, Vector3.zero, Quaternion.identity);
-        waitingList.Add(obj);
-
-    }
-
-    private void NewBackgroundChange()
-    {
-
+        GameObject childBG =  Instantiate(obj, new Vector3(widthOfPlatform, 0, 0), Quaternion.identity) as GameObject;
+        waitingList.Add(childBG);
+        childBG.SetActive(false);
     }
     #endregion
 }
