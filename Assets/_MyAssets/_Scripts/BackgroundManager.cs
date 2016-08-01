@@ -38,7 +38,7 @@ public class BackgroundManager : MonoBehaviour
     /// <summary>
     /// The waitlist for the changing background
     /// </summary>
-    private List<GameObject> waitingList = new List<GameObject>();
+    private Queue<GameObject> waitingList = new Queue<GameObject>();
 
     /// <summary>
     /// Just a bool to call a function once
@@ -96,15 +96,14 @@ public class BackgroundManager : MonoBehaviour
             GameObject prevChild = parentBG.backGround.transform.Find("childBG").gameObject;
             prevChild.transform.Translate(new Vector3(widthOfPlatform, 0, 0));
             prevChild.transform.parent = null;
-            waitingList.Add(prevChild);
+            waitingList.Enqueue(prevChild);
             prevChild.SetActive(false);
 
             // Set new child
-            waitingList[0].SetActive(true);
-            waitingList[0].transform.parent = parentBG.backGround.transform;
-            waitingList[0].transform.localPosition = Vector3.zero;
-            waitingList.RemoveAt(0);
-            // TODO: Should change this list into a queue if its going to be used like a queue
+            waitingList.Peek().SetActive(true);
+            waitingList.Peek().transform.parent = parentBG.backGround.transform;
+            waitingList.Peek().transform.localPosition = Vector3.zero;
+            waitingList.Dequeue();
 
             parentBG.timeForChange = false;
         }
@@ -129,7 +128,7 @@ public class BackgroundManager : MonoBehaviour
     private void AddToList(GameObject obj)
     {
         GameObject childBG =  Instantiate(obj, new Vector3(widthOfPlatform, 0, 0), Quaternion.identity) as GameObject;
-        waitingList.Add(childBG);
+        waitingList.Enqueue(childBG);
         childBG.name = "childBG";
         childBG.SetActive(false);
     }
