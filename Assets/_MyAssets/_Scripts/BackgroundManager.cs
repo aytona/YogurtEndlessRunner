@@ -105,7 +105,12 @@ public class BackgroundManager : MonoBehaviour
     {
         if (parentBG.hasChangingBG && parentBG.timeForChange)
         {
-            // Swap the changing bg obj into the next changing bg obj
+            GameObject prevChild = parentBG.backGround.transform.Find("").gameObject;   // Need to find a better way to get this
+            prevChild.transform.Translate(new Vector3(widthOfPlatform, 0, 0));
+            prevChild.transform.parent = null;
+            int nextBackground = NextBackground(waitingList);
+            waitingList[nextBackground].transform.parent = parentBG.backGround.transform;
+            waitingList[nextBackground].transform.localPosition = Vector3.zero;
             parentBG.timeForChange = false;
         }
     }
