@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public class BackgroundManager : MonoBehaviour
@@ -26,7 +27,6 @@ public class BackgroundManager : MonoBehaviour
     /// </summary>
     public float widthOfPlatform;
     public float distBetweenChange;
-    public float backgroundDelay;
 
     /// <summary>
     /// The list of active BGs being cycled
@@ -49,12 +49,19 @@ public class BackgroundManager : MonoBehaviour
     #region Monobehaviour
     void Start()
     {
+        // Ideally we want an even amount of activeBackground
         int halfOfActiveBG = Mathf.FloorToInt(activeBackground.Count / 2);
+        if (Convert.ToBoolean(activeBackground.Count % 2))
+            halfOfActiveBG++;
+
         foreach (GameObject i in ChangingBGPrefab)
             for (int j = 0; j < halfOfActiveBG; j++)
                 AddToList(i);
         for (int i = 0; i < activeBackground.Count; i += 2)
+        {
+            InitChildBG(activeBackground[i].backGround);
             activeBackground[i].hasChangingBG = true;
+        }
     }
 
     void FixedUpdate()
@@ -100,10 +107,7 @@ public class BackgroundManager : MonoBehaviour
             prevChild.SetActive(false);
 
             // Set new child
-            waitingList.Peek().SetActive(true);
-            waitingList.Peek().transform.parent = parentBG.backGround.transform;
-            waitingList.Peek().transform.localPosition = Vector3.zero;
-            waitingList.Dequeue();
+            InitChildBG(parentBG.backGround);
 
             parentBG.timeForChange = false;
         }
@@ -143,6 +147,18 @@ public class BackgroundManager : MonoBehaviour
             TimeToChange();
         else
             reachedDist = false;
+    }
+
+    /// <summary>
+    /// Initializing the childBG
+    /// </summary>
+    /// <param name="parentBG"></param>
+    private void InitChildBG(GameObject parentBG)
+    {
+        waitingList.Peek().SetActive(true);
+        waitingList.Peek().transform.parent = parentBG.transform;
+        waitingList.Peek().transform.localPosition = Vector3.zero;
+        waitingList.Dequeue();
     }
     #endregion
 }
