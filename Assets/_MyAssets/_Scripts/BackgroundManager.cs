@@ -57,10 +57,13 @@ public class BackgroundManager : MonoBehaviour
         foreach (GameObject i in ChangingBGPrefab)
             for (int j = 0; j < halfOfActiveBG; j++)
                 AddToList(i);
-        for (int i = 0; i < activeBackground.Count; i += 2)
+        if (ChangingBGPrefab.Length > 0)
         {
-            InitChildBG(activeBackground[i].backGround);
-            activeBackground[i].hasChangingBG = true;
+            for (int i = 0; i < activeBackground.Count; i += 2)
+            {
+                InitChildBG(activeBackground[i].backGround);
+                activeBackground[i].hasChangingBG = true;
+            }
         }
     }
 
@@ -81,11 +84,17 @@ public class BackgroundManager : MonoBehaviour
         foreach (ParentBackground i in C_Background)
         {
             if (i.backGround.transform.position.x >= GameManager.Instance.lengthBeforeDespawn)
-                i.backGround.transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
+            {
+                i.backGround.transform.Translate
+                    (Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
+            }
             else
             {
                 i.backGround.transform.Translate(widthOfPlatform, 0, 0);
-                CheckForChange(i);
+                if (ChangingBGPrefab.Length > 0)
+                {
+                    CheckForChange(i);
+                }
             }
         }
     }
@@ -131,7 +140,8 @@ public class BackgroundManager : MonoBehaviour
     /// <param name="obj"></param>
     private void AddToList(GameObject obj)
     {
-        GameObject childBG =  Instantiate(obj, new Vector3(widthOfPlatform, 0, 0), Quaternion.identity) as GameObject;
+        GameObject childBG =  Instantiate
+            (obj, new Vector3(widthOfPlatform, 0, 0), Quaternion.identity) as GameObject;
         waitingList.Enqueue(childBG);
         childBG.name = "childBG";
         childBG.SetActive(false);
@@ -144,9 +154,13 @@ public class BackgroundManager : MonoBehaviour
     {
         if (Mathf.Floor(GameManager.Instance.gameSettings.distance % distBetweenChange) + 1 == distBetweenChange
             && !reachedDist)
+        {
             TimeToChange();
+        }
         else
+        {
             reachedDist = false;
+        }
     }
 
     /// <summary>
