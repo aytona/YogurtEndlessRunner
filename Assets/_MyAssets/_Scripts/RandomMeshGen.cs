@@ -10,6 +10,7 @@ public class RandomMeshGen : MonoBehaviour {
         public string toppingName;
         public Mesh toppingMesh;
         public Material toppingShader;
+        public float scaleFactor;
     }
 
     /// <summary>
@@ -17,6 +18,9 @@ public class RandomMeshGen : MonoBehaviour {
     /// and drag and drop each mesh and corresponding shader
     /// </summary>
     public List<Toppings> toppingsList = new List<Toppings>();
+
+    // This is just how the toppings were received initially
+    private float defaultToppingScale = 50.0f;  
 
     void OnEnable()
     {
@@ -30,6 +34,7 @@ public class RandomMeshGen : MonoBehaviour {
         gameObject.GetComponent<MeshFilter>().mesh = randomTopping.toppingMesh;
         gameObject.GetComponent<Renderer>().material = randomTopping.toppingShader;
         gameObject.name = randomTopping.toppingName;
+        gameObject.transform.localScale = Vector3.one * (randomTopping.scaleFactor * defaultToppingScale);
     }
 
     private void GetRandomRotation()
