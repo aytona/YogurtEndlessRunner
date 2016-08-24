@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public class BackgroundManager : MonoBehaviour
@@ -6,7 +7,7 @@ public class BackgroundManager : MonoBehaviour
     #region Public Variables
     /// <summary>
     /// Parent background class that has the gameobject
-    /// and a bool coupled with it
+    /// and a checkers with it
     /// </summary>
     [System.Serializable]
     public class ParentBackground
@@ -26,7 +27,6 @@ public class BackgroundManager : MonoBehaviour
     /// </summary>
     public float widthOfPlatform;
     public float distBetweenChange;
-    public float backgroundDelay;
 
     /// <summary>
     /// The list of active BGs being cycled
@@ -38,26 +38,39 @@ public class BackgroundManager : MonoBehaviour
     /// <summary>
     /// The waitlist for the changing background
     /// </summary>
-    private List<GameObject> waitingList = new List<GameObject>();
+    private Queue<GameObject> waitingList = new Queue<GameObject>();
+
+    /// <summary>
+    /// Just a bool to call a function once
+    /// </summary>
+    private bool reachedDist;
     #endregion
 
     #region Monobehaviour
     void Start()
     {
+        // Ideally we want an even amount of activeBackground
         int halfOfActiveBG = Mathf.FloorToInt(activeBackground.Count / 2);
+        if (Convert.ToBoolean(activeBackground.Count % 2))
+            halfOfActiveBG++;
+
         foreach (GameObject i in ChangingBGPrefab)
             for (int j = 0; j < halfOfActiveBG; j++)
                 AddToList(i);
-        for (int i = 0; i < activeBackground.Count; i += 2)
-            activeBackground[i].hasChangingBG = true;
+        if (ChangingBGPrefab.Length > 0)
+        {
+            for (int i = 0; i < activeBackground.Count; i += 2)
+            {
+                InitChildBG(activeBackground[i].backGround);
+                activeBackground[i].hasChangingBG = true;
+            }
+        }
     }
 
     void FixedUpdate()
     {
         ContiniousMovement(activeBackground);
-        // TODO: Move this somewhere more appropriate
-        if (Mathf.Floor(GameManager.Instance.gameSettings.distance % distBetweenChange) + 1 == distBetweenChange)
-            TimeToChange();
+        DistanceTracker();
     }
     #endregion
 
@@ -71,26 +84,19 @@ public class BackgroundManager : MonoBehaviour
         foreach (ParentBackground i in C_Background)
         {
             if (i.backGround.transform.position.x >= GameManager.Instance.lengthBeforeDespawn)
-                i.backGround.transform.Translate(Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
+            {
+                i.backGround.transform.Translate
+                    (Vector3.left * Time.deltaTime * GameManager.Instance.gameSettings.gameSpeed);
+            }
             else
             {
                 i.backGround.transform.Translate(widthOfPlatform, 0, 0);
-                CheckForChange(i);
+                if (ChangingBGPrefab.Length > 0)
+                {
+                    CheckForChange(i);
+                }
             }
         }
-    }
-
-    /// <summary>
-    /// Returns the index of the next background
-    /// </summary>
-    /// <param name="N_Background">Waiting list</param>
-    private int NextBackground(List<GameObject> N_Background)
-    {
-        for (int i = 0; i < N_Background.Count; i++)
-            if (N_Background[i].activeInHierarchy)
-                if (i + 1 < N_Background.Count)
-                    return i;
-        return 0;
     }
 
     /// <summary>
@@ -102,7 +108,16 @@ public class BackgroundManager : MonoBehaviour
     {
         if (parentBG.hasChangingBG && parentBG.timeForChange)
         {
-            // Swap the changing bg obj into the next changing bg obj
+            // Get prev child
+            GameObject prevChild = parentBG.backGround.transform.Find("childBG").gameObject;
+            prevChild.transform.Translate(new Vector3(widthOfPlatform, 0, 0));
+            prevChild.transform.parent = null;
+            waitingList.Enqueue(prevChild);
+            prevChild.SetActive(false);
+
+            // Set new child
+            InitChildBG(parentBG.backGround);
+
             parentBG.timeForChange = false;
         }
     }
@@ -113,6 +128,7 @@ public class BackgroundManager : MonoBehaviour
     /// </summary>
     private void TimeToChange()
     {
+        reachedDist = true;
         foreach (ParentBackground i in activeBackground)
             if (i.hasChangingBG)
                 i.timeForChange = true;
@@ -124,9 +140,39 @@ public class BackgroundManager : MonoBehaviour
     /// <param name="obj"></param>
     private void AddToList(GameObject obj)
     {
-        GameObject childBG =  Instantiate(obj, new Vector3(widthOfPlatform, 0, 0), Quaternion.identity) as GameObject;
-        waitingList.Add(childBG);
+        GameObject childBG =  Instantiate
+            (obj, new Vector3(widthOfPlatform, 0, 0), Quaternion.identity) as GameObject;
+        waitingList.Enqueue(childBG);
+        childBG.name = "childBG";
         childBG.SetActive(false);
+    }
+
+    /// <summary>
+    /// Tracks the distance of the game
+    /// </summary>
+    private void DistanceTracker()
+    {
+        if (Mathf.Floor(GameManager.Instance.gameSettings.distance % distBetweenChange) + 1 == distBetweenChange
+            && !reachedDist)
+        {
+            TimeToChange();
+        }
+        else
+        {
+            reachedDist = false;
+        }
+    }
+
+    /// <summary>
+    /// Initializing the childBG
+    /// </summary>
+    /// <param name="parentBG"></param>
+    private void InitChildBG(GameObject parentBG)
+    {
+        waitingList.Peek().SetActive(true);
+        waitingList.Peek().transform.parent = parentBG.transform;
+        waitingList.Peek().transform.localPosition = Vector3.zero;
+        waitingList.Dequeue();
     }
     #endregion
 }
