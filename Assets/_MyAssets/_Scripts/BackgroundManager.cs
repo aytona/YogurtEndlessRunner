@@ -9,7 +9,7 @@ public class BackgroundManager : MonoBehaviour
     /// Parent background class that has the gameobject
     /// and a checkers with it
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class ParentBackground
     {
         public GameObject backGround;
@@ -38,7 +38,7 @@ public class BackgroundManager : MonoBehaviour
     /// <summary>
     /// The waitlist for the changing background
     /// </summary>
-    private Queue<GameObject> waitingList = new Queue<GameObject>();
+    public Queue<GameObject> waitingList = new Queue<GameObject>();
 
     /// <summary>
     /// Just a bool to call a function once
@@ -49,17 +49,19 @@ public class BackgroundManager : MonoBehaviour
     #region Monobehaviour
     void Start()
     {
-        // Ideally we want an even amount of activeBackground
-        int halfOfActiveBG = Mathf.FloorToInt(activeBackground.Count / 2);
-        if (Convert.ToBoolean(activeBackground.Count % 2))
-            halfOfActiveBG++;
+        int oneThirdActiveBG = Mathf.FloorToInt(activeBackground.Count / 3);
 
         foreach (GameObject i in ChangingBGPrefab)
-            for (int j = 0; j < halfOfActiveBG; j++)
+        {
+            for (int j = 0; j < oneThirdActiveBG; j++)
+            {
                 AddToList(i);
+            }
+        }
+
         if (ChangingBGPrefab.Length > 0)
         {
-            for (int i = 0; i < activeBackground.Count; i += 2)
+            for (int i = 0; i < activeBackground.Count; i += 3)
             {
                 InitChildBG(activeBackground[i].backGround);
                 activeBackground[i].hasChangingBG = true;
@@ -171,7 +173,7 @@ public class BackgroundManager : MonoBehaviour
     {
         waitingList.Peek().SetActive(true);
         waitingList.Peek().transform.parent = parentBG.transform;
-        waitingList.Peek().transform.localPosition = Vector3.zero;
+        waitingList.Peek().transform.localPosition = new Vector3(0f, 3.0f, 2.5f);
         waitingList.Dequeue();
     }
     #endregion
