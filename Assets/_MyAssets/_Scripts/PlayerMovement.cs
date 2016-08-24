@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private int targetIndex;
 
+    [SerializeField]
     /// <summary>
     /// Has the character arrived at the target position?
     /// </summary>
