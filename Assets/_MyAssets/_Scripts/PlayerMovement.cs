@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private int targetIndex;
 
+    [SerializeField]
     /// <summary>
     /// Has the character arrived at the target position?
     /// </summary>
@@ -358,6 +359,20 @@ public class PlayerMovement : MonoBehaviour
             m_Animations.Play(PlayerAnimation.PlayerStates.Caught);
             m_PlayerAudio.PlaySound(3);
             AttachToHand(hand.yogurtGrabPos);
+            StartCoroutine(FadeOutSprite(shadowSprite));
+            m_CurrentState = State.EndGame;
+            if (m_GameController != null)
+                m_GameController.SetGameOver(true);
+            else if (m_GC != null)
+                m_GC.SetGameOver(true);
+        }
+
+        if(other.CompareTag("KillBox"))
+        {
+            gameOver = true;
+            GameManager.Instance.gameSettings.gameStart = false;
+            GameManager.Instance.gameSettings.ZeroSpeed();
+            m_PlayerAudio.PlaySound(3);
             StartCoroutine(FadeOutSprite(shadowSprite));
             m_CurrentState = State.EndGame;
             if (m_GameController != null)
