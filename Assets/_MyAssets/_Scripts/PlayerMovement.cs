@@ -367,6 +367,20 @@ public class PlayerMovement : MonoBehaviour
                 m_GC.SetGameOver(true);
         }
 
+        if(other.CompareTag("KillBox"))
+        {
+            gameOver = true;
+            GameManager.Instance.gameSettings.gameStart = false;
+            GameManager.Instance.gameSettings.ZeroSpeed();
+            m_PlayerAudio.PlaySound(3);
+            StartCoroutine(FadeOutSprite(shadowSprite));
+            m_CurrentState = State.EndGame;
+            if (m_GameController != null)
+                m_GameController.SetGameOver(true);
+            else if (m_GC != null)
+                m_GC.SetGameOver(true);
+        }
+
         if (other.CompareTag("Collectable"))        // Pick up a collectable that gives you points
         {
             //Debug.Log("CANDY!");
